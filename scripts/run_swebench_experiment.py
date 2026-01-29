@@ -96,7 +96,8 @@ def generate_real_solution(
     model: Optional[LlamaCppModel],
     agents: List[SwarmAgent],
     router: Any,
-    prompt_version: str = "v1"
+    prompt_version: str = "v1",
+    model_temp: float = 0.2
 ) -> str:
     """
     Generate real solution using swarm system.
@@ -145,30 +146,30 @@ def generate_real_solution(
         solution = model.generate(
             prompt,
             max_tokens=2048,
-            temperature=0.2,
+            temperature=model_temp,
             stop=["<|im_end|>", "<|endoftext|>"]  # Use model's native stop tokens
         )
 
         # Clean up and format solution
         solution = solution.strip()
-        
+
         # Remove markdown code blocks if present
         if solution.startswith("```"):
             lines = solution.split('\n')
             solution = '\n'.join(lines[1:-1] if lines[-1].strip() == '```' else lines[1:])
-        
+
         # V2 prompt ends with "diff --git" priming - prepend if needed
         # V1/V3 prompts don't have this issue
         if prompt_version == "v2" and not solution.startswith("diff --git"):
             solution = "diff --git" + solution
-        
+
         # Clean up any trailing explanation after the patch
         # Look for common markers that indicate end of patch
         end_markers = ["\n\n## ", "\n\nExplanation:", "\n\nNote:", "\n\nThis patch"]
         for marker in end_markers:
             if marker in solution:
                 solution = solution.split(marker)[0]
-        
+
         return solution.strip()
 
     except Exception as e:
@@ -186,7 +187,8 @@ def run_experiment(
     use_mock: bool = False,
     n_agents: int = 3,
     router_temp: float = 0.5,
-    prompt_version: str = "v1"
+    prompt_version: str = "v1",
+    model_temp: float = 0.2
 ):
     """
     Run SWE-bench experiment with swarm system.
@@ -213,7 +215,7 @@ def run_experiment(
     results_file = output_path / "results.json"
     existing_results = []
     processed_ids = set()
-    
+
     if results_file.exists():
         try:
             with open(results_file) as f:
@@ -227,13 +229,13 @@ def run_experiment(
 
     # Load issues
     all_issues = load_curated_issues(curated_file, n_issues)
-    
+
     # Filter out already-processed issues
     issues = [issue for issue in all_issues if issue["instance_id"] not in processed_ids]
-    
+
     if len(issues) < len(all_issues):
         logger.info(f"Skipping {len(all_issues) - len(issues)} already-processed issues")
-    
+
     if not issues:
         logger.info("All issues already processed. Nothing to do.")
         return
@@ -299,7 +301,7 @@ def run_experiment(
                 solution = generate_mock_solution(issue, condition)
                 agent_id = 0
             else:
-                solution = generate_real_solution(issue, condition, model, agents, router, prompt_version)
+                solution = generate_real_solution(issue, condition, model, agents, router, prompt_version, model_temp)
                 # Track which agent was used
                 task_type = categorize_issue_to_task_type(issue)
                 if condition == "baseline":
@@ -312,7 +314,7 @@ def run_experiment(
 
             # Validate the generated patch
             validation = validate_patch(solution)
-            
+
             result = {
                 "instance_id": issue["instance_id"],
                 "repo": issue["repo"],
@@ -341,7 +343,7 @@ def run_experiment(
                     "solution_length": len(solution)
                 }
             }
-            
+
             # Backwards compatibility
             result["success"] = result["generated"]
             result["solution_generated"] = result["generated"]
@@ -550,6 +552,12 @@ Examples:
         choices=[f"v{i}" for i in range(1, 16)],
         help="Prompt version to use: v1 (simple), v2 (few-shot with bug), v3 (fixed few-shot)"
     )
+    parser.add_argument(
+        "--model-temp",
+        type=float,
+        default=0.2,
+        help="Model temperature for generation (default: 0.2)"
+    )
 
     args = parser.parse_args()
 
@@ -573,7 +581,8 @@ Examples:
         use_mock=args.mock,
         n_agents=args.n_agents,
         router_temp=args.router_temp,
-        prompt_version=args.prompt_version
+        prompt_version=args.prompt_version,
+        model_temp=args.model_temp
     )
 
 

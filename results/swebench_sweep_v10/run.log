@@ -1,0 +1,1251 @@
+2026-01-27 15:13:34.478842: I tensorflow/core/util/port.cc:113] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+2026-01-27 15:13:34.488522: E external/local_xla/xla/stream_executor/cuda/cuda_fft.cc:479] Unable to register cuFFT factory: Attempting to register factory for plugin cuFFT when one has already been registered
+2026-01-27 15:13:34.502609: E external/local_xla/xla/stream_executor/cuda/cuda_dnn.cc:10575] Unable to register cuDNN factory: Attempting to register factory for plugin cuDNN when one has already been registered
+2026-01-27 15:13:34.502637: E external/local_xla/xla/stream_executor/cuda/cuda_blas.cc:1442] Unable to register cuBLAS factory: Attempting to register factory for plugin cuBLAS when one has already been registered
+2026-01-27 15:13:34.511591: I tensorflow/core/platform/cpu_feature_guard.cc:210] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: AVX2 AVX_VNNI FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+2026-01-27 15:13:35.286323: W tensorflow/compiler/tf2tensorrt/utils/py_utils.cc:38] TF-TRT Warning: Could not find TensorRT
+2026-01-27 15:13:36,411 - INFO - Prompt: v10 - Role-playing expert for 7B. Senior engineer persona with debugging heuristics.
+2026-01-27 15:13:36,411 - INFO - 
+################################################################################
+2026-01-27 15:13:36,411 - INFO - STARTING SWE-BENCH EXPERIMENT: EXPERIMENTAL
+2026-01-27 15:13:36,411 - INFO - Mode: REAL (Model Inference)
+2026-01-27 15:13:36,411 - INFO - Prompt Version: v10
+2026-01-27 15:13:36,411 - INFO - ################################################################################
+
+2026-01-27 15:13:36,411 - INFO - Loading curated issues from data/swebench_curated.json...
+2026-01-27 15:13:36,412 - INFO - Loaded 50 issues
+2026-01-27 15:13:36,412 - INFO - Initializing swarm system...
+2026-01-27 15:13:36,412 - INFO - Loading model from models/qwen2.5-coder-7b-instruct-q4_k_m.gguf...
+ggml_cuda_init: GGML_CUDA_FORCE_MMQ:    yes
+ggml_cuda_init: GGML_CUDA_FORCE_CUBLAS: no
+ggml_cuda_init: found 1 CUDA devices:
+  Device 0: NVIDIA GeForce RTX 4070 Laptop GPU, compute capability 8.9, VMM: yes
+llama_model_load_from_file_impl: using device CUDA0 (NVIDIA GeForce RTX 4070 Laptop GPU) - 6292 MiB free
+llama_model_loader: loaded meta data with 29 key-value pairs and 339 tensors from models/qwen2.5-coder-7b-instruct-q4_k_m.gguf (version GGUF V3 (latest))
+llama_model_loader: Dumping metadata keys/values. Note: KV overrides do not apply in this output.
+llama_model_loader: - kv   0:                       general.architecture str              = qwen2
+llama_model_loader: - kv   1:                               general.type str              = model
+llama_model_loader: - kv   2:                               general.name str              = Qwen2.5 Coder 7B Instruct GGUF
+llama_model_loader: - kv   3:                           general.finetune str              = Instruct-GGUF
+llama_model_loader: - kv   4:                           general.basename str              = Qwen2.5-Coder
+llama_model_loader: - kv   5:                         general.size_label str              = 7B
+llama_model_loader: - kv   6:                          qwen2.block_count u32              = 28
+llama_model_loader: - kv   7:                       qwen2.context_length u32              = 131072
+llama_model_loader: - kv   8:                     qwen2.embedding_length u32              = 3584
+llama_model_loader: - kv   9:                  qwen2.feed_forward_length u32              = 18944
+llama_model_loader: - kv  10:                 qwen2.attention.head_count u32              = 28
+llama_model_loader: - kv  11:              qwen2.attention.head_count_kv u32              = 4
+llama_model_loader: - kv  12:                       qwen2.rope.freq_base f32              = 1000000.000000
+llama_model_loader: - kv  13:     qwen2.attention.layer_norm_rms_epsilon f32              = 0.000001
+llama_model_loader: - kv  14:                          general.file_type u32              = 15
+llama_model_loader: - kv  15:                       tokenizer.ggml.model str              = gpt2
+llama_model_loader: - kv  16:                         tokenizer.ggml.pre str              = qwen2
+llama_model_loader: - kv  17:                      tokenizer.ggml.tokens arr[str,152064]  = ["!", "\"", "#", "$", "%", "&", "'", ...
+llama_model_loader: - kv  18:                  tokenizer.ggml.token_type arr[i32,152064]  = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, ...
+llama_model_loader: - kv  19:                      tokenizer.ggml.merges arr[str,151387]  = ["Ġ Ġ", "ĠĠ ĠĠ", "i n", "Ġ t",...
+llama_model_loader: - kv  20:                tokenizer.ggml.eos_token_id u32              = 151645
+llama_model_loader: - kv  21:            tokenizer.ggml.padding_token_id u32              = 151643
+llama_model_loader: - kv  22:                tokenizer.ggml.bos_token_id u32              = 151643
+llama_model_loader: - kv  23:               tokenizer.ggml.add_bos_token bool             = false
+llama_model_loader: - kv  24:                    tokenizer.chat_template str              = {%- if tools %}\n    {{- '<|im_start|>...
+llama_model_loader: - kv  25:               general.quantization_version u32              = 2
+llama_model_loader: - kv  26:                                   split.no u16              = 0
+llama_model_loader: - kv  27:                                split.count u16              = 0
+llama_model_loader: - kv  28:                        split.tensors.count i32              = 339
+llama_model_loader: - type  f32:  141 tensors
+llama_model_loader: - type q4_K:  169 tensors
+llama_model_loader: - type q6_K:   29 tensors
+print_info: file format = GGUF V3 (latest)
+print_info: file type   = Q4_K - Medium
+print_info: file size   = 4.36 GiB (4.91 BPW) 
+init_tokenizer: initializing tokenizer for type 2
+load: control token: 151660 '<|fim_middle|>' is not marked as EOG
+load: control token: 151659 '<|fim_prefix|>' is not marked as EOG
+load: control token: 151653 '<|vision_end|>' is not marked as EOG
+load: control token: 151648 '<|box_start|>' is not marked as EOG
+load: control token: 151646 '<|object_ref_start|>' is not marked as EOG
+load: control token: 151649 '<|box_end|>' is not marked as EOG
+load: control token: 151655 '<|image_pad|>' is not marked as EOG
+load: control token: 151651 '<|quad_end|>' is not marked as EOG
+load: control token: 151647 '<|object_ref_end|>' is not marked as EOG
+load: control token: 151652 '<|vision_start|>' is not marked as EOG
+load: control token: 151654 '<|vision_pad|>' is not marked as EOG
+load: control token: 151656 '<|video_pad|>' is not marked as EOG
+load: control token: 151644 '<|im_start|>' is not marked as EOG
+load: control token: 151661 '<|fim_suffix|>' is not marked as EOG
+load: control token: 151650 '<|quad_start|>' is not marked as EOG
+load: printing all EOG tokens:
+load:   - 151643 ('<|endoftext|>')
+load:   - 151645 ('<|im_end|>')
+load:   - 151662 ('<|fim_pad|>')
+load:   - 151663 ('<|repo_name|>')
+load:   - 151664 ('<|file_sep|>')
+load: special tokens cache size = 22
+load: token to piece cache size = 0.9310 MB
+print_info: arch             = qwen2
+print_info: vocab_only       = 0
+print_info: n_ctx_train      = 131072
+print_info: n_embd           = 3584
+print_info: n_layer          = 28
+print_info: n_head           = 28
+print_info: n_head_kv        = 4
+print_info: n_rot            = 128
+print_info: n_swa            = 0
+print_info: is_swa_any       = 0
+print_info: n_embd_head_k    = 128
+print_info: n_embd_head_v    = 128
+print_info: n_gqa            = 7
+print_info: n_embd_k_gqa     = 512
+print_info: n_embd_v_gqa     = 512
+print_info: f_norm_eps       = 0.0e+00
+print_info: f_norm_rms_eps   = 1.0e-06
+print_info: f_clamp_kqv      = 0.0e+00
+print_info: f_max_alibi_bias = 0.0e+00
+print_info: f_logit_scale    = 0.0e+00
+print_info: f_attn_scale     = 0.0e+00
+print_info: n_ff             = 18944
+print_info: n_expert         = 0
+print_info: n_expert_used    = 0
+print_info: causal attn      = 1
+print_info: pooling type     = -1
+print_info: rope type        = 2
+print_info: rope scaling     = linear
+print_info: freq_base_train  = 1000000.0
+print_info: freq_scale_train = 1
+print_info: n_ctx_orig_yarn  = 131072
+print_info: rope_finetuned   = unknown
+print_info: model type       = 7B
+print_info: model params     = 7.62 B
+print_info: general.name     = Qwen2.5 Coder 7B Instruct GGUF
+print_info: vocab type       = BPE
+print_info: n_vocab          = 152064
+print_info: n_merges         = 151387
+print_info: BOS token        = 151643 '<|endoftext|>'
+print_info: EOS token        = 151645 '<|im_end|>'
+print_info: EOT token        = 151645 '<|im_end|>'
+print_info: PAD token        = 151643 '<|endoftext|>'
+print_info: LF token         = 198 'Ċ'
+print_info: FIM PRE token    = 151659 '<|fim_prefix|>'
+print_info: FIM SUF token    = 151661 '<|fim_suffix|>'
+print_info: FIM MID token    = 151660 '<|fim_middle|>'
+print_info: FIM PAD token    = 151662 '<|fim_pad|>'
+print_info: FIM REP token    = 151663 '<|repo_name|>'
+print_info: FIM SEP token    = 151664 '<|file_sep|>'
+print_info: EOG token        = 151643 '<|endoftext|>'
+print_info: EOG token        = 151645 '<|im_end|>'
+print_info: EOG token        = 151662 '<|fim_pad|>'
+print_info: EOG token        = 151663 '<|repo_name|>'
+print_info: EOG token        = 151664 '<|file_sep|>'
+print_info: max token length = 256
+load_tensors: loading model tensors, this can take a while... (mmap = true)
+load_tensors: layer   0 assigned to device CUDA0, is_swa = 0
+load_tensors: layer   1 assigned to device CUDA0, is_swa = 0
+load_tensors: layer   2 assigned to device CUDA0, is_swa = 0
+load_tensors: layer   3 assigned to device CUDA0, is_swa = 0
+load_tensors: layer   4 assigned to device CUDA0, is_swa = 0
+load_tensors: layer   5 assigned to device CUDA0, is_swa = 0
+load_tensors: layer   6 assigned to device CUDA0, is_swa = 0
+load_tensors: layer   7 assigned to device CUDA0, is_swa = 0
+load_tensors: layer   8 assigned to device CUDA0, is_swa = 0
+load_tensors: layer   9 assigned to device CUDA0, is_swa = 0
+load_tensors: layer  10 assigned to device CUDA0, is_swa = 0
+load_tensors: layer  11 assigned to device CUDA0, is_swa = 0
+load_tensors: layer  12 assigned to device CUDA0, is_swa = 0
+load_tensors: layer  13 assigned to device CUDA0, is_swa = 0
+load_tensors: layer  14 assigned to device CUDA0, is_swa = 0
+load_tensors: layer  15 assigned to device CUDA0, is_swa = 0
+load_tensors: layer  16 assigned to device CUDA0, is_swa = 0
+load_tensors: layer  17 assigned to device CUDA0, is_swa = 0
+load_tensors: layer  18 assigned to device CUDA0, is_swa = 0
+load_tensors: layer  19 assigned to device CUDA0, is_swa = 0
+load_tensors: layer  20 assigned to device CUDA0, is_swa = 0
+load_tensors: layer  21 assigned to device CUDA0, is_swa = 0
+load_tensors: layer  22 assigned to device CUDA0, is_swa = 0
+load_tensors: layer  23 assigned to device CUDA0, is_swa = 0
+load_tensors: layer  24 assigned to device CUDA0, is_swa = 0
+load_tensors: layer  25 assigned to device CUDA0, is_swa = 0
+load_tensors: layer  26 assigned to device CUDA0, is_swa = 0
+load_tensors: layer  27 assigned to device CUDA0, is_swa = 0
+load_tensors: layer  28 assigned to device CUDA0, is_swa = 0
+load_tensors: tensor 'token_embd.weight' (q4_K) (and 0 others) cannot be used with preferred buffer type CUDA_Host, using CPU instead
+load_tensors: offloading 28 repeating layers to GPU
+load_tensors: offloading output layer to GPU
+load_tensors: offloaded 29/29 layers to GPU
+load_tensors:        CUDA0 model buffer size =  4168.09 MiB
+load_tensors:   CPU_Mapped model buffer size =   292.36 MiB
+.................................................................................
+llama_context: constructing llama_context
+llama_context: n_seq_max     = 1
+llama_context: n_ctx         = 8192
+llama_context: n_ctx_per_seq = 8192
+llama_context: n_batch       = 512
+llama_context: n_ubatch      = 512
+llama_context: causal_attn   = 1
+llama_context: flash_attn    = 0
+llama_context: kv_unified    = false
+llama_context: freq_base     = 1000000.0
+llama_context: freq_scale    = 1
+llama_context: n_ctx_per_seq (8192) < n_ctx_train (131072) -- the full capacity of the model will not be utilized
+set_abort_callback: call
+llama_context:  CUDA_Host  output buffer size =     0.58 MiB
+create_memory: n_ctx = 8192 (padded)
+llama_kv_cache_unified: layer   0: dev = CUDA0
+llama_kv_cache_unified: layer   1: dev = CUDA0
+llama_kv_cache_unified: layer   2: dev = CUDA0
+llama_kv_cache_unified: layer   3: dev = CUDA0
+llama_kv_cache_unified: layer   4: dev = CUDA0
+llama_kv_cache_unified: layer   5: dev = CUDA0
+llama_kv_cache_unified: layer   6: dev = CUDA0
+llama_kv_cache_unified: layer   7: dev = CUDA0
+llama_kv_cache_unified: layer   8: dev = CUDA0
+llama_kv_cache_unified: layer   9: dev = CUDA0
+llama_kv_cache_unified: layer  10: dev = CUDA0
+llama_kv_cache_unified: layer  11: dev = CUDA0
+llama_kv_cache_unified: layer  12: dev = CUDA0
+llama_kv_cache_unified: layer  13: dev = CUDA0
+llama_kv_cache_unified: layer  14: dev = CUDA0
+llama_kv_cache_unified: layer  15: dev = CUDA0
+llama_kv_cache_unified: layer  16: dev = CUDA0
+llama_kv_cache_unified: layer  17: dev = CUDA0
+llama_kv_cache_unified: layer  18: dev = CUDA0
+llama_kv_cache_unified: layer  19: dev = CUDA0
+llama_kv_cache_unified: layer  20: dev = CUDA0
+llama_kv_cache_unified: layer  21: dev = CUDA0
+llama_kv_cache_unified: layer  22: dev = CUDA0
+llama_kv_cache_unified: layer  23: dev = CUDA0
+llama_kv_cache_unified: layer  24: dev = CUDA0
+llama_kv_cache_unified: layer  25: dev = CUDA0
+llama_kv_cache_unified: layer  26: dev = CUDA0
+llama_kv_cache_unified: layer  27: dev = CUDA0
+llama_kv_cache_unified:      CUDA0 KV buffer size =   448.00 MiB
+llama_kv_cache_unified: size =  448.00 MiB (  8192 cells,  28 layers,  1/1 seqs), K (f16):  224.00 MiB, V (f16):  224.00 MiB
+llama_context: enumerating backends
+llama_context: backend_ptrs.size() = 2
+llama_context: max_nodes = 2712
+llama_context: worst-case: n_tokens = 512, n_seqs = 1, n_outputs = 0
+graph_reserve: reserving a graph for ubatch with n_tokens =  512, n_seqs =  1, n_outputs =  512
+graph_reserve: reserving a graph for ubatch with n_tokens =    1, n_seqs =  1, n_outputs =    1
+graph_reserve: reserving a graph for ubatch with n_tokens =  512, n_seqs =  1, n_outputs =  512
+llama_context:      CUDA0 compute buffer size =   494.01 MiB
+llama_context:  CUDA_Host compute buffer size =    25.01 MiB
+llama_context: graph nodes  = 1070
+llama_context: graph splits = 2
+CUDA : ARCHS = 500,520,530,600,610,620,700,720,750,800,860,870,890,900 | FORCE_MMQ = 1 | USE_GRAPHS = 1 | PEER_MAX_BATCH_SIZE = 128 | CPU : SSE3 = 1 | SSSE3 = 1 | AVX = 1 | AVX2 = 1 | F16C = 1 | FMA = 1 | BMI2 = 1 | LLAMAFILE = 1 | OPENMP = 1 | REPACK = 1 | 
+Model metadata: {'split.count': '0', 'tokenizer.ggml.add_bos_token': 'false', 'tokenizer.ggml.bos_token_id': '151643', 'general.file_type': '15', 'qwen2.attention.layer_norm_rms_epsilon': '0.000001', 'general.architecture': 'qwen2', 'tokenizer.ggml.padding_token_id': '151643', 'general.basename': 'Qwen2.5-Coder', 'qwen2.embedding_length': '3584', 'split.tensors.count': '339', 'tokenizer.ggml.pre': 'qwen2', 'general.name': 'Qwen2.5 Coder 7B Instruct GGUF', 'split.no': '0', 'qwen2.block_count': '28', 'general.finetune': 'Instruct-GGUF', 'general.type': 'model', 'general.size_label': '7B', 'qwen2.context_length': '131072', 'tokenizer.chat_template': '{%- if tools %}\n    {{- \'<|im_start|>system\\n\' }}\n    {%- if messages[0][\'role\'] == \'system\' %}\n        {{- messages[0][\'content\'] }}\n    {%- else %}\n        {{- \'You are Qwen, created by Alibaba Cloud. You are a helpful assistant.\' }}\n    {%- endif %}\n    {{- "\\n\\n# Tools\\n\\nYou may call one or more functions to assist with the user query.\\n\\nYou are provided with function signatures within <tools></tools> XML tags:\\n<tools>" }}\n    {%- for tool in tools %}\n        {{- "\\n" }}\n        {{- tool | tojson }}\n    {%- endfor %}\n    {{- "\\n</tools>\\n\\nFor each function call, return a json object with function name and arguments within <tool_call></tool_call> XML tags:\\n<tool_call>\\n{{\\"name\\": <function-name>, \\"arguments\\": <args-json-object>}}\\n</tool_call><|im_end|>\\n" }}\n{%- else %}\n    {%- if messages[0][\'role\'] == \'system\' %}\n        {{- \'<|im_start|>system\\n\' + messages[0][\'content\'] + \'<|im_end|>\\n\' }}\n    {%- else %}\n        {{- \'<|im_start|>system\\nYou are Qwen, created by Alibaba Cloud. You are a helpful assistant.<|im_end|>\\n\' }}\n    {%- endif %}\n{%- endif %}\n{%- for message in messages %}\n    {%- if (message.role == "user") or (message.role == "system" and not loop.first) or (message.role == "assistant" and not message.tool_calls) %}\n        {{- \'<|im_start|>\' + message.role + \'\\n\' + message.content + \'<|im_end|>\' + \'\\n\' }}\n    {%- elif message.role == "assistant" %}\n        {{- \'<|im_start|>\' + message.role }}\n        {%- if message.content %}\n            {{- \'\\n\' + message.content }}\n        {%- endif %}\n        {%- for tool_call in message.tool_calls %}\n            {%- if tool_call.function is defined %}\n                {%- set tool_call = tool_call.function %}\n            {%- endif %}\n            {{- \'\\n<tool_call>\\n{"name": "\' }}\n            {{- tool_call.name }}\n            {{- \'", "arguments": \' }}\n            {{- tool_call.arguments | tojson }}\n            {{- \'}\\n</tool_call>\' }}\n        {%- endfor %}\n        {{- \'<|im_end|>\\n\' }}\n    {%- elif message.role == "tool" %}\n        {%- if (loop.index0 == 0) or (messages[loop.index0 - 1].role != "tool") %}\n            {{- \'<|im_start|>user\' }}\n        {%- endif %}\n        {{- \'\\n<tool_response>\\n\' }}\n        {{- message.content }}\n        {{- \'\\n</tool_response>\' }}\n        {%- if loop.last or (messages[loop.index0 + 1].role != "tool") %}\n            {{- \'<|im_end|>\\n\' }}\n        {%- endif %}\n    {%- endif %}\n{%- endfor %}\n{%- if add_generation_prompt %}\n    {{- \'<|im_start|>assistant\\n\' }}\n{%- endif %}\n', 'qwen2.attention.head_count_kv': '4', 'general.quantization_version': '2', 'tokenizer.ggml.model': 'gpt2', 'qwen2.feed_forward_length': '18944', 'qwen2.attention.head_count': '28', 'tokenizer.ggml.eos_token_id': '151645', 'qwen2.rope.freq_base': '1000000.000000'}
+Available chat formats from metadata: chat_template.default
+Using gguf chat template: {%- if tools %}
+    {{- '<|im_start|>system\n' }}
+    {%- if messages[0]['role'] == 'system' %}
+        {{- messages[0]['content'] }}
+    {%- else %}
+        {{- 'You are Qwen, created by Alibaba Cloud. You are a helpful assistant.' }}
+    {%- endif %}
+    {{- "\n\n# Tools\n\nYou may call one or more functions to assist with the user query.\n\nYou are provided with function signatures within <tools></tools> XML tags:\n<tools>" }}
+    {%- for tool in tools %}
+        {{- "\n" }}
+        {{- tool | tojson }}
+    {%- endfor %}
+    {{- "\n</tools>\n\nFor each function call, return a json object with function name and arguments within <tool_call></tool_call> XML tags:\n<tool_call>\n{{\"name\": <function-name>, \"arguments\": <args-json-object>}}\n</tool_call><|im_end|>\n" }}
+{%- else %}
+    {%- if messages[0]['role'] == 'system' %}
+        {{- '<|im_start|>system\n' + messages[0]['content'] + '<|im_end|>\n' }}
+    {%- else %}
+        {{- '<|im_start|>system\nYou are Qwen, created by Alibaba Cloud. You are a helpful assistant.<|im_end|>\n' }}
+    {%- endif %}
+{%- endif %}
+{%- for message in messages %}
+    {%- if (message.role == "user") or (message.role == "system" and not loop.first) or (message.role == "assistant" and not message.tool_calls) %}
+        {{- '<|im_start|>' + message.role + '\n' + message.content + '<|im_end|>' + '\n' }}
+    {%- elif message.role == "assistant" %}
+        {{- '<|im_start|>' + message.role }}
+        {%- if message.content %}
+            {{- '\n' + message.content }}
+        {%- endif %}
+        {%- for tool_call in message.tool_calls %}
+            {%- if tool_call.function is defined %}
+                {%- set tool_call = tool_call.function %}
+            {%- endif %}
+            {{- '\n<tool_call>\n{"name": "' }}
+            {{- tool_call.name }}
+            {{- '", "arguments": ' }}
+            {{- tool_call.arguments | tojson }}
+            {{- '}\n</tool_call>' }}
+        {%- endfor %}
+        {{- '<|im_end|>\n' }}
+    {%- elif message.role == "tool" %}
+        {%- if (loop.index0 == 0) or (messages[loop.index0 - 1].role != "tool") %}
+            {{- '<|im_start|>user' }}
+        {%- endif %}
+        {{- '\n<tool_response>\n' }}
+        {{- message.content }}
+        {{- '\n</tool_response>' }}
+        {%- if loop.last or (messages[loop.index0 + 1].role != "tool") %}
+            {{- '<|im_end|>\n' }}
+        {%- endif %}
+    {%- endif %}
+{%- endfor %}
+{%- if add_generation_prompt %}
+    {{- '<|im_start|>assistant\n' }}
+{%- endif %}
+
+Using chat eos_token: <|im_end|>
+Using chat bos_token: <|endoftext|>
+2026-01-27 15:13:37,951 - INFO - Initialized 7 agent(s)
+2026-01-27 15:13:37,951 - INFO - Using affinity routing (experimental) with temp=0.1
+2026-01-27 15:13:37,951 - INFO - 
+[1/50] Processing django__django-11179
+2026-01-27 15:13:37,951 - INFO -   Repo: django/django
+2026-01-27 15:13:37,952 - INFO -   Category: other
+2026-01-27 15:13:37,952 - INFO -   Problem: delete() on instances of models without any dependencies doesn't clear PKs.
+Description
+	
+Deleting a...
+2026-01-27 15:13:37,952 - INFO -   Selected Agent 1 for other issue (task_type=math)
+2026-01-27 15:13:37,952 - INFO -   Using prompt version: v10
+2026-01-27 15:13:37,952 - INFO -   Generating solution with qwen2.5-coder-1.5b...
+llama_perf_context_print:        load time =     209.92 ms
+llama_perf_context_print: prompt eval time =     209.59 ms /   211 tokens (    0.99 ms per token,  1006.74 tokens per second)
+llama_perf_context_print:        eval time =   12658.07 ms /   445 runs   (   28.45 ms per token,    35.16 tokens per second)
+llama_perf_context_print:       total time =   13441.73 ms /   656 tokens
+llama_perf_context_print:    graphs reused =        430
+2026-01-27 15:13:51,395 - INFO -   ⚠ Generated by Agent 6 (13.44s, 617 chars, valid=False)
+2026-01-27 15:13:51,396 - INFO - 
+[2/50] Processing django__django-12908
+2026-01-27 15:13:51,396 - INFO -   Repo: django/django
+2026-01-27 15:13:51,396 - INFO -   Category: test
+2026-01-27 15:13:51,396 - INFO -   Problem: Union queryset should raise on distinct().
+Description
+	 
+		(last modified by Sielc Technologies)
+	 ...
+2026-01-27 15:13:51,396 - INFO -   Selected Agent 2 for test issue (task_type=logic)
+2026-01-27 15:13:51,396 - INFO -   Using prompt version: v10
+2026-01-27 15:13:51,396 - INFO -   Generating solution with qwen2.5-coder-1.5b...
+Llama.generate: 33 prefix-match hit, remaining 397 prompt tokens to eval
+llama_perf_context_print:        load time =     209.92 ms
+llama_perf_context_print: prompt eval time =     206.12 ms /   397 tokens (    0.52 ms per token,  1926.05 tokens per second)
+llama_perf_context_print:        eval time =   50237.41 ms /  2047 runs   (   24.54 ms per token,    40.75 tokens per second)
+llama_perf_context_print:       total time =   56389.09 ms /  2444 tokens
+llama_perf_context_print:    graphs reused =       1982
+2026-01-27 15:14:47,787 - INFO -   ✓ Generated by Agent 5 (56.39s, 8234 chars, valid=True)
+2026-01-27 15:14:47,787 - INFO - 
+[3/50] Processing django__django-13230
+2026-01-27 15:14:47,787 - INFO -   Repo: django/django
+2026-01-27 15:14:47,787 - INFO -   Category: feature
+2026-01-27 15:14:47,787 - INFO -   Problem: Add support for item_comments to syndication framework
+Description
+	
+Add comments argument to feed.a...
+2026-01-27 15:14:47,787 - INFO -   Selected Agent 4 for feature issue (task_type=string)
+2026-01-27 15:14:47,787 - INFO -   Using prompt version: v10
+2026-01-27 15:14:47,787 - INFO -   Generating solution with qwen2.5-coder-1.5b...
+Llama.generate: 33 prefix-match hit, remaining 173 prompt tokens to eval
+llama_perf_context_print:        load time =     209.92 ms
+llama_perf_context_print: prompt eval time =      72.25 ms /   173 tokens (    0.42 ms per token,  2394.50 tokens per second)
+llama_perf_context_print:        eval time =   49835.85 ms /  2047 runs   (   24.35 ms per token,    41.07 tokens per second)
+llama_perf_context_print:       total time =   55996.54 ms /  2220 tokens
+llama_perf_context_print:    graphs reused =       1982
+2026-01-27 15:15:43,786 - INFO -   ✓ Generated by Agent 1 (56.00s, 7637 chars, valid=True)
+2026-01-27 15:15:43,786 - INFO - 
+[4/50] Processing django__django-13447
+2026-01-27 15:15:43,786 - INFO -   Repo: django/django
+2026-01-27 15:15:43,786 - INFO -   Category: feature
+2026-01-27 15:15:43,786 - INFO -   Problem: Added model class to app_list context
+Description
+	 
+		(last modified by Raffaele Salmaso)
+	 
+I need...
+2026-01-27 15:15:43,786 - INFO -   Selected Agent 1 for feature issue (task_type=string)
+2026-01-27 15:15:43,786 - INFO -   Using 1 context examples from agent's memory
+2026-01-27 15:15:43,786 - INFO -   Using prompt version: v10
+2026-01-27 15:15:43,786 - INFO -   Generating solution with qwen2.5-coder-1.5b...
+Llama.generate: 33 prefix-match hit, remaining 199 prompt tokens to eval
+llama_perf_context_print:        load time =     209.92 ms
+llama_perf_context_print: prompt eval time =      82.17 ms /   199 tokens (    0.41 ms per token,  2421.96 tokens per second)
+llama_perf_context_print:        eval time =   49210.40 ms /  2047 runs   (   24.04 ms per token,    41.60 tokens per second)
+llama_perf_context_print:       total time =   55492.67 ms /  2246 tokens
+llama_perf_context_print:    graphs reused =       1982
+2026-01-27 15:16:39,281 - INFO -   ✓ Generated by Agent 1 (55.49s, 8830 chars, valid=True)
+2026-01-27 15:16:39,282 - INFO - 
+[5/50] Processing django__django-15814
+2026-01-27 15:16:39,282 - INFO -   Repo: django/django
+2026-01-27 15:16:39,282 - INFO -   Category: bug
+2026-01-27 15:16:39,282 - INFO -   Problem: QuerySet.only() after select_related() crash on proxy models.
+Description
+	
+When I optimize a query ...
+2026-01-27 15:16:39,282 - INFO -   Selected Agent 5 for bug issue (task_type=logic)
+2026-01-27 15:16:39,282 - INFO -   Using 1 context examples from agent's memory
+2026-01-27 15:16:39,282 - INFO -   Using prompt version: v10
+2026-01-27 15:16:39,282 - INFO -   Generating solution with qwen2.5-coder-1.5b...
+Llama.generate: 33 prefix-match hit, remaining 872 prompt tokens to eval
+llama_perf_context_print:        load time =     209.92 ms
+llama_perf_context_print: prompt eval time =     377.57 ms /   872 tokens (    0.43 ms per token,  2309.49 tokens per second)
+llama_perf_context_print:        eval time =   11099.76 ms /   515 runs   (   21.55 ms per token,    46.40 tokens per second)
+llama_perf_context_print:       total time =   12165.37 ms /  1387 tokens
+llama_perf_context_print:    graphs reused =        498
+2026-01-27 15:16:51,450 - INFO -   ⚠ Generated by Agent 5 (12.17s, 570 chars, valid=False)
+2026-01-27 15:16:51,450 - INFO - 
+[6/50] Processing matplotlib__matplotlib-23563
+2026-01-27 15:16:51,450 - INFO -   Repo: matplotlib/matplotlib
+2026-01-27 15:16:51,450 - INFO -   Category: bug
+2026-01-27 15:16:51,450 - INFO -   Problem: [Bug]: 'Line3D' object has no attribute '_verts3d'
+### Bug summary
+
+I use matplotlib 3D to visualize...
+2026-01-27 15:16:51,451 - INFO -   Selected Agent 5 for bug issue (task_type=logic)
+2026-01-27 15:16:51,451 - INFO -   Using 2 context examples from agent's memory
+2026-01-27 15:16:51,451 - INFO -   Using prompt version: v10
+2026-01-27 15:16:51,451 - INFO -   Generating solution with qwen2.5-coder-1.5b...
+Llama.generate: 26 prefix-match hit, remaining 1495 prompt tokens to eval
+llama_perf_context_print:        load time =     209.92 ms
+llama_perf_context_print: prompt eval time =     677.89 ms /  1495 tokens (    0.45 ms per token,  2205.38 tokens per second)
+llama_perf_context_print:        eval time =    9701.73 ms /   443 runs   (   21.90 ms per token,    45.66 tokens per second)
+llama_perf_context_print:       total time =   10948.41 ms /  1938 tokens
+llama_perf_context_print:    graphs reused =        428
+2026-01-27 15:17:02,402 - INFO -   ⚠ Generated by Agent 5 (10.95s, 1396 chars, valid=False)
+2026-01-27 15:17:02,403 - INFO - 
+[7/50] Processing matplotlib__matplotlib-25433
+2026-01-27 15:17:02,403 - INFO -   Repo: matplotlib/matplotlib
+2026-01-27 15:17:02,403 - INFO -   Category: bug
+2026-01-27 15:17:02,403 - INFO -   Problem: [Bug]: using clf and pyplot.draw in range slider on_changed callback blocks input to widgets
+### Bug...
+2026-01-27 15:17:02,403 - INFO -   Selected Agent 5 for bug issue (task_type=logic)
+2026-01-27 15:17:02,403 - INFO -   Using 3 context examples from agent's memory
+2026-01-27 15:17:02,403 - INFO -   Using prompt version: v10
+2026-01-27 15:17:02,403 - INFO -   Generating solution with qwen2.5-coder-1.5b...
+Llama.generate: 36 prefix-match hit, remaining 548 prompt tokens to eval
+llama_perf_context_print:        load time =     209.92 ms
+llama_perf_context_print: prompt eval time =     245.92 ms /   548 tokens (    0.45 ms per token,  2228.38 tokens per second)
+llama_perf_context_print:        eval time =    6964.13 ms /   326 runs   (   21.36 ms per token,    46.81 tokens per second)
+llama_perf_context_print:       total time =    7583.76 ms /   874 tokens
+llama_perf_context_print:    graphs reused =        315
+2026-01-27 15:17:09,989 - INFO -   ⚠ Generated by Agent 5 (7.59s, 798 chars, valid=False)
+2026-01-27 15:17:09,989 - INFO - 
+[8/50] Processing pytest-dev__pytest-11143
+2026-01-27 15:17:09,989 - INFO -   Repo: pytest-dev/pytest
+2026-01-27 15:17:09,989 - INFO -   Category: bug
+2026-01-27 15:17:09,989 - INFO -   Problem: Rewrite fails when first expression of file is a number and mistaken as docstring 
+<!--
+Thanks for ...
+2026-01-27 15:17:09,989 - INFO -   Selected Agent 5 for bug issue (task_type=logic)
+2026-01-27 15:17:09,989 - INFO -   Using 4 context examples from agent's memory
+2026-01-27 15:17:09,989 - INFO -   Using prompt version: v10
+2026-01-27 15:17:09,989 - INFO -   Generating solution with qwen2.5-coder-1.5b...
+Llama.generate: 26 prefix-match hit, remaining 1948 prompt tokens to eval
+llama_perf_context_print:        load time =     209.92 ms
+llama_perf_context_print: prompt eval time =     905.09 ms /  1948 tokens (    0.46 ms per token,  2152.27 tokens per second)
+llama_perf_context_print:        eval time =    4955.01 ms /   225 runs   (   22.02 ms per token,    45.41 tokens per second)
+llama_perf_context_print:       total time =    6102.07 ms /  2173 tokens
+llama_perf_context_print:    graphs reused =        217
+2026-01-27 15:17:16,096 - INFO -   ⚠ Generated by Agent 5 (6.11s, 458 chars, valid=False)
+2026-01-27 15:17:16,096 - INFO - 
+[9/50] Processing pytest-dev__pytest-6116
+2026-01-27 15:17:16,096 - INFO -   Repo: pytest-dev/pytest
+2026-01-27 15:17:16,096 - INFO -   Category: feature
+2026-01-27 15:17:16,096 - INFO -   Problem: pytest --collect-only needs a one char shortcut command
+I find myself needing to run `--collect-only...
+2026-01-27 15:17:16,096 - INFO -   Selected Agent 1 for feature issue (task_type=string)
+2026-01-27 15:17:16,096 - INFO -   Using 2 context examples from agent's memory
+2026-01-27 15:17:16,096 - INFO -   Using prompt version: v10
+2026-01-27 15:17:16,096 - INFO -   Generating solution with qwen2.5-coder-1.5b...
+Llama.generate: 34 prefix-match hit, remaining 324 prompt tokens to eval
+llama_perf_context_print:        load time =     209.92 ms
+llama_perf_context_print: prompt eval time =     130.44 ms /   324 tokens (    0.40 ms per token,  2483.90 tokens per second)
+llama_perf_context_print:        eval time =    3270.87 ms /   151 runs   (   21.66 ms per token,    46.17 tokens per second)
+llama_perf_context_print:       total time =    3553.46 ms /   475 tokens
+llama_perf_context_print:    graphs reused =        146
+2026-01-27 15:17:19,651 - INFO -   ⚠ Generated by Agent 1 (3.56s, 341 chars, valid=False)
+2026-01-27 15:17:19,651 - INFO - 
+[10/50] Processing django__django-10914
+2026-01-27 15:17:19,651 - INFO -   Repo: django/django
+2026-01-27 15:17:19,651 - INFO -   Category: bug
+2026-01-27 15:17:19,651 - INFO -   Problem: Set default FILE_UPLOAD_PERMISSION to 0o644.
+Description
+	
+Hello,
+As far as I can see, the ​File Upl...
+2026-01-27 15:17:19,651 - INFO -   Selected Agent 5 for bug issue (task_type=logic)
+2026-01-27 15:17:19,651 - INFO -   Using 5 context examples from agent's memory
+2026-01-27 15:17:19,651 - INFO -   Using prompt version: v10
+2026-01-27 15:17:19,651 - INFO -   Generating solution with qwen2.5-coder-1.5b...
+Llama.generate: 26 prefix-match hit, remaining 332 prompt tokens to eval
+llama_perf_context_print:        load time =     209.92 ms
+llama_perf_context_print: prompt eval time =     132.81 ms /   332 tokens (    0.40 ms per token,  2499.76 tokens per second)
+llama_perf_context_print:        eval time =    4016.12 ms /   186 runs   (   21.59 ms per token,    46.31 tokens per second)
+llama_perf_context_print:       total time =    4340.76 ms /   518 tokens
+llama_perf_context_print:    graphs reused =        180
+2026-01-27 15:17:23,994 - INFO -   ⚠ Generated by Agent 4 (4.34s, 494 chars, valid=False)
+2026-01-27 15:17:23,995 - INFO - 
+[11/50] Processing django__django-10924
+2026-01-27 15:17:23,995 - INFO -   Repo: django/django
+2026-01-27 15:17:23,995 - INFO -   Category: other
+2026-01-27 15:17:23,995 - INFO -   Problem: Allow FilePathField path to accept a callable.
+Description
+	
+I have a special case where I want to c...
+2026-01-27 15:17:23,995 - INFO -   Selected Agent 6 for other issue (task_type=math)
+2026-01-27 15:17:23,995 - INFO -   Using 1 context examples from agent's memory
+2026-01-27 15:17:23,995 - INFO -   Using prompt version: v10
+2026-01-27 15:17:23,995 - INFO -   Generating solution with qwen2.5-coder-1.5b...
+Llama.generate: 33 prefix-match hit, remaining 281 prompt tokens to eval
+llama_perf_context_print:        load time =     209.92 ms
+llama_perf_context_print: prompt eval time =     116.19 ms /   281 tokens (    0.41 ms per token,  2418.43 tokens per second)
+llama_perf_context_print:        eval time =    8533.55 ms /   398 runs   (   21.44 ms per token,    46.64 tokens per second)
+llama_perf_context_print:       total time =    9139.45 ms /   679 tokens
+llama_perf_context_print:    graphs reused =        384
+2026-01-27 15:17:33,137 - INFO -   ⚠ Generated by Agent 6 (9.14s, 599 chars, valid=False)
+2026-01-27 15:17:33,137 - INFO - 
+[12/50] Processing django__django-11049
+2026-01-27 15:17:33,137 - INFO -   Repo: django/django
+2026-01-27 15:17:33,137 - INFO -   Category: bug
+2026-01-27 15:17:33,137 - INFO -   Problem: Correct expected format in invalid DurationField error message
+Description
+	
+If you enter a duration...
+2026-01-27 15:17:33,137 - INFO -   Selected Agent 4 for bug issue (task_type=logic)
+2026-01-27 15:17:33,137 - INFO -   Using 1 context examples from agent's memory
+2026-01-27 15:17:33,137 - INFO -   Using prompt version: v10
+2026-01-27 15:17:33,137 - INFO -   Generating solution with qwen2.5-coder-1.5b...
+Llama.generate: 33 prefix-match hit, remaining 279 prompt tokens to eval
+llama_perf_context_print:        load time =     209.92 ms
+llama_perf_context_print: prompt eval time =     116.79 ms /   279 tokens (    0.42 ms per token,  2388.98 tokens per second)
+llama_perf_context_print:        eval time =   10411.05 ms /   486 runs   (   21.42 ms per token,    46.68 tokens per second)
+llama_perf_context_print:       total time =   11172.55 ms /   765 tokens
+llama_perf_context_print:    graphs reused =        470
+2026-01-27 15:17:44,312 - INFO -   ⚠ Generated by Agent 4 (11.17s, 1385 chars, valid=False)
+2026-01-27 15:17:44,312 - INFO - 
+[13/50] Processing django__django-11133
+2026-01-27 15:17:44,312 - INFO -   Repo: django/django
+2026-01-27 15:17:44,312 - INFO -   Category: other
+2026-01-27 15:17:44,312 - INFO -   Problem: HttpResponse doesn't handle memoryview objects
+Description
+	
+I am trying to write a BinaryField retr...
+2026-01-27 15:17:44,312 - INFO -   Selected Agent 6 for other issue (task_type=math)
+2026-01-27 15:17:44,312 - INFO -   Using 2 context examples from agent's memory
+2026-01-27 15:17:44,312 - INFO -   Using prompt version: v10
+2026-01-27 15:17:44,312 - INFO -   Generating solution with qwen2.5-coder-1.5b...
+Llama.generate: 33 prefix-match hit, remaining 295 prompt tokens to eval
+llama_perf_context_print:        load time =     209.92 ms
+llama_perf_context_print: prompt eval time =     128.82 ms /   295 tokens (    0.44 ms per token,  2290.09 tokens per second)
+llama_perf_context_print:        eval time =   14022.42 ms /   654 runs   (   21.44 ms per token,    46.64 tokens per second)
+llama_perf_context_print:       total time =   15123.84 ms /   949 tokens
+llama_perf_context_print:    graphs reused =        633
+2026-01-27 15:17:59,438 - INFO -   ⚠ Generated by Agent 6 (15.13s, 1799 chars, valid=False)
+2026-01-27 15:17:59,438 - INFO - 
+[14/50] Processing django__django-12113
+2026-01-27 15:17:59,438 - INFO -   Repo: django/django
+2026-01-27 15:17:59,438 - INFO -   Category: bug
+2026-01-27 15:17:59,438 - INFO -   Problem: admin_views.test_multidb fails with persistent test SQLite database.
+Description
+	 
+		(last modified...
+2026-01-27 15:17:59,438 - INFO -   Selected Agent 5 for bug issue (task_type=logic)
+2026-01-27 15:17:59,438 - INFO -   Using 5 context examples from agent's memory
+2026-01-27 15:17:59,438 - INFO -   Using prompt version: v10
+2026-01-27 15:17:59,438 - INFO -   Generating solution with qwen2.5-coder-1.5b...
+Llama.generate: 33 prefix-match hit, remaining 1370 prompt tokens to eval
+llama_perf_context_print:        load time =     209.92 ms
+llama_perf_context_print: prompt eval time =     625.93 ms /  1370 tokens (    0.46 ms per token,  2188.74 tokens per second)
+llama_perf_context_print:        eval time =    8184.89 ms /   375 runs   (   21.83 ms per token,    45.82 tokens per second)
+llama_perf_context_print:       total time =    9265.26 ms /  1745 tokens
+llama_perf_context_print:    graphs reused =        362
+2026-01-27 15:18:08,708 - INFO -   ⚠ Generated by Agent 5 (9.27s, 441 chars, valid=False)
+2026-01-27 15:18:08,708 - INFO - 
+[15/50] Processing django__django-12125
+2026-01-27 15:18:08,708 - INFO -   Repo: django/django
+2026-01-27 15:18:08,708 - INFO -   Category: bug
+2026-01-27 15:18:08,708 - INFO -   Problem: makemigrations produces incorrect path for inner classes
+Description
+	
+When you define a subclass fr...
+2026-01-27 15:18:08,708 - INFO -   Selected Agent 5 for bug issue (task_type=logic)
+2026-01-27 15:18:08,708 - INFO -   Using 5 context examples from agent's memory
+2026-01-27 15:18:08,708 - INFO -   Using prompt version: v10
+2026-01-27 15:18:08,708 - INFO -   Generating solution with qwen2.5-coder-1.5b...
+Llama.generate: 33 prefix-match hit, remaining 473 prompt tokens to eval
+llama_perf_context_print:        load time =     209.92 ms
+llama_perf_context_print: prompt eval time =     195.24 ms /   473 tokens (    0.41 ms per token,  2422.68 tokens per second)
+llama_perf_context_print:        eval time =    6765.74 ms /   303 runs   (   22.33 ms per token,    44.78 tokens per second)
+llama_perf_context_print:       total time =    7320.99 ms /   776 tokens
+llama_perf_context_print:    graphs reused =        292
+2026-01-27 15:18:16,032 - INFO -   ⚠ Generated by Agent 5 (7.32s, 1215 chars, valid=False)
+2026-01-27 15:18:16,033 - INFO - 
+[16/50] Processing django__django-13964
+2026-01-27 15:18:16,033 - INFO -   Repo: django/django
+2026-01-27 15:18:16,033 - INFO -   Category: bug
+2026-01-27 15:18:16,033 - INFO -   Problem: Saving parent object after setting on child leads to data loss for parents with non-numeric primary ...
+2026-01-27 15:18:16,033 - INFO -   Selected Agent 4 for bug issue (task_type=logic)
+2026-01-27 15:18:16,033 - INFO -   Using 2 context examples from agent's memory
+2026-01-27 15:18:16,033 - INFO -   Using prompt version: v10
+2026-01-27 15:18:16,033 - INFO -   Generating solution with qwen2.5-coder-1.5b...
+Llama.generate: 33 prefix-match hit, remaining 483 prompt tokens to eval
+llama_perf_context_print:        load time =     209.92 ms
+llama_perf_context_print: prompt eval time =     207.66 ms /   483 tokens (    0.43 ms per token,  2325.91 tokens per second)
+llama_perf_context_print:        eval time =    6444.21 ms /   302 runs   (   21.34 ms per token,    46.86 tokens per second)
+llama_perf_context_print:       total time =    7004.54 ms /   785 tokens
+llama_perf_context_print:    graphs reused =        292
+2026-01-27 15:18:23,040 - INFO -   ⚠ Generated by Agent 4 (7.01s, 708 chars, valid=False)
+2026-01-27 15:18:23,040 - INFO - 
+[17/50] Processing django__django-14017
+2026-01-27 15:18:23,040 - INFO -   Repo: django/django
+2026-01-27 15:18:23,040 - INFO -   Category: bug
+2026-01-27 15:18:23,040 - INFO -   Problem: Q(...) & Exists(...) raises a TypeError
+Description
+	
+Exists(...) & Q(...) works, but Q(...) & Exist...
+2026-01-27 15:18:23,040 - INFO -   Selected Agent 4 for bug issue (task_type=logic)
+2026-01-27 15:18:23,040 - INFO -   Using 3 context examples from agent's memory
+2026-01-27 15:18:23,040 - INFO -   Using prompt version: v10
+2026-01-27 15:18:23,040 - INFO -   Generating solution with qwen2.5-coder-1.5b...
+Llama.generate: 33 prefix-match hit, remaining 483 prompt tokens to eval
+llama_perf_context_print:        load time =     209.92 ms
+llama_perf_context_print: prompt eval time =     209.09 ms /   483 tokens (    0.43 ms per token,  2310.04 tokens per second)
+llama_perf_context_print:        eval time =    5308.32 ms /   249 runs   (   21.32 ms per token,    46.91 tokens per second)
+llama_perf_context_print:       total time =    5787.47 ms /   732 tokens
+llama_perf_context_print:    graphs reused =        241
+2026-01-27 15:18:28,830 - INFO -   ⚠ Generated by Agent 4 (5.79s, 788 chars, valid=False)
+2026-01-27 15:18:28,830 - INFO - 
+[18/50] Processing django__django-14238
+2026-01-27 15:18:28,830 - INFO -   Repo: django/django
+2026-01-27 15:18:28,830 - INFO -   Category: bug
+2026-01-27 15:18:28,830 - INFO -   Problem: DEFAULT_AUTO_FIELD subclass check fails for subclasses of BigAutoField and SmallAutoField.
+Descripti...
+2026-01-27 15:18:28,830 - INFO -   Selected Agent 5 for bug issue (task_type=logic)
+2026-01-27 15:18:28,830 - INFO -   Using 5 context examples from agent's memory
+2026-01-27 15:18:28,830 - INFO -   Using prompt version: v10
+2026-01-27 15:18:28,830 - INFO -   Generating solution with qwen2.5-coder-1.5b...
+Llama.generate: 33 prefix-match hit, remaining 819 prompt tokens to eval
+llama_perf_context_print:        load time =     209.92 ms
+llama_perf_context_print: prompt eval time =     358.79 ms /   819 tokens (    0.44 ms per token,  2282.70 tokens per second)
+llama_perf_context_print:        eval time =   45268.90 ms /  2047 runs   (   22.11 ms per token,    45.22 tokens per second)
+llama_perf_context_print:       total time =   51281.31 ms /  2866 tokens
+llama_perf_context_print:    graphs reused =       1982
+2026-01-27 15:19:20,114 - INFO -   ⚠ Generated by Agent 5 (51.28s, 4246 chars, valid=False)
+2026-01-27 15:19:20,114 - INFO - 
+[19/50] Processing django__django-14534
+2026-01-27 15:19:20,114 - INFO -   Repo: django/django
+2026-01-27 15:19:20,114 - INFO -   Category: bug
+2026-01-27 15:19:20,114 - INFO -   Problem: BoundWidget.id_for_label ignores id set by ChoiceWidget.options
+Description
+	
+If you look at the imp...
+2026-01-27 15:19:20,114 - INFO -   Selected Agent 4 for bug issue (task_type=logic)
+2026-01-27 15:19:20,114 - INFO -   Using 4 context examples from agent's memory
+2026-01-27 15:19:20,114 - INFO -   Using prompt version: v10
+2026-01-27 15:19:20,114 - INFO -   Generating solution with qwen2.5-coder-1.5b...
+Llama.generate: 33 prefix-match hit, remaining 480 prompt tokens to eval
+llama_perf_context_print:        load time =     209.92 ms
+llama_perf_context_print: prompt eval time =     239.90 ms /   480 tokens (    0.50 ms per token,  2000.80 tokens per second)
+llama_perf_context_print:        eval time =    8043.53 ms /   336 runs   (   23.94 ms per token,    41.77 tokens per second)
+llama_perf_context_print:       total time =    8705.01 ms /   816 tokens
+llama_perf_context_print:    graphs reused =        325
+2026-01-27 15:19:28,821 - INFO -   ⚠ Generated by Agent 4 (8.71s, 1153 chars, valid=False)
+2026-01-27 15:19:28,822 - INFO - 
+[20/50] Processing django__django-14580
+2026-01-27 15:19:28,822 - INFO -   Repo: django/django
+2026-01-27 15:19:28,822 - INFO -   Category: bug
+2026-01-27 15:19:28,822 - INFO -   Problem: Missing import statement in generated migration (NameError: name 'models' is not defined)
+Descriptio...
+2026-01-27 15:19:28,822 - INFO -   Selected Agent 4 for bug issue (task_type=logic)
+2026-01-27 15:19:28,822 - INFO -   Using 5 context examples from agent's memory
+2026-01-27 15:19:28,822 - INFO -   Using prompt version: v10
+2026-01-27 15:19:28,822 - INFO -   Generating solution with qwen2.5-coder-1.5b...
+Llama.generate: 33 prefix-match hit, remaining 504 prompt tokens to eval
+llama_perf_context_print:        load time =     209.92 ms
+llama_perf_context_print: prompt eval time =     264.77 ms /   504 tokens (    0.53 ms per token,  1903.54 tokens per second)
+llama_perf_context_print:        eval time =    8459.42 ms /   367 runs   (   23.05 ms per token,    43.38 tokens per second)
+llama_perf_context_print:       total time =    9181.26 ms /   871 tokens
+llama_perf_context_print:    graphs reused =        354
+2026-01-27 15:19:38,005 - INFO -   ⚠ Generated by Agent 5 (9.18s, 959 chars, valid=False)
+2026-01-27 15:19:38,006 - INFO - 
+[21/50] Processing django__django-14672
+2026-01-27 15:19:38,006 - INFO -   Repo: django/django
+2026-01-27 15:19:38,006 - INFO -   Category: bug
+2026-01-27 15:19:38,006 - INFO -   Problem: Missing call `make_hashable` on `through_fields` in `ManyToManyRel`
+Description
+	
+In 3.2 identity pr...
+2026-01-27 15:19:38,006 - INFO -   Selected Agent 4 for bug issue (task_type=logic)
+2026-01-27 15:19:38,006 - INFO -   Using 5 context examples from agent's memory
+2026-01-27 15:19:38,006 - INFO -   Using prompt version: v10
+2026-01-27 15:19:38,006 - INFO -   Generating solution with qwen2.5-coder-1.5b...
+Llama.generate: 34 prefix-match hit, remaining 1891 prompt tokens to eval
+llama_perf_context_print:        load time =     209.92 ms
+llama_perf_context_print: prompt eval time =     892.10 ms /  1891 tokens (    0.47 ms per token,  2119.72 tokens per second)
+llama_perf_context_print:        eval time =   11086.88 ms /   458 runs   (   24.21 ms per token,    41.31 tokens per second)
+llama_perf_context_print:       total time =   12606.99 ms /  2349 tokens
+llama_perf_context_print:    graphs reused =        443
+2026-01-27 15:19:50,617 - INFO -   ⚠ Generated by Agent 4 (12.61s, 660 chars, valid=False)
+2026-01-27 15:19:50,617 - INFO - 
+[22/50] Processing django__django-14787
+2026-01-27 15:19:50,617 - INFO -   Repo: django/django
+2026-01-27 15:19:50,617 - INFO -   Category: bug
+2026-01-27 15:19:50,617 - INFO -   Problem: method_decorator() should preserve wrapper assignments
+Description
+	
+the function that is passed to ...
+2026-01-27 15:19:50,617 - INFO -   Selected Agent 5 for bug issue (task_type=logic)
+2026-01-27 15:19:50,617 - INFO -   Using 5 context examples from agent's memory
+2026-01-27 15:19:50,617 - INFO -   Using prompt version: v10
+2026-01-27 15:19:50,617 - INFO -   Generating solution with qwen2.5-coder-1.5b...
+Llama.generate: 33 prefix-match hit, remaining 285 prompt tokens to eval
+llama_perf_context_print:        load time =     209.92 ms
+llama_perf_context_print: prompt eval time =     119.63 ms /   285 tokens (    0.42 ms per token,  2382.33 tokens per second)
+llama_perf_context_print:        eval time =   11054.95 ms /   415 runs   (   26.64 ms per token,    37.54 tokens per second)
+llama_perf_context_print:       total time =   11729.80 ms /   700 tokens
+llama_perf_context_print:    graphs reused =        401
+2026-01-27 15:20:02,349 - INFO -   ⚠ Generated by Agent 5 (11.73s, 652 chars, valid=False)
+2026-01-27 15:20:02,349 - INFO - 
+[23/50] Processing django__django-15347
+2026-01-27 15:20:02,349 - INFO -   Repo: django/django
+2026-01-27 15:20:02,349 - INFO -   Category: bug
+2026-01-27 15:20:02,349 - INFO -   Problem: Messages framework incorrectly serializes/deserializes extra_tags when it's an empty string
+Descript...
+2026-01-27 15:20:02,349 - INFO -   Selected Agent 5 for bug issue (task_type=logic)
+2026-01-27 15:20:02,349 - INFO -   Using 5 context examples from agent's memory
+2026-01-27 15:20:02,349 - INFO -   Using prompt version: v10
+2026-01-27 15:20:02,349 - INFO -   Generating solution with qwen2.5-coder-1.5b...
+Llama.generate: 33 prefix-match hit, remaining 396 prompt tokens to eval
+llama_perf_context_print:        load time =     209.92 ms
+llama_perf_context_print: prompt eval time =     292.49 ms /   396 tokens (    0.74 ms per token,  1353.91 tokens per second)
+llama_perf_context_print:        eval time =    6480.38 ms /   266 runs   (   24.36 ms per token,    41.05 tokens per second)
+llama_perf_context_print:       total time =    7078.63 ms /   662 tokens
+llama_perf_context_print:    graphs reused =        257
+2026-01-27 15:20:09,430 - INFO -   ⚠ Generated by Agent 4 (7.08s, 615 chars, valid=False)
+2026-01-27 15:20:09,430 - INFO - 
+[24/50] Processing django__django-15388
+2026-01-27 15:20:09,430 - INFO -   Repo: django/django
+2026-01-27 15:20:09,430 - INFO -   Category: bug
+2026-01-27 15:20:09,430 - INFO -   Problem: Dev Server fails to restart after adding BASE_DIR to TEMPLATES[0]['DIRS'] in settings
+Description
+	
+...
+2026-01-27 15:20:09,430 - INFO -   Selected Agent 5 for bug issue (task_type=logic)
+2026-01-27 15:20:09,430 - INFO -   Using 5 context examples from agent's memory
+2026-01-27 15:20:09,430 - INFO -   Using prompt version: v10
+2026-01-27 15:20:09,430 - INFO -   Generating solution with qwen2.5-coder-1.5b...
+Llama.generate: 33 prefix-match hit, remaining 298 prompt tokens to eval
+llama_perf_context_print:        load time =     209.92 ms
+llama_perf_context_print: prompt eval time =     125.44 ms /   298 tokens (    0.42 ms per token,  2375.64 tokens per second)
+llama_perf_context_print:        eval time =    7890.19 ms /   326 runs   (   24.20 ms per token,    41.32 tokens per second)
+llama_perf_context_print:       total time =    8398.95 ms /   624 tokens
+llama_perf_context_print:    graphs reused =        315
+2026-01-27 15:20:17,831 - INFO -   ⚠ Generated by Agent 4 (8.40s, 764 chars, valid=False)
+2026-01-27 15:20:17,832 - INFO - 
+[25/50] Processing django__django-15781
+2026-01-27 15:20:17,832 - INFO -   Repo: django/django
+2026-01-27 15:20:17,832 - INFO -   Category: other
+2026-01-27 15:20:17,832 - INFO -   Problem: Customizable management command formatters.
+Description
+	
+With code like:
+class Command(BaseCommand)...
+2026-01-27 15:20:17,832 - INFO -   Selected Agent 6 for other issue (task_type=math)
+2026-01-27 15:20:17,832 - INFO -   Using 3 context examples from agent's memory
+2026-01-27 15:20:17,832 - INFO -   Using prompt version: v10
+2026-01-27 15:20:17,832 - INFO -   Generating solution with qwen2.5-coder-1.5b...
+Llama.generate: 33 prefix-match hit, remaining 477 prompt tokens to eval
+llama_perf_context_print:        load time =     209.92 ms
+llama_perf_context_print: prompt eval time =     197.24 ms /   477 tokens (    0.41 ms per token,  2418.35 tokens per second)
+llama_perf_context_print:        eval time =   19090.69 ms /   883 runs   (   21.62 ms per token,    46.25 tokens per second)
+llama_perf_context_print:       total time =   20779.85 ms /  1360 tokens
+llama_perf_context_print:    graphs reused =        854
+2026-01-27 15:20:38,614 - INFO -   ⚠ Generated by Agent 6 (20.78s, 3971 chars, valid=False)
+2026-01-27 15:20:38,615 - INFO - 
+[26/50] Processing django__django-15851
+2026-01-27 15:20:38,615 - INFO -   Repo: django/django
+2026-01-27 15:20:38,615 - INFO -   Category: feature
+2026-01-27 15:20:38,615 - INFO -   Problem: dbshell additional parameters should be passed before dbname on PostgreSQL.
+Description
+	
+psql expec...
+2026-01-27 15:20:38,615 - INFO -   Selected Agent 1 for feature issue (task_type=string)
+2026-01-27 15:20:38,615 - INFO -   Using 3 context examples from agent's memory
+2026-01-27 15:20:38,615 - INFO -   Using prompt version: v10
+2026-01-27 15:20:38,615 - INFO -   Generating solution with qwen2.5-coder-1.5b...
+Llama.generate: 33 prefix-match hit, remaining 260 prompt tokens to eval
+llama_perf_context_print:        load time =     209.92 ms
+llama_perf_context_print: prompt eval time =     129.02 ms /   260 tokens (    0.50 ms per token,  2015.27 tokens per second)
+llama_perf_context_print:        eval time =   11224.69 ms /   479 runs   (   23.43 ms per token,    42.67 tokens per second)
+llama_perf_context_print:       total time =   12020.51 ms /   739 tokens
+llama_perf_context_print:    graphs reused =        463
+2026-01-27 15:20:50,637 - INFO -   ⚠ Generated by Agent 1 (12.02s, 1063 chars, valid=False)
+2026-01-27 15:20:50,637 - INFO - 
+[27/50] Processing django__django-15902
+2026-01-27 15:20:50,637 - INFO -   Repo: django/django
+2026-01-27 15:20:50,637 - INFO -   Category: other
+2026-01-27 15:20:50,637 - INFO -   Problem: "default.html" deprecation warning raised for ManagementForm's
+Description
+	
+I have a project where ...
+2026-01-27 15:20:50,638 - INFO -   Selected Agent 6 for other issue (task_type=math)
+2026-01-27 15:20:50,638 - INFO -   Using 4 context examples from agent's memory
+2026-01-27 15:20:50,638 - INFO -   Using prompt version: v10
+2026-01-27 15:20:50,638 - INFO -   Generating solution with qwen2.5-coder-1.5b...
+Llama.generate: 33 prefix-match hit, remaining 193 prompt tokens to eval
+llama_perf_context_print:        load time =     209.92 ms
+llama_perf_context_print: prompt eval time =      84.25 ms /   193 tokens (    0.44 ms per token,  2290.69 tokens per second)
+llama_perf_context_print:        eval time =   11752.20 ms /   538 runs   (   21.84 ms per token,    45.78 tokens per second)
+llama_perf_context_print:       total time =   12570.55 ms /   731 tokens
+llama_perf_context_print:    graphs reused =        521
+2026-01-27 15:21:03,210 - INFO -   ⚠ Generated by Agent 6 (12.57s, 1386 chars, valid=False)
+2026-01-27 15:21:03,210 - INFO - 
+[28/50] Processing django__django-16046
+2026-01-27 15:21:03,211 - INFO -   Repo: django/django
+2026-01-27 15:21:03,211 - INFO -   Category: bug
+2026-01-27 15:21:03,211 - INFO -   Problem: Fix numberformat.py "string index out of range" when null
+Description
+	
+When:
+if str_number[0] == "-...
+2026-01-27 15:21:03,211 - INFO -   Selected Agent 5 for bug issue (task_type=logic)
+2026-01-27 15:21:03,211 - INFO -   Using 5 context examples from agent's memory
+2026-01-27 15:21:03,211 - INFO -   Using prompt version: v10
+2026-01-27 15:21:03,211 - INFO -   Generating solution with qwen2.5-coder-1.5b...
+Llama.generate: 33 prefix-match hit, remaining 183 prompt tokens to eval
+llama_perf_context_print:        load time =     209.92 ms
+llama_perf_context_print: prompt eval time =      77.14 ms /   183 tokens (    0.42 ms per token,  2372.43 tokens per second)
+llama_perf_context_print:        eval time =   10472.28 ms /   481 runs   (   21.77 ms per token,    45.93 tokens per second)
+llama_perf_context_print:       total time =   11179.14 ms /   664 tokens
+llama_perf_context_print:    graphs reused =        465
+2026-01-27 15:21:14,391 - INFO -   ⚠ Generated by Agent 4 (11.18s, 895 chars, valid=False)
+2026-01-27 15:21:14,392 - INFO - 
+[29/50] Processing django__django-16255
+2026-01-27 15:21:14,392 - INFO -   Repo: django/django
+2026-01-27 15:21:14,392 - INFO -   Category: bug
+2026-01-27 15:21:14,392 - INFO -   Problem: Sitemaps without items raise ValueError on callable lastmod.
+Description
+	
+When sitemap contains not...
+2026-01-27 15:21:14,392 - INFO -   Selected Agent 4 for bug issue (task_type=logic)
+2026-01-27 15:21:14,392 - INFO -   Using 5 context examples from agent's memory
+2026-01-27 15:21:14,392 - INFO -   Using prompt version: v10
+2026-01-27 15:21:14,392 - INFO -   Generating solution with qwen2.5-coder-1.5b...
+Llama.generate: 33 prefix-match hit, remaining 512 prompt tokens to eval
+llama_perf_context_print:        load time =     209.92 ms
+llama_perf_context_print: prompt eval time =     214.68 ms /   512 tokens (    0.42 ms per token,  2384.91 tokens per second)
+llama_perf_context_print:        eval time =    8289.83 ms /   382 runs   (   21.70 ms per token,    46.08 tokens per second)
+llama_perf_context_print:       total time =    8972.02 ms /   894 tokens
+llama_perf_context_print:    graphs reused =        370
+2026-01-27 15:21:23,366 - INFO -   ⚠ Generated by Agent 5 (8.97s, 661 chars, valid=False)
+2026-01-27 15:21:23,366 - INFO - 
+[30/50] Processing django__django-16527
+2026-01-27 15:21:23,366 - INFO -   Repo: django/django
+2026-01-27 15:21:23,366 - INFO -   Category: feature
+2026-01-27 15:21:23,366 - INFO -   Problem: "show_save_as_new" in admin can add without this permission
+Description
+	 
+		(last modified by Mariu...
+2026-01-27 15:21:23,366 - INFO -   Selected Agent 1 for feature issue (task_type=string)
+2026-01-27 15:21:23,366 - INFO -   Using 4 context examples from agent's memory
+2026-01-27 15:21:23,366 - INFO -   Using prompt version: v10
+2026-01-27 15:21:23,366 - INFO -   Generating solution with qwen2.5-coder-1.5b...
+Llama.generate: 33 prefix-match hit, remaining 237 prompt tokens to eval
+llama_perf_context_print:        load time =     209.92 ms
+llama_perf_context_print: prompt eval time =     103.25 ms /   237 tokens (    0.44 ms per token,  2295.49 tokens per second)
+llama_perf_context_print:        eval time =    7978.03 ms /   361 runs   (   22.10 ms per token,    45.25 tokens per second)
+llama_perf_context_print:       total time =    8521.22 ms /   598 tokens
+llama_perf_context_print:    graphs reused =        349
+2026-01-27 15:21:31,889 - INFO -   ⚠ Generated by Agent 1 (8.52s, 544 chars, valid=False)
+2026-01-27 15:21:31,890 - INFO - 
+[31/50] Processing django__django-17087
+2026-01-27 15:21:31,890 - INFO -   Repo: django/django
+2026-01-27 15:21:31,890 - INFO -   Category: bug
+2026-01-27 15:21:31,891 - INFO -   Problem: Class methods from nested classes cannot be used as Field.default.
+Description
+	 
+		(last modified b...
+2026-01-27 15:21:31,891 - INFO -   Selected Agent 4 for bug issue (task_type=logic)
+2026-01-27 15:21:31,891 - INFO -   Using 5 context examples from agent's memory
+2026-01-27 15:21:31,891 - INFO -   Using prompt version: v10
+2026-01-27 15:21:31,891 - INFO -   Generating solution with qwen2.5-coder-1.5b...
+Llama.generate: 33 prefix-match hit, remaining 374 prompt tokens to eval
+llama_perf_context_print:        load time =     209.92 ms
+llama_perf_context_print: prompt eval time =     147.32 ms /   374 tokens (    0.39 ms per token,  2538.64 tokens per second)
+llama_perf_context_print:        eval time =    8371.93 ms /   382 runs   (   21.92 ms per token,    45.63 tokens per second)
+llama_perf_context_print:       total time =    8992.29 ms /   756 tokens
+llama_perf_context_print:    graphs reused =        369
+2026-01-27 15:21:40,885 - INFO -   ⚠ Generated by Agent 5 (8.99s, 569 chars, valid=False)
+2026-01-27 15:21:40,885 - INFO - 
+[32/50] Processing matplotlib__matplotlib-23314
+2026-01-27 15:21:40,885 - INFO -   Repo: matplotlib/matplotlib
+2026-01-27 15:21:40,885 - INFO -   Category: bug
+2026-01-27 15:21:40,885 - INFO -   Problem: [Bug]: set_visible() not working for 3d projection 
+### Bug summary
+
+in the subplot projection="3d...
+2026-01-27 15:21:40,885 - INFO -   Selected Agent 5 for bug issue (task_type=logic)
+2026-01-27 15:21:40,885 - INFO -   Using 5 context examples from agent's memory
+2026-01-27 15:21:40,885 - INFO -   Using prompt version: v10
+2026-01-27 15:21:40,885 - INFO -   Generating solution with qwen2.5-coder-1.5b...
+Llama.generate: 26 prefix-match hit, remaining 350 prompt tokens to eval
+llama_perf_context_print:        load time =     209.92 ms
+llama_perf_context_print: prompt eval time =     145.37 ms /   350 tokens (    0.42 ms per token,  2407.70 tokens per second)
+llama_perf_context_print:        eval time =    6747.15 ms /   312 runs   (   21.63 ms per token,    46.24 tokens per second)
+llama_perf_context_print:       total time =    7259.65 ms /   662 tokens
+llama_perf_context_print:    graphs reused =        301
+2026-01-27 15:21:48,147 - INFO -   ⚠ Generated by Agent 4 (7.26s, 740 chars, valid=False)
+2026-01-27 15:21:48,147 - INFO - 
+[33/50] Processing pytest-dev__pytest-11148
+2026-01-27 15:21:48,147 - INFO -   Repo: pytest-dev/pytest
+2026-01-27 15:21:48,147 - INFO -   Category: bug
+2026-01-27 15:21:48,147 - INFO -   Problem: Module imported twice under import-mode=importlib
+In pmxbot/pmxbot@7f189ad, I'm attempting to switch...
+2026-01-27 15:21:48,147 - INFO -   Selected Agent 4 for bug issue (task_type=logic)
+2026-01-27 15:21:48,147 - INFO -   Using 5 context examples from agent's memory
+2026-01-27 15:21:48,147 - INFO -   Using prompt version: v10
+2026-01-27 15:21:48,147 - INFO -   Generating solution with qwen2.5-coder-1.5b...
+Llama.generate: 26 prefix-match hit, remaining 882 prompt tokens to eval
+llama_perf_context_print:        load time =     209.92 ms
+llama_perf_context_print: prompt eval time =     384.30 ms /   882 tokens (    0.44 ms per token,  2295.08 tokens per second)
+llama_perf_context_print:        eval time =    9373.56 ms /   372 runs   (   25.20 ms per token,    39.69 tokens per second)
+llama_perf_context_print:       total time =   10227.30 ms /  1254 tokens
+llama_perf_context_print:    graphs reused =        360
+2026-01-27 15:21:58,377 - INFO -   ⚠ Generated by Agent 4 (10.23s, 412 chars, valid=False)
+2026-01-27 15:21:58,377 - INFO - 
+[34/50] Processing pytest-dev__pytest-5227
+2026-01-27 15:21:58,377 - INFO -   Repo: pytest-dev/pytest
+2026-01-27 15:21:58,377 - INFO -   Category: bug
+2026-01-27 15:21:58,377 - INFO -   Problem: Improve default logging format
+Currently it is:
+
+> DEFAULT_LOG_FORMAT = "%(filename)-25s %(lineno)...
+2026-01-27 15:21:58,377 - INFO -   Selected Agent 5 for bug issue (task_type=logic)
+2026-01-27 15:21:58,377 - INFO -   Using 5 context examples from agent's memory
+2026-01-27 15:21:58,377 - INFO -   Using prompt version: v10
+2026-01-27 15:21:58,377 - INFO -   Generating solution with qwen2.5-coder-1.5b...
+Llama.generate: 34 prefix-match hit, remaining 400 prompt tokens to eval
+llama_perf_context_print:        load time =     209.92 ms
+llama_perf_context_print: prompt eval time =     175.80 ms /   400 tokens (    0.44 ms per token,  2275.26 tokens per second)
+llama_perf_context_print:        eval time =    5272.36 ms /   238 runs   (   22.15 ms per token,    45.14 tokens per second)
+llama_perf_context_print:       total time =    5716.75 ms /   638 tokens
+llama_perf_context_print:    graphs reused =        230
+2026-01-27 15:22:04,096 - INFO -   ⚠ Generated by Agent 5 (5.72s, 877 chars, valid=False)
+2026-01-27 15:22:04,096 - INFO - 
+[35/50] Processing pytest-dev__pytest-7168
+2026-01-27 15:22:04,096 - INFO -   Repo: pytest-dev/pytest
+2026-01-27 15:22:04,096 - INFO -   Category: bug
+2026-01-27 15:22:04,096 - INFO -   Problem: INTERNALERROR when exception in __repr__
+Minimal code to reproduce the issue: 
+```python
+class Som...
+2026-01-27 15:22:04,096 - INFO -   Selected Agent 5 for bug issue (task_type=logic)
+2026-01-27 15:22:04,096 - INFO -   Using 5 context examples from agent's memory
+2026-01-27 15:22:04,096 - INFO -   Using prompt version: v10
+2026-01-27 15:22:04,097 - INFO -   Generating solution with qwen2.5-coder-1.5b...
+Llama.generate: 34 prefix-match hit, remaining 2462 prompt tokens to eval
+llama_perf_context_print:        load time =     209.92 ms
+llama_perf_context_print: prompt eval time =    1202.57 ms /  2462 tokens (    0.49 ms per token,  2047.28 tokens per second)
+llama_perf_context_print:        eval time =    5575.10 ms /   242 runs   (   23.04 ms per token,    43.41 tokens per second)
+llama_perf_context_print:       total time =    7059.45 ms /  2704 tokens
+llama_perf_context_print:    graphs reused =        234
+2026-01-27 15:22:11,161 - INFO -   ⚠ Generated by Agent 5 (7.06s, 207 chars, valid=False)
+2026-01-27 15:22:11,162 - INFO - 
+[36/50] Processing scikit-learn__scikit-learn-13584
+2026-01-27 15:22:11,162 - INFO -   Repo: scikit-learn/scikit-learn
+2026-01-27 15:22:11,162 - INFO -   Category: bug
+2026-01-27 15:22:11,162 - INFO -   Problem: bug in print_changed_only in new repr: vector values
+```python
+import sklearn
+import numpy as np
+...
+2026-01-27 15:22:11,162 - INFO -   Selected Agent 5 for bug issue (task_type=logic)
+2026-01-27 15:22:11,162 - INFO -   Using 5 context examples from agent's memory
+2026-01-27 15:22:11,162 - INFO -   Using prompt version: v10
+2026-01-27 15:22:11,162 - INFO -   Generating solution with qwen2.5-coder-1.5b...
+Llama.generate: 26 prefix-match hit, remaining 214 prompt tokens to eval
+llama_perf_context_print:        load time =     209.92 ms
+llama_perf_context_print: prompt eval time =      89.23 ms /   214 tokens (    0.42 ms per token,  2398.40 tokens per second)
+llama_perf_context_print:        eval time =    7319.14 ms /   326 runs   (   22.45 ms per token,    44.54 tokens per second)
+llama_perf_context_print:       total time =    7810.56 ms /   540 tokens
+llama_perf_context_print:    graphs reused =        315
+2026-01-27 15:22:18,975 - INFO -   ⚠ Generated by Agent 4 (7.81s, 201 chars, valid=False)
+2026-01-27 15:22:18,975 - INFO - 
+[37/50] Processing scikit-learn__scikit-learn-13779
+2026-01-27 15:22:18,975 - INFO -   Repo: scikit-learn/scikit-learn
+2026-01-27 15:22:18,975 - INFO -   Category: bug
+2026-01-27 15:22:18,975 - INFO -   Problem: Voting estimator will fail at fit if weights are passed and an estimator is None
+Because we don't ch...
+2026-01-27 15:22:18,975 - INFO -   Selected Agent 5 for bug issue (task_type=logic)
+2026-01-27 15:22:18,975 - INFO -   Using 5 context examples from agent's memory
+2026-01-27 15:22:18,975 - INFO -   Using prompt version: v10
+2026-01-27 15:22:18,975 - INFO -   Generating solution with qwen2.5-coder-1.5b...
+Llama.generate: 38 prefix-match hit, remaining 251 prompt tokens to eval
+llama_perf_context_print:        load time =     209.92 ms
+llama_perf_context_print: prompt eval time =     102.47 ms /   251 tokens (    0.41 ms per token,  2449.47 tokens per second)
+llama_perf_context_print:        eval time =    8153.11 ms /   354 runs   (   23.03 ms per token,    43.42 tokens per second)
+llama_perf_context_print:       total time =    8696.55 ms /   605 tokens
+llama_perf_context_print:    graphs reused =        342
+2026-01-27 15:22:27,673 - INFO -   ⚠ Generated by Agent 5 (8.70s, 704 chars, valid=False)
+2026-01-27 15:22:27,673 - INFO - 
+[38/50] Processing sympy__sympy-13480
+2026-01-27 15:22:27,673 - INFO -   Repo: sympy/sympy
+2026-01-27 15:22:27,673 - INFO -   Category: bug
+2026-01-27 15:22:27,673 - INFO -   Problem: .subs on coth(log(tan(x))) errors for certain integral values
+    >>> from sympy import *
+    >>> x...
+2026-01-27 15:22:27,674 - INFO -   Selected Agent 4 for bug issue (task_type=logic)
+2026-01-27 15:22:27,674 - INFO -   Using 5 context examples from agent's memory
+2026-01-27 15:22:27,674 - INFO -   Using prompt version: v10
+2026-01-27 15:22:27,674 - INFO -   Generating solution with qwen2.5-coder-1.5b...
+Llama.generate: 26 prefix-match hit, remaining 279 prompt tokens to eval
+llama_perf_context_print:        load time =     209.92 ms
+llama_perf_context_print: prompt eval time =     115.31 ms /   279 tokens (    0.41 ms per token,  2419.50 tokens per second)
+llama_perf_context_print:        eval time =    6111.08 ms /   267 runs   (   22.89 ms per token,    43.69 tokens per second)
+llama_perf_context_print:       total time =    6542.92 ms /   546 tokens
+llama_perf_context_print:    graphs reused =        258
+2026-01-27 15:22:34,218 - INFO -   ⚠ Generated by Agent 4 (6.54s, 548 chars, valid=False)
+2026-01-27 15:22:34,218 - INFO - 
+[39/50] Processing sympy__sympy-13647
+2026-01-27 15:22:34,218 - INFO -   Repo: sympy/sympy
+2026-01-27 15:22:34,218 - INFO -   Category: refactor
+2026-01-27 15:22:34,218 - INFO -   Problem: Matrix.col_insert() no longer seems to work correctly.
+Example:
+
+```
+In [28]: import sympy as sm
+...
+2026-01-27 15:22:34,218 - INFO -   Selected Agent 6 for refactor issue (task_type=list)
+2026-01-27 15:22:34,218 - INFO -   Using prompt version: v10
+2026-01-27 15:22:34,219 - INFO -   Generating solution with qwen2.5-coder-1.5b...
+Llama.generate: 36 prefix-match hit, remaining 676 prompt tokens to eval
+llama_perf_context_print:        load time =     209.92 ms
+llama_perf_context_print: prompt eval time =     309.06 ms /   676 tokens (    0.46 ms per token,  2187.25 tokens per second)
+llama_perf_context_print:        eval time =    5797.93 ms /   253 runs   (   22.92 ms per token,    43.64 tokens per second)
+llama_perf_context_print:       total time =    6399.74 ms /   929 tokens
+llama_perf_context_print:    graphs reused =        244
+2026-01-27 15:22:40,620 - INFO -   ⚠ Generated by Agent 2 (6.40s, 564 chars, valid=False)
+2026-01-27 15:22:40,620 - INFO - 
+[40/50] Processing sympy__sympy-14774
+2026-01-27 15:22:40,620 - INFO -   Repo: sympy/sympy
+2026-01-27 15:22:40,620 - INFO -   Category: bug
+2026-01-27 15:22:40,620 - INFO -   Problem: Latex printer does not support full inverse trig function names for acsc and asec
+For example
+`late...
+2026-01-27 15:22:40,620 - INFO -   Selected Agent 5 for bug issue (task_type=logic)
+2026-01-27 15:22:40,620 - INFO -   Using 5 context examples from agent's memory
+2026-01-27 15:22:40,620 - INFO -   Using prompt version: v10
+2026-01-27 15:22:40,620 - INFO -   Generating solution with qwen2.5-coder-1.5b...
+Llama.generate: 36 prefix-match hit, remaining 290 prompt tokens to eval
+llama_perf_context_print:        load time =     209.92 ms
+llama_perf_context_print: prompt eval time =     129.16 ms /   290 tokens (    0.45 ms per token,  2245.23 tokens per second)
+llama_perf_context_print:        eval time =   10011.92 ms /   433 runs   (   23.12 ms per token,    43.25 tokens per second)
+llama_perf_context_print:       total time =   10710.20 ms /   723 tokens
+llama_perf_context_print:    graphs reused =        419
+2026-01-27 15:22:51,332 - INFO -   ⚠ Generated by Agent 5 (10.71s, 1322 chars, valid=False)
+2026-01-27 15:22:51,334 - INFO - 
+[41/50] Processing sympy__sympy-15346
+2026-01-27 15:22:51,334 - INFO -   Repo: sympy/sympy
+2026-01-27 15:22:51,334 - INFO -   Category: test
+2026-01-27 15:22:51,334 - INFO -   Problem: can't simplify sin/cos with Rational?
+latest cloned sympy, python 3 on windows
+firstly, cos, sin wi...
+2026-01-27 15:22:51,334 - INFO -   Selected Agent 5 for test issue (task_type=logic)
+2026-01-27 15:22:51,334 - INFO -   Using 5 context examples from agent's memory
+2026-01-27 15:22:51,334 - INFO -   Using prompt version: v10
+2026-01-27 15:22:51,334 - INFO -   Generating solution with qwen2.5-coder-1.5b...
+Llama.generate: 36 prefix-match hit, remaining 595 prompt tokens to eval
+llama_perf_context_print:        load time =     209.92 ms
+llama_perf_context_print: prompt eval time =     271.75 ms /   595 tokens (    0.46 ms per token,  2189.52 tokens per second)
+llama_perf_context_print:        eval time =    4804.25 ms /   200 runs   (   24.02 ms per token,    41.63 tokens per second)
+llama_perf_context_print:       total time =    5301.08 ms /   795 tokens
+llama_perf_context_print:    graphs reused =        193
+2026-01-27 15:22:56,637 - INFO -   ⚠ Generated by Agent 4 (5.30s, 343 chars, valid=False)
+2026-01-27 15:22:56,637 - INFO - 
+[42/50] Processing sympy__sympy-16988
+2026-01-27 15:22:56,637 - INFO -   Repo: sympy/sympy
+2026-01-27 15:22:56,637 - INFO -   Category: other
+2026-01-27 15:22:56,637 - INFO -   Problem: Intersection should remove duplicates
+```python
+>>> Intersection({1},{1},{x})
+EmptySet()
+>>> Inte...
+2026-01-27 15:22:56,637 - INFO -   Selected Agent 6 for other issue (task_type=math)
+2026-01-27 15:22:56,637 - INFO -   Using 5 context examples from agent's memory
+2026-01-27 15:22:56,637 - INFO -   Using prompt version: v10
+2026-01-27 15:22:56,637 - INFO -   Generating solution with qwen2.5-coder-1.5b...
+Llama.generate: 36 prefix-match hit, remaining 207 prompt tokens to eval
+llama_perf_context_print:        load time =     209.92 ms
+llama_perf_context_print: prompt eval time =      86.99 ms /   207 tokens (    0.42 ms per token,  2379.58 tokens per second)
+llama_perf_context_print:        eval time =   48778.14 ms /  2047 runs   (   23.83 ms per token,    41.97 tokens per second)
+llama_perf_context_print:       total time =   54915.97 ms /  2254 tokens
+llama_perf_context_print:    graphs reused =       1982
+2026-01-27 15:23:51,555 - INFO -   ✓ Generated by Agent 6 (54.92s, 8146 chars, valid=True)
+2026-01-27 15:23:51,555 - INFO - 
+[43/50] Processing sympy__sympy-17139
+2026-01-27 15:23:51,555 - INFO -   Repo: sympy/sympy
+2026-01-27 15:23:51,555 - INFO -   Category: bug
+2026-01-27 15:23:51,555 - INFO -   Problem: simplify(cos(x)**I): Invalid comparison of complex I (fu.py)
+```
+>>> from sympy import *
+>>> x = S...
+2026-01-27 15:23:51,555 - INFO -   Selected Agent 4 for bug issue (task_type=logic)
+2026-01-27 15:23:51,556 - INFO -   Using 5 context examples from agent's memory
+2026-01-27 15:23:51,556 - INFO -   Using prompt version: v10
+2026-01-27 15:23:51,556 - INFO -   Generating solution with qwen2.5-coder-1.5b...
+Llama.generate: 36 prefix-match hit, remaining 776 prompt tokens to eval
+llama_perf_context_print:        load time =     209.92 ms
+llama_perf_context_print: prompt eval time =     410.47 ms /   776 tokens (    0.53 ms per token,  1890.52 tokens per second)
+llama_perf_context_print:        eval time =    6762.89 ms /   250 runs   (   27.05 ms per token,    36.97 tokens per second)
+llama_perf_context_print:       total time =    7473.29 ms /  1026 tokens
+llama_perf_context_print:    graphs reused =        241
+2026-01-27 15:23:59,031 - INFO -   ⚠ Generated by Agent 5 (7.48s, 346 chars, valid=False)
+2026-01-27 15:23:59,031 - INFO - 
+[44/50] Processing sympy__sympy-17630
+2026-01-27 15:23:59,031 - INFO -   Repo: sympy/sympy
+2026-01-27 15:23:59,031 - INFO -   Category: bug
+2026-01-27 15:23:59,031 - INFO -   Problem: Exception when multiplying BlockMatrix containing ZeroMatrix blocks
+When a block matrix with zero bl...
+2026-01-27 15:23:59,031 - INFO -   Selected Agent 4 for bug issue (task_type=logic)
+2026-01-27 15:23:59,031 - INFO -   Using 5 context examples from agent's memory
+2026-01-27 15:23:59,031 - INFO -   Using prompt version: v10
+2026-01-27 15:23:59,031 - INFO -   Generating solution with qwen2.5-coder-1.5b...
+Llama.generate: 36 prefix-match hit, remaining 1201 prompt tokens to eval
+llama_perf_context_print:        load time =     209.92 ms
+llama_perf_context_print: prompt eval time =     746.60 ms /  1201 tokens (    0.62 ms per token,  1608.64 tokens per second)
+llama_perf_context_print:        eval time =    8570.76 ms /   320 runs   (   26.78 ms per token,    37.34 tokens per second)
+llama_perf_context_print:       total time =    9706.49 ms /  1521 tokens
+llama_perf_context_print:    graphs reused =        309
+2026-01-27 15:24:08,741 - INFO -   ⚠ Generated by Agent 4 (9.71s, 921 chars, valid=False)
+2026-01-27 15:24:08,741 - INFO - 
+[45/50] Processing sympy__sympy-18057
+2026-01-27 15:24:08,741 - INFO -   Repo: sympy/sympy
+2026-01-27 15:24:08,741 - INFO -   Category: bug
+2026-01-27 15:24:08,741 - INFO -   Problem: Sympy incorrectly attempts to eval reprs in its __eq__ method
+Passing strings produced by unknown ob...
+2026-01-27 15:24:08,741 - INFO -   Selected Agent 4 for bug issue (task_type=logic)
+2026-01-27 15:24:08,741 - INFO -   Using 5 context examples from agent's memory
+2026-01-27 15:24:08,741 - INFO -   Using prompt version: v10
+2026-01-27 15:24:08,741 - INFO -   Generating solution with qwen2.5-coder-1.5b...
+Llama.generate: 36 prefix-match hit, remaining 610 prompt tokens to eval
+llama_perf_context_print:        load time =     209.92 ms
+llama_perf_context_print: prompt eval time =     276.87 ms /   610 tokens (    0.45 ms per token,  2203.23 tokens per second)
+llama_perf_context_print:        eval time =    7006.22 ms /   306 runs   (   22.90 ms per token,    43.68 tokens per second)
+llama_perf_context_print:       total time =    7649.64 ms /   916 tokens
+llama_perf_context_print:    graphs reused =        296
+2026-01-27 15:24:16,393 - INFO -   ⚠ Generated by Agent 5 (7.65s, 454 chars, valid=False)
+2026-01-27 15:24:16,395 - INFO - 
+[46/50] Processing sympy__sympy-18189
+2026-01-27 15:24:16,395 - INFO -   Repo: sympy/sympy
+2026-01-27 15:24:16,395 - INFO -   Category: other
+2026-01-27 15:24:16,395 - INFO -   Problem: diophantine: incomplete results depending on syms order with permute=True
+```
+In [10]: diophantine(...
+2026-01-27 15:24:16,395 - INFO -   Selected Agent 6 for other issue (task_type=math)
+2026-01-27 15:24:16,395 - INFO -   Using 5 context examples from agent's memory
+2026-01-27 15:24:16,395 - INFO -   Using prompt version: v10
+2026-01-27 15:24:16,395 - INFO -   Generating solution with qwen2.5-coder-1.5b...
+Llama.generate: 36 prefix-match hit, remaining 426 prompt tokens to eval
+llama_perf_context_print:        load time =     209.92 ms
+llama_perf_context_print: prompt eval time =     215.67 ms /   426 tokens (    0.51 ms per token,  1975.21 tokens per second)
+llama_perf_context_print:        eval time =    7476.63 ms /   305 runs   (   24.51 ms per token,    40.79 tokens per second)
+llama_perf_context_print:       total time =    8069.16 ms /   731 tokens
+llama_perf_context_print:    graphs reused =        295
+2026-01-27 15:24:24,466 - INFO -   ⚠ Generated by Agent 6 (8.07s, 565 chars, valid=False)
+2026-01-27 15:24:24,466 - INFO - 
+[47/50] Processing sympy__sympy-18621
+2026-01-27 15:24:24,466 - INFO -   Repo: sympy/sympy
+2026-01-27 15:24:24,466 - INFO -   Category: bug
+2026-01-27 15:24:24,466 - INFO -   Problem: BlockDiagMatrix with one element cannot be converted to regular Matrix
+Creating a BlockDiagMatrix wi...
+2026-01-27 15:24:24,466 - INFO -   Selected Agent 4 for bug issue (task_type=logic)
+2026-01-27 15:24:24,467 - INFO -   Using 5 context examples from agent's memory
+2026-01-27 15:24:24,467 - INFO -   Using prompt version: v10
+2026-01-27 15:24:24,467 - INFO -   Generating solution with qwen2.5-coder-1.5b...
+Llama.generate: 36 prefix-match hit, remaining 790 prompt tokens to eval
+llama_perf_context_print:        load time =     209.92 ms
+llama_perf_context_print: prompt eval time =     349.69 ms /   790 tokens (    0.44 ms per token,  2259.14 tokens per second)
+llama_perf_context_print:        eval time =    7497.01 ms /   335 runs   (   22.38 ms per token,    44.68 tokens per second)
+llama_perf_context_print:       total time =    8245.33 ms /  1125 tokens
+llama_perf_context_print:    graphs reused =        323
+2026-01-27 15:24:32,714 - INFO -   ⚠ Generated by Agent 4 (8.25s, 663 chars, valid=False)
+2026-01-27 15:24:32,714 - INFO - 
+[48/50] Processing sympy__sympy-20212
+2026-01-27 15:24:32,714 - INFO -   Repo: sympy/sympy
+2026-01-27 15:24:32,714 - INFO -   Category: docs
+2026-01-27 15:24:32,714 - INFO -   Problem: 0**-oo produces 0, the documentation says it should produce zoo
+Using SymPy 1.5.1, evaluate `0**-oo`...
+2026-01-27 15:24:32,715 - INFO -   Selected Agent 2 for docs issue (task_type=list)
+2026-01-27 15:24:32,715 - INFO -   Using 1 context examples from agent's memory
+2026-01-27 15:24:32,715 - INFO -   Using prompt version: v10
+2026-01-27 15:24:32,715 - INFO -   Generating solution with qwen2.5-coder-1.5b...
+Llama.generate: 36 prefix-match hit, remaining 240 prompt tokens to eval
+llama_perf_context_print:        load time =     209.92 ms
+llama_perf_context_print: prompt eval time =     100.53 ms /   240 tokens (    0.42 ms per token,  2387.30 tokens per second)
+llama_perf_context_print:        eval time =    7533.26 ms /   338 runs   (   22.29 ms per token,    44.87 tokens per second)
+llama_perf_context_print:       total time =    8030.81 ms /   578 tokens
+llama_perf_context_print:    graphs reused =        326
+2026-01-27 15:24:40,747 - INFO -   ⚠ Generated by Agent 2 (8.03s, 365 chars, valid=False)
+2026-01-27 15:24:40,747 - INFO - 
+[49/50] Processing sympy__sympy-21612
+2026-01-27 15:24:40,747 - INFO -   Repo: sympy/sympy
+2026-01-27 15:24:40,747 - INFO -   Category: test
+2026-01-27 15:24:40,747 - INFO -   Problem: Latex parsing of fractions yields wrong expression due to missing brackets
+Problematic latex express...
+2026-01-27 15:24:40,748 - INFO -   Selected Agent 5 for test issue (task_type=logic)
+2026-01-27 15:24:40,748 - INFO -   Using 5 context examples from agent's memory
+2026-01-27 15:24:40,748 - INFO -   Using prompt version: v10
+2026-01-27 15:24:40,748 - INFO -   Generating solution with qwen2.5-coder-1.5b...
+Llama.generate: 36 prefix-match hit, remaining 365 prompt tokens to eval
+llama_perf_context_print:        load time =     209.92 ms
+llama_perf_context_print: prompt eval time =     150.46 ms /   365 tokens (    0.41 ms per token,  2425.97 tokens per second)
+llama_perf_context_print:        eval time =   48751.40 ms /  2047 runs   (   23.82 ms per token,    41.99 tokens per second)
+llama_perf_context_print:       total time =   54759.84 ms /  2412 tokens
+llama_perf_context_print:    graphs reused =       1982
+2026-01-27 15:25:35,509 - INFO -   ⚠ Generated by Agent 4 (54.76s, 405 chars, valid=False)
+2026-01-27 15:25:35,509 - INFO - 
+[50/50] Processing sympy__sympy-21627
+2026-01-27 15:25:35,509 - INFO -   Repo: sympy/sympy
+2026-01-27 15:25:35,509 - INFO -   Category: bug
+2026-01-27 15:25:35,509 - INFO -   Problem: Bug: maximum recusion depth error when checking is_zero of cosh expression
+The following code causes...
+2026-01-27 15:25:35,509 - INFO -   Selected Agent 4 for bug issue (task_type=logic)
+2026-01-27 15:25:35,509 - INFO -   Using 5 context examples from agent's memory
+2026-01-27 15:25:35,509 - INFO -   Using prompt version: v10
+2026-01-27 15:25:35,509 - INFO -   Generating solution with qwen2.5-coder-1.5b...
+Llama.generate: 36 prefix-match hit, remaining 183 prompt tokens to eval
+llama_perf_context_print:        load time =     209.92 ms
+llama_perf_context_print: prompt eval time =      96.22 ms /   183 tokens (    0.53 ms per token,  1901.81 tokens per second)
+llama_perf_context_print:        eval time =    6839.86 ms /   239 runs   (   28.62 ms per token,    34.94 tokens per second)
+llama_perf_context_print:       total time =    7207.28 ms /   422 tokens
+llama_perf_context_print:    graphs reused =        230
+2026-01-27 15:25:42,718 - INFO -   ⚠ Generated by Agent 5 (7.21s, 423 chars, valid=False)
+2026-01-27 15:25:42,722 - INFO - 
+################################################################################
+2026-01-27 15:25:42,722 - INFO - EXPERIMENT COMPLETE: EXPERIMENTAL
+2026-01-27 15:25:42,722 - INFO - ################################################################################
+2026-01-27 15:25:42,722 - INFO - 
+Results saved to: results/swebench_sweep_v10/experimental
+2026-01-27 15:25:42,722 - INFO - 
+Performance:
+2026-01-27 15:25:42,722 - INFO -   Total issues: 50
+2026-01-27 15:25:42,722 - INFO -   Solutions generated: 50
+2026-01-27 15:25:42,722 - INFO -   Successful: 50
+2026-01-27 15:25:42,722 - INFO -   Success rate: 100.0%
+2026-01-27 15:25:42,722 - INFO - 
+Timing:
+2026-01-27 15:25:42,722 - INFO -   Total time: 724.8s
+2026-01-27 15:25:42,722 - INFO -   Avg per issue: 14.5s
+2026-01-27 15:25:42,722 - INFO - 
+Category Distribution:
+2026-01-27 15:25:42,722 - INFO -   bug: 33/33 (100.0%)
+2026-01-27 15:25:42,722 - INFO -   docs: 1/1 (100.0%)
+2026-01-27 15:25:42,722 - INFO -   feature: 5/5 (100.0%)
+2026-01-27 15:25:42,722 - INFO -   other: 7/7 (100.0%)
+2026-01-27 15:25:42,722 - INFO -   refactor: 1/1 (100.0%)
+2026-01-27 15:25:42,722 - INFO -   test: 3/3 (100.0%)
+2026-01-27 15:25:42,722 - INFO - 
+Repository Distribution:
+2026-01-27 15:25:42,722 - INFO -   django: 27/27 (100.0%)
+2026-01-27 15:25:42,722 - INFO -   matplotlib: 3/3 (100.0%)
+2026-01-27 15:25:42,722 - INFO -   pytest: 5/5 (100.0%)
+2026-01-27 15:25:42,722 - INFO -   scikit-learn: 2/2 (100.0%)
+2026-01-27 15:25:42,722 - INFO -   sympy: 13/13 (100.0%)
+2026-01-27 15:25:42,722 - INFO - 
+Unloading model...
+Loading model qwen2.5-coder-1.5b from models/qwen2.5-coder-7b-instruct-q4_k_m.gguf...
+Model qwen2.5-coder-1.5b loaded successfully.

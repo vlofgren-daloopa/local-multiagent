@@ -1,0 +1,1455 @@
+{
+  "results": [
+    {
+      "instance_id": "django__django-11179",
+      "repo": "django/django",
+      "category": "other",
+      "condition": "experimental",
+      "generated": true,
+      "valid_patch": false,
+      "agent_id": 6,
+      "task_type": "math",
+      "execution_time": 21.072266578674316,
+      "model_output": "diff --git a/django/db/models/deletion.py b/django/db/models/deletion.py\n--- a/django/db/models/deletion.py\n+++ b/django/db/models/deletion.py\n@@ -276,7 +276,7 @@ def _collect_sub_objects(objs, seen, field, sub_objs):\n     for obj in objs:\n         if obj.pk is not None:\n             sub_objs.add(obj)\n-            _collect_sub_objects(obj._get_next_in_m2m(), seen, field, sub_objs)\n+            _collect_sub_objects(obj._get_next_in_m2m(), seen, field, sub_objs)\n             _collect_sub_objects(obj._get_next_in_m2m_reverse(), seen, field, sub_objs)\n \n     return sub_objs\ndiff --git a/django/db/models/base.py b/django/db/models/base.py\n--- a/django/db/models/base.py\n+++ b/django/db/models/base.py\n@@ -1000,7 +1000,7 @@ def delete(self, using=None, keep_parents=False):\n         # Delete the object\n         self._delete(using=using)\n \n-        # Clear the primary key\n+        # Clear the primary key\n         self.pk = None\n \n         # Clear the cache\ndiff --git a/django/db/models/query.py b/django/db/models/query.py\n--- a/django/db/models/query.py\n+++ b/django/db/models/query.py\n@@ -1000,7 +1000,7 @@ def delete(self, using=None, keep_parents=False):\n         # Delete the object\n         self._delete(using=using)\n \n-        # Clear the primary key\n+        # Clear the primary key\n         self.pk = None\n \n         # Clear the cache\ndiff --git a/django/db/models/queryset.py b/django/db/models/queryset.py\n--- a/django/db/models/queryset.py\n+++ b/django/db/models/queryset.py\n@@ -1000,7 +1000,7 @@ def delete(self, using=None, keep_parents=False):\n         # Delete the object\n         self._delete(using=using)\n \n-        # Clear the primary key\n+        # Clear the primary key\n         self.pk = None\n \n         # Clear the cache\ndiff --git a/django/db/models/deletion.py b/django/db/models/deletion.py\n--- a/django/db/models/deletion.py\n+++ b/django/db/models/deletion.py\n@@ -276,7 +276,7 @@ def _collect_sub_objects(objs, seen, field, sub_objs):\n     for obj in objs:\n         if obj.pk is not None:\n             sub_objs.add(obj)\n-            _collect_sub_objects(obj._get_next_in_m2m(), seen, field, sub_objs)\n+            _collect_sub_objects(obj._get_next_in_m2m(), seen, field, sub_objs)\n             _collect_sub_objects(obj._get_next_in_m2m_reverse(), seen, field, sub_objs)\n \n     return sub_objs\ndiff --git a/django/db/models/base.py b/django/db/models/base.py\n--- a/django/db/models/base.py\n+++ b/django/db/models/base.py\n@@ -1000,7 +1000,7 @@ def delete(self, using=None, keep_parents=False):\n         # Delete the object\n         self._delete(using=using)\n \n-        # Clear the primary key\n+        # Clear the primary key\n         self.pk = None\n \n         # Clear the cache\ndiff --git a/django/db/models/query.py b/django/db/models/query.py\n--- a/django/db/models/query.py\n+++ b/django/db/models/query.py\n@@ -1000,7 +1000,7 @@ def delete(self, using=None, keep_parents=False):\n         # Delete the object\n         self._delete(using=using)\n \n-        # Clear the primary key\n+        # Clear the primary key\n         self.pk = None\n \n         # Clear the cache\ndiff --git a/django/db/models/queryset.py b/django/db/models/queryset.py\n--- a/django/db/models/queryset.py\n+++ b/django/db/models/queryset.py\n@@ -1000,7 +1000,7 @@ def delete(self, using=None, keep_parents=False):\n         # Delete the object\n         self._delete(using=using)\n \n-        # Clear the primary key\n+        # Clear the primary key\n         self.pk = None\n \n         # Clear the cache\n```",
+      "validation": {
+        "is_valid_syntax": false,
+        "is_valid_format": false,
+        "has_diff_header": false,
+        "has_hunks": false,
+        "files_touched": 0,
+        "lines_added": 0,
+        "lines_removed": 0,
+        "error_message": "Patch contains markdown code blocks (not cleaned)"
+      },
+      "metadata": {
+        "lines_changed": 1,
+        "files_changed": 1,
+        "solution_length": 3501
+      },
+      "success": true,
+      "solution_generated": true
+    },
+    {
+      "instance_id": "django__django-12908",
+      "repo": "django/django",
+      "category": "test",
+      "condition": "experimental",
+      "generated": true,
+      "valid_patch": true,
+      "agent_id": 3,
+      "task_type": "logic",
+      "execution_time": 45.961869955062866,
+      "model_output": "diff --git a/django/db/models/query.py b/django/db/models/query.py\n--- a/django/db/models/query.py\n+++ b/django/db/models/query.py\n@@ -1234,6 +1234,7 @@ class QuerySet:\n         if self._distinct:\n             raise ValueError(\"Cannot use distinct() with union().\")\n         return self._clone(klass=UnionQuerySet, _distinct=True)\n+        return self._clone(klass=UnionQuerySet, _distinct=True, _union_distinct=True)\n \n     def _clone(self, **kwargs):\n         clone = super()._clone(**kwargs)\n@@ -1242,6 +1243,7 @@ class QuerySet:\n         clone._distinct = kwargs.get('_distinct', self._distinct)\n         clone._select_related = kwargs.get('_select_related', self._select_related)\n         clone._prefetch_related = kwargs.get('_prefetch_related', self._prefetch_related)\n+        clone._union_distinct = kwargs.get('_union_distinct', self._union_distinct)\n         return clone\n \n     def _apply_rel_filters(self, rel, subquery, join_type):\ndiff --git a/django/db/models/sql/compiler.py b/django/db/models/sql/compiler.py\n--- a/django/db/models/sql/compiler.py\n+++ b/django/db/models/sql/compiler.py\n@@ -1234,6 +1234,7 @@ class SQLCompiler:\n         if self.query._distinct:\n             raise ValueError(\"Cannot use distinct() with union().\")\n         return self._clone(klass=UnionQuerySet, _distinct=True)\n+        return self._clone(klass=UnionQuerySet, _distinct=True, _union_distinct=True)\n \n     def _clone(self, **kwargs):\n         clone = super()._clone(**kwargs)\n@@ -1242,6 +1243,7 @@ class SQLCompiler:\n         clone._distinct = kwargs.get('_distinct', self.query._distinct)\n         clone._select_related = kwargs.get('_select_related', self.query._select_related)\n         clone._prefetch_related = kwargs.get('_prefetch_related', self.query._prefetch_related)\n+        clone._union_distinct = kwargs.get('_union_distinct', self.query._union_distinct)\n         return clone\n \n     def _apply_rel_filters(self, rel, subquery, join_type):\ndiff --git a/django/db/models/sql/query.py b/django/db/models/sql/query.py\n--- a/django/db/models/sql/query.py\n+++ b/django/db/models/sql/query.py\n@@ -1234,6 +1234,7 @@ class SQLQuery:\n         if self._distinct:\n             raise ValueError(\"Cannot use distinct() with union().\")\n         return self._clone(klass=UnionQuerySet, _distinct=True)\n+        return self._clone(klass=UnionQuerySet, _distinct=True, _union_distinct=True)\n \n     def _clone(self, **kwargs):\n         clone = super()._clone(**kwargs)\n@@ -1242,6 +1243,7 @@ class SQLQuery:\n         clone._distinct = kwargs.get('_distinct', self._distinct)\n         clone._select_related = kwargs.get('_select_related', self._select_related)\n         clone._prefetch_related = kwargs.get('_prefetch_related', self._prefetch_related)\n+        clone._union_distinct = kwargs.get('_union_distinct', self._union_distinct)\n         return clone\n \n     def _apply_rel_filters(self, rel, subquery, join_type):\ndiff --git a/django/db/models/sql/subqueries.py b/django/db/models/sql/subqueries.py\n--- a/django/db/models/sql/subqueries.py\n+++ b/django/db/models/sql/subqueries.py\n@@ -1234,6 +1234,7 @@ class Subquery:\n         if self._distinct:\n             raise ValueError(\"Cannot use distinct() with union().\")\n         return self._clone(klass=UnionQuerySet, _distinct=True)\n+        return self._clone(klass=UnionQuerySet, _distinct=True, _union_distinct=True)\n \n     def _clone(self, **kwargs):\n         clone = super()._clone(**kwargs)\n@@ -1242,6 +1243,7 @@ class Subquery:\n         clone._distinct = kwargs.get('_distinct', self._distinct)\n         clone._select_related = kwargs.get('_select_related', self._select_related)\n         clone._prefetch_related = kwargs.get('_prefetch_related', self._prefetch_related)\n+        clone._union_distinct = kwargs.get('_union_distinct', self._union_distinct)\n         return clone\n \n     def _apply_rel_filters(self, rel, subquery, join_type):\ndiff --git a/django/db/models/sql/where.py b/django/db/models/sql/where.py\n--- a/django/db/models/sql/where.py\n+++ b/django/db/models/sql/where.py\n@@ -1234,6 +1234,7 @@ class WhereNode:\n         if self._distinct:\n             raise ValueError(\"Cannot use distinct() with union().\")\n         return self._clone(klass=UnionQuerySet, _distinct=True)\n+        return self._clone(klass=UnionQuerySet, _distinct=True, _union_distinct=True)\n \n     def _clone(self, **kwargs):\n         clone = super()._clone(**kwargs)\n@@ -1242,6 +1243,7 @@ class WhereNode:\n         clone._distinct = kwargs.get('_distinct', self._distinct)\n         clone._select_related = kwargs.get('_select_related', self._select_related)\n         clone._prefetch_related = kwargs.get('_prefetch_related', self._prefetch_related)\n+        clone._union_distinct = kwargs.get('_union_distinct', self._union_distinct)\n         return clone\n \n     def _apply_rel_filters(self, rel, subquery, join_type):\ndiff --git a/django/db/models/sql/where.py b/django/db/models/sql/where.py\n--- a/django/db/models/sql/where.py\n+++ b/django/db/models/sql/where.py\n@@ -1234,6 +1234,7 @@ class WhereNode:\n         if self._distinct:\n             raise ValueError(\"Cannot use distinct() with union().\")\n         return self._clone(klass=UnionQuerySet, _distinct=True)\n+        return self._clone(klass=UnionQuerySet, _distinct=True, _union_distinct=True)\n \n     def _clone(self, **kwargs):\n         clone = super()._clone(**kwargs)\n@@ -1242,6 +1243,7 @@ class WhereNode:\n         clone._distinct = kwargs.get('_distinct', self._distinct)\n         clone._select_related = kwargs.get('_select_related', self._select_related)\n         clone._prefetch_related = kwargs.get('_prefetch_related', self._prefetch_related)\n+        clone._union_distinct = kwargs.get('_union_distinct', self._union_distinct)\n         return clone\n \n     def _apply_rel_filters(self, rel, subquery, join_type):\ndiff --git a/django/db/models/sql/where.py b/django/db/models/sql/where.py\n--- a/django/db/models/sql/where.py\n+++ b/django/db/models/sql/where.py\n@@ -1234,6 +1234,7 @@ class WhereNode:\n         if self._distinct:\n             raise ValueError(\"Cannot use distinct() with union().\")\n         return self._clone(klass=UnionQuerySet, _distinct=True)\n+        return self._clone(klass=UnionQuerySet, _distinct=True, _union_distinct=True)\n \n     def _clone(self, **kwargs):\n         clone = super()._clone(**kwargs)\n@@ -1242,6 +1243,7 @@ class WhereNode:\n         clone._distinct = kwargs.get('_distinct', self._distinct)\n         clone._select_related = kwargs.get('_select_related', self._select_related)\n         clone._prefetch_related = kwargs.get('_prefetch_related', self._prefetch_related)\n+        clone._union_distinct = kwargs.get('_union_distinct', self._union_distinct)\n         return clone\n \n     def _apply_rel_filters(self, rel, subquery, join_type):\ndiff --git a/django/db/models/sql/where.py b/django/db/models/sql/where.py\n--- a/django/db/models/sql/where.py\n+++ b/django/db/models/sql/where.py\n@@ -1234,6 +1234,7 @@ class WhereNode:\n         if self._distinct:\n             raise ValueError(\"Cannot use distinct() with union().\")\n         return self._clone(klass=UnionQuerySet, _distinct=True)\n+        return self._clone(klass=UnionQuerySet, _distinct=True, _union_distinct=True)\n \n     def _clone(self, **kwargs):\n         clone = super()._clone(**kwargs)\n@@ -1242,6 +1243,7 @@ class WhereNode:\n         clone._distinct = kwargs.get('_distinct', self._distinct)\n         clone._select_related = kwargs.get('_select_related', self._select_related)\n         clone._prefetch_related = kwargs.get('_prefetch_related', self._prefetch_related)\n+        clone._union_distinct = kwargs.get('_union_distinct', self._union_distinct)\n         return clone\n \n     def _apply_rel_filters(self, rel, subquery, join_type):\ndiff --git a/django/db/models/sql/where.py b/django/db/models/sql/where.py\n--- a/django/db/models/sql/where.py\n+++ b/django/db/models/sql/where.py\n@@ -1234,6 +1234,7",
+      "validation": {
+        "is_valid_syntax": true,
+        "is_valid_format": true,
+        "has_diff_header": true,
+        "has_hunks": true,
+        "files_touched": 9,
+        "lines_added": 16,
+        "lines_removed": 0,
+        "error_message": null
+      },
+      "metadata": {
+        "lines_changed": 1,
+        "files_changed": 1,
+        "solution_length": 7921
+      },
+      "success": true,
+      "solution_generated": true
+    },
+    {
+      "instance_id": "django__django-13230",
+      "repo": "django/django",
+      "category": "feature",
+      "condition": "experimental",
+      "generated": true,
+      "valid_patch": false,
+      "agent_id": 0,
+      "task_type": "string",
+      "execution_time": 19.792412757873535,
+      "model_output": "diff --git a/django/contrib/syndication/views.py b/django/contrib/syndication/views.py\n--- a/django/contrib/syndication/views.py\n+++ b/django/contrib/syndication/views.py\n@@ -123,7 +123,7 @@ def feed(request, *args, **kwargs):\n     \"\"\"\n     A simple feed generator.\n     \"\"\"\n-    feed = FeedClass(*args, **kwargs)\n+    feed = FeedClass(*args, **kwargs, comments=None)\n     feed_items = feed.get_items()\n     for item in feed_items:\n         feed.add_item(\n@@ -132,6 +132,7 @@ def feed(request, *args, **kwargs):\n             title=item.title,\n             link=item.link,\n             description=item.description,\n+            comments=item.comments,\n             pubdate=item.pubdate,\n             author_name=item.author_name,\n             author_email=item.author_email,\n```\n```\ndiff --git a/django/contrib/syndication/feeds.py b/django/contrib/syndication/feeds.py\n--- a/django/contrib/syndication/feeds.py\n+++ b/django/contrib/syndication/feeds.py\n@@ -10,6 +10,7 @@\n from django.utils import timezone\n from django.utils.text import Truncator\n from django.utils.translation import gettext_lazy as _\n+from django.contrib.syndication.views import Feed\n \n \n class Feed:\n@@ -20,6 +21,7 @@ class Feed:\n     def __init__(self, *args, **kwargs):\n         self.title = kwargs.pop('title', None)\n         self.link = kwargs.pop('link', None)\n+        self.comments = kwargs.pop('comments', None)\n         self.description = kwargs.pop('description', None)\n         self.language = kwargs.pop('language', None)\n         self.copyright = kwargs.pop('copyright', None)\n@@ -40,6 +42,7 @@ class Feed:\n         self.items = kwargs.pop('items', None)\n         self.item_title = kwargs.pop('item_title', None)\n         self.item_link = kwargs.pop('item_link', None)\n+        self.item_comments = kwargs.pop('item_comments', None)\n         self.item_description = kwargs.pop('item_description', None)\n         self.item_pubdate = kwargs.pop('item_pubdate', None)\n         self.item_author_name = kwargs.pop('item_author_name', None)\n@@ -60,6 +63,7 @@ class Feed:\n         self.item_author_email = kwargs.pop('item_author_email', None)\n         self.item_categories = kwargs.pop('item_categories', None)\n         self.item_extra_kwargs = kwargs.pop('item_extra_kwargs', None)\n+        self.item_comments = kwargs.pop('item_comments', None)\n \n     def get_items(self):\n         return self.items\n@@ -70,6 +74,7 @@ class Feed:\n         return self.item_title\n     def item_link(self, item):\n         return self.item_link\n+    def item_comments(self, item):\n+        return self.item_comments\n     def item_description(self, item):\n         return self.item_description\n     def item_pubdate(self, item):\n```\n```\ndiff --git a/django/contrib/syndication/tests.py b/django/contrib/syndication/tests.py\n--- a/django/contrib/syndication/tests.py\n+++ b/django/contrib/syndication/tests.py\n@@ -10,6 +10,7 @@\n from django.test import TestCase\n from django.utils import timezone\n from django.utils.text import Truncator\n+from django.contrib.syndication.views import Feed\n \n \n class FeedTest(TestCase):\n@@ -20,6 +21,7 @@ class FeedTest(TestCase):\n     def test_feed(self):\n         feed = Feed(\n             title='Test Feed',\n+            comments='Test Comments',\n             link='http://example.com',\n             description='This is a test feed',\n             language='en',\n@@ -40,6 +42,7 @@ class FeedTest(TestCase):\n             item_title='Test Item',\n             item_link='http://example.com/item',\n             item_description='This is a test item',\n+            item_comments='Test Item Comments',\n             item_pubdate=timezone.now(),\n             item_author_name='Test Author',\n             item_author_email='test@example.com',",
+      "validation": {
+        "is_valid_syntax": false,
+        "is_valid_format": false,
+        "has_diff_header": false,
+        "has_hunks": false,
+        "files_touched": 0,
+        "lines_added": 0,
+        "lines_removed": 0,
+        "error_message": "Patch contains markdown code blocks (not cleaned)"
+      },
+      "metadata": {
+        "lines_changed": 1,
+        "files_changed": 1,
+        "solution_length": 3727
+      },
+      "success": true,
+      "solution_generated": true
+    },
+    {
+      "instance_id": "django__django-13447",
+      "repo": "django/django",
+      "category": "feature",
+      "condition": "experimental",
+      "generated": true,
+      "valid_patch": false,
+      "agent_id": 0,
+      "task_type": "string",
+      "execution_time": 11.258504152297974,
+      "model_output": "diff --git a/django/contrib/admin/sites.py b/django/contrib/admin/sites.py\n--- a/django/contrib/admin/sites.py\n+++ b/django/contrib/admin/sites.py\n@@ -100,7 +100,7 @@ class AdminSite(object):\n     def _build_app_dict(self, request, models=None):\n         \"\"\"\n         Build the app dictionary used by the admin index page.\n-        \"\"\"\n+        \"\"\"\n         app_dict = {}\n         for model in models or self.get_models(request):\n             app_label = model._meta.app_label\n@@ -112,7 +112,7 @@ class AdminSite(object):\n                 app_dict[app_label]['models'].append(model)\n         return app_dict\n \n-    def index(self, request, extra_context=None):\n+    def index(self, request, extra_context=None):\n         \"\"\"\n         Render the admin index page.\n         \"\"\"\n@@ -122,7 +122,7 @@ class AdminSite(object):\n         context = {\n             'title': self.index_title,\n             'app_list': self._build_app_dict(request),\n-            'media': self.media,\n+            'media': self.media,\n         }\n         context.update(extra_context or {})\n         return TemplateResponse(request, self.index_template or 'admin/index.html', context)\n \n-    def app_index(self, request, app_label, extra_context=None):\n+    def app_index(self, request, app_label, extra_context=None):\n         \"\"\"\n         Render the admin app index page.\n         \"\"\"\n@@ -132,7 +132,7 @@ class AdminSite(object):\n         context = {\n             'title': self.app_index_title,\n             'app_label': app_label,\n             'app_list': self._build_app_dict(request, models=[model for model in self.get_models(request) if model._meta.app_label == app_label]),\n-            'media': self.media,\n+            'media': self.media,\n         }\n         context.update(extra_context or {})\n         return TemplateResponse(request, self.app_index_template or 'admin/app_index.html', context)\n```\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\ns",
+      "validation": {
+        "is_valid_syntax": false,
+        "is_valid_format": false,
+        "has_diff_header": false,
+        "has_hunks": false,
+        "files_touched": 0,
+        "lines_added": 0,
+        "lines_removed": 0,
+        "error_message": "Patch contains markdown code blocks (not cleaned)"
+      },
+      "metadata": {
+        "lines_changed": 1,
+        "files_changed": 1,
+        "solution_length": 1928
+      },
+      "success": true,
+      "solution_generated": true
+    },
+    {
+      "instance_id": "django__django-15814",
+      "repo": "django/django",
+      "category": "bug",
+      "condition": "experimental",
+      "generated": true,
+      "valid_patch": true,
+      "agent_id": 3,
+      "task_type": "logic",
+      "execution_time": 3.8549466133117676,
+      "model_output": "diff --git a/django/db/models/sql/query.py b/django/db/models/sql/query.py\n--- a/django/db/models/sql/query.py\n+++ b/django/db/models/sql/query.py\n@@ -745,7 +745,7 @@ def get_related_populators(klass_info, select, db):\n     rel_klass_info = rel_klass._meta\n     select = select + rel_klass_info.get_fields_with_model()\n     cur_model = rel_klass_info.concrete_model\n-    opts = cur_model._meta\n+    opts = cur_model._meta.concrete_model._meta\n     if opts.pk.attname not in select:\n         raise ValueError(\"%s is not in list\" % opts.pk.attname)\n     pk_idx = select.index(opts.pk.attname)",
+      "validation": {
+        "is_valid_syntax": true,
+        "is_valid_format": true,
+        "has_diff_header": true,
+        "has_hunks": true,
+        "files_touched": 1,
+        "lines_added": 1,
+        "lines_removed": 1,
+        "error_message": null
+      },
+      "metadata": {
+        "lines_changed": 1,
+        "files_changed": 1,
+        "solution_length": 590
+      },
+      "success": true,
+      "solution_generated": true
+    },
+    {
+      "instance_id": "matplotlib__matplotlib-23563",
+      "repo": "matplotlib/matplotlib",
+      "category": "bug",
+      "condition": "experimental",
+      "generated": true,
+      "valid_patch": false,
+      "agent_id": 3,
+      "task_type": "logic",
+      "execution_time": 5.451960325241089,
+      "model_output": "diff --git a/mpl_toolkits/mplot3d/art3d.py b/mpl_toolkits/mplot3d/art3d.py\n--- a/mpl_toolkits/mplot3d/art3d.py\n+++ b/mpl_toolkits/mplot3d/art3d.py\n@@ -212,7 +212,7 @@ class Line3D(Poly3DCollection):\n         \"\"\"\n         xs3d, ys3d, zs3d = self._verts3d\n         ax = self.axes\n-        xs2d, ys2d = ax.trans3d.transform(xs3d, ys3d, zs3d)\n+        xs2d, ys2d, zs2d = ax.trans3d.transform(xs3d, ys3d, zs3d)\n         self._path = Path(np.column_stack((xs2d, ys2d)), closed=False)\n         self._patch = patches.PathPatch(self._path, facecolor='none', lw=self._linewidth)\n         self._patch.set_clip_on(True)\n```",
+      "validation": {
+        "is_valid_syntax": false,
+        "is_valid_format": false,
+        "has_diff_header": false,
+        "has_hunks": false,
+        "files_touched": 0,
+        "lines_added": 0,
+        "lines_removed": 0,
+        "error_message": "Patch contains markdown code blocks (not cleaned)"
+      },
+      "metadata": {
+        "lines_changed": 1,
+        "files_changed": 1,
+        "solution_length": 611
+      },
+      "success": true,
+      "solution_generated": true
+    },
+    {
+      "instance_id": "matplotlib__matplotlib-25433",
+      "repo": "matplotlib/matplotlib",
+      "category": "bug",
+      "condition": "experimental",
+      "generated": true,
+      "valid_patch": false,
+      "agent_id": 3,
+      "task_type": "logic",
+      "execution_time": 5.32599663734436,
+      "model_output": "diff --git a/examples/widgets/range_slider.py b/examples/widgets/range_slider.py\n--- a/examples/widgets/range_slider.py\n+++ b/examples/widgets/range_slider.py\n@@ -1,6 +1,6 @@\n import matplotlib.pyplot as pyplot\n import matplotlib.widgets as widgets\n \n-def onchanged(values):\n+def onchanged(event, values):\n     print(\"on changed\")\n     print(values)\n     pyplot.clf()\n@@ -14,7 +14,7 @@\n     print(\"on click\")\n     pyplot.clf()\n     addElements()\n-    pyplot.draw()\n+    pyplot.draw()\n \n def addElements():\n     ax = pyplot.axes([0.1, 0.45, 0.8, 0.1])\n@@ -25,7 +25,7 @@\n     slider.on_changed(onchanged)\n     ax = pyplot.axes([0.1, 0.30, 0.8, 0.1])\n     global button\n-    button = widgets.Button(ax, \"Test\")\n+    button = widgets.Button(ax, \"Test\", on_clicked=onclick)\n     button.on_clicked(onclick)\n \n addElements()\n```",
+      "validation": {
+        "is_valid_syntax": false,
+        "is_valid_format": false,
+        "has_diff_header": false,
+        "has_hunks": false,
+        "files_touched": 0,
+        "lines_added": 0,
+        "lines_removed": 0,
+        "error_message": "Patch contains markdown code blocks (not cleaned)"
+      },
+      "metadata": {
+        "lines_changed": 1,
+        "files_changed": 1,
+        "solution_length": 821
+      },
+      "success": true,
+      "solution_generated": true
+    },
+    {
+      "instance_id": "pytest-dev__pytest-11143",
+      "repo": "pytest-dev/pytest",
+      "category": "bug",
+      "condition": "experimental",
+      "generated": true,
+      "valid_patch": true,
+      "agent_id": 3,
+      "task_type": "logic",
+      "execution_time": 3.515482187271118,
+      "model_output": "diff --git a/_pytest/assertion/rewrite.py b/_pytest/assertion/rewrite.py\n--- a/_pytest/assertion/rewrite.py\n+++ b/_pytest/assertion/rewrite.py\n@@ -757,7 +757,7 @@ class AssertionRewriter:\n         return \"PYTEST_DONT_REWRITE\" in docstring\n \n     def is_rewrite_disabled(self, doc):\n-        return \"PYTEST_DONT_REWRITE\" in docstring\n+        return \"PYTEST_DONT_REWRITE\" in docstring if isinstance(docstring, str) else False",
+      "validation": {
+        "is_valid_syntax": true,
+        "is_valid_format": true,
+        "has_diff_header": true,
+        "has_hunks": true,
+        "files_touched": 1,
+        "lines_added": 1,
+        "lines_removed": 1,
+        "error_message": null
+      },
+      "metadata": {
+        "lines_changed": 1,
+        "files_changed": 1,
+        "solution_length": 424
+      },
+      "success": true,
+      "solution_generated": true
+    },
+    {
+      "instance_id": "pytest-dev__pytest-6116",
+      "repo": "pytest-dev/pytest",
+      "category": "feature",
+      "condition": "experimental",
+      "generated": true,
+      "valid_patch": true,
+      "agent_id": 0,
+      "task_type": "string",
+      "execution_time": 45.78170156478882,
+      "model_output": "diff --git a/_pytest/main.py b/_pytest/main.py\n--- a/_pytest/main.py\n+++ b/_pytest/main.py\n@@ -123,6 +123,7 @@ def main(args=None):\n     parser.addoption(\"--collect-only\", action=\"store_true\", help=\"collect information about test files without running them\")\n     parser.addoption(\"--collect-only\", action=\"store_true\", help=\"collect information about test files without running them\")\n     parser.addoption(\"--collect-only\", action=\"store_true\", help=\"collect information about test files without running them\")\n+    parser.addoption(\"-c\", \"--collect-only\", action=\"store_true\", help=\"collect information about test files without running them\")\n     parser.addoption(\"--collect-only\", action=\"store_true\", help=\"collect information about test files without running them\")\n     parser.addoption(\"--collect-only\", action=\"store_true\", help=\"collect information about test files without running them\")\n     parser.addoption(\"--collect-only\", action=\"store_true\", help=\"collect information about test files without running them\")\n     parser.addoption(\"--collect-only\", action=\"store_true\", help=\"collect information about test files without running them\")\n     parser.addoption(\"--collect-only\", action=\"store_true\", help=\"collect information about test files without running them\")\n     parser.addoption(\"--collect-only\", action=\"store_true\", help=\"collect information about test files without running them\")\n     parser.addoption(\"--collect-only\", action=\"store_true\", help=\"collect information about test files without running them\")\n     parser.addoption(\"--collect-only\", action=\"store_true\", help=\"collect information about test files without running them\")\n     parser.addoption(\"--collect-only\", action=\"store_true\", help=\"collect information about test files without running them\")\n     parser.addoption(\"--collect-only\", action=\"store_true\", help=\"collect information about test files without running them\")\n     parser.addoption(\"--collect-only\", action=\"store_true\", help=\"collect information about test files without running them\")\n     parser.addoption(\"--collect-only\", action=\"store_true\", help=\"collect information about test files without running them\")\n     parser.addoption(\"--collect-only\", action=\"store_true\", help=\"collect information about test files without running them\")\n     parser.addoption(\"--collect-only\", action=\"store_true\", help=\"collect information about test files without running them\")\n     parser.addoption(\"--collect-only\", action=\"store_true\", help=\"collect information about test files without running them\")\n     parser.addoption(\"--collect-only\", action=\"store_true\", help=\"collect information about test files without running them\")\n     parser.addoption(\"--collect-only\", action=\"store_true\", help=\"collect information about test files without running them\")\n     parser.addoption(\"--collect-only\", action=\"store_true\", help=\"collect information about test files without running them\")\n     parser.addoption(\"--collect-only\", action=\"store_true\", help=\"collect information about test files without running them\")\n     parser.addoption(\"--collect-only\", action=\"store_true\", help=\"collect information about test files without running them\")\n     parser.addoption(\"--collect-only\", action=\"store_true\", help=\"collect information about test files without running them\")\n     parser.addoption(\"--collect-only\", action=\"store_true\", help=\"collect information about test files without running them\")\n     parser.addoption(\"--collect-only\", action=\"store_true\", help=\"collect information about test files without running them\")\n     parser.addoption(\"--collect-only\", action=\"store_true\", help=\"collect information about test files without running them\")\n     parser.addoption(\"--collect-only\", action=\"store_true\", help=\"collect information about test files without running them\")\n     parser.addoption(\"--collect-only\", action=\"store_true\", help=\"collect information about test files without running them\")\n     parser.addoption(\"--collect-only\", action=\"store_true\", help=\"collect information about test files without running them\")\n     parser.addoption(\"--collect-only\", action=\"store_true\", help=\"collect information about test files without running them\")\n     parser.addoption(\"--collect-only\", action=\"store_true\", help=\"collect information about test files without running them\")\n     parser.addoption(\"--collect-only\", action=\"store_true\", help=\"collect information about test files without running them\")\n     parser.addoption(\"--collect-only\", action=\"store_true\", help=\"collect information about test files without running them\")\n     parser.addoption(\"--collect-only\", action=\"store_true\", help=\"collect information about test files without running them\")\n     parser.addoption(\"--collect-only\", action=\"store_true\", help=\"collect information about test files without running them\")\n     parser.addoption(\"--collect-only\", action=\"store_true\", help=\"collect information about test files without running them\")\n     parser.addoption(\"--collect-only\", action=\"store_true\", help=\"collect information about test files without running them\")\n     parser.addoption(\"--collect-only\", action=\"store_true\", help=\"collect information about test files without running them\")\n     parser.addoption(\"--collect-only\", action=\"store_true\", help=\"collect information about test files without running them\")\n     parser.addoption(\"--collect-only\", action=\"store_true\", help=\"collect information about test files without running them\")\n     parser.addoption(\"--collect-only\", action=\"store_true\", help=\"collect information about test files without running them\")\n     parser.addoption(\"--collect-only\", action=\"store_true\", help=\"collect information about test files without running them\")\n     parser.addoption(\"--collect-only\", action=\"store_true\", help=\"collect information about test files without running them\")\n     parser.addoption(\"--collect-only\", action=\"store_true\", help=\"collect information about test files without running them\")\n     parser.addoption(\"--collect-only\", action=\"store_true\", help=\"collect information about test files without running them\")\n     parser.addoption(\"--collect-only\", action=\"store_true\", help=\"collect information about test files without running them\")\n     parser.addoption(\"--collect-only\", action=\"store_true\", help=\"collect information about test files without running them\")\n     parser.addoption(\"--collect-only\", action=\"store_true\", help=\"collect information about test files without running them\")\n     parser.addoption(\"--collect-only\", action=\"store_true\", help=\"collect information about test files without running them\")\n     parser.addoption(\"--collect-only\", action=\"store_true\", help=\"collect information about test files without running them\")\n     parser.addoption(\"--collect-only\", action=\"store_true\", help=\"collect information about test files without running them\")\n     parser.addoption(\"--collect-only\", action=\"store_true\", help=\"collect information about test files without running them\")\n     parser.addoption(\"--collect-only\", action=\"store_true\", help=\"collect information about test files without running them\")\n     parser.addoption(\"--collect-only\", action=\"store_true\", help=\"collect information about test files without running them\")\n     parser.addoption(\"--collect-only\", action=\"store_true\", help=\"collect information about test files without running them\")\n     parser.addoption(\"--collect-only\", action=\"store_true\", help=\"collect information about test files without running them\")\n     parser.addoption(\"--collect-only\", action=\"store_true\", help=\"collect information about test files without running them\")\n     parser.addoption(\"--collect-only\", action=\"store_true\", help=\"collect information about test files without running them\")\n     parser.addoption(\"--collect-only\", action=\"store_true\", help=\"collect information about test files without running them\")\n     parser.addoption(\"--collect-only\", action=\"store_true\", help=\"collect information about test files without running them\")\n     parser.addoption(\"--collect-only\", action=\"store_true\", help=\"collect information about test files without running them\")\n     parser.addoption(\"--collect-only\", action=\"store_true\", help=\"collect information about test files without running them\")\n     parser.addoption(\"--collect-only\", action=\"store_true\", help=\"collect information about test files without running them\")\n     parser.addoption(\"--collect-only\", action=\"store_true\", help=\"collect information about test files without running them\")\n     parser.addoption(\"--collect-only\", action=\"store_true\", help=\"collect information about test files without running them\")\n     parser.addoption(\"--collect-only\", action=\"store_true\", help=\"collect information about test files without running them\")\n     parser.addoption(\"--collect-only\", action=\"store_true\", help=\"collect information about test files without running them\")\n     parser.addoption(\"--collect-only\", action=\"store_true\", help=\"collect information about test files without running them\")\n     parser.addoption(\"--collect-only\", action=\"store_true\", help=\"collect information about test files without running them\")\n     parser.addoption(\"--collect-only\", action=\"store_true\", help=\"collect information about test files without running them\")\n     parser.addoption(\"--collect-only\", action=\"store_true\", help=\"collect information about test files without running them\")\n     parser.addoption(\"--collect-only\", action=\"store_true\", help=\"collect information about test files without running them\")\n     parser.addoption(\"--collect-only\", action=\"store_true\", help=\"collect information about test files without running them\")\n     parser.addoption(\"--collect-only\", action=\"store_true\", help=\"collect information about test files without running them\")\n     parser.addoption(\"--collect-only\", action=\"store_true\", help=\"collect information about test files without running them\")\n     parser.addoption(\"--collect-only\", action=\"store_true\", help=\"collect information about test files without running them\")\n     parser.addoption(\"--collect-only\", action=\"store_true\", help=\"collect information about test files without running them\")\n     parser.addoption(\"--collect-only\", action=\"store_true\", help=\"collect information about test files without running them\")\n     parser.addoption(\"--collect-only\", action=\"store_true\", help=\"collect information about test files without running them\")\n     parser.addoption(\"--collect-only\", action=\"store_true\", help=\"collect information about test files without running them\")\n     parser.addoption(\"--collect-only\", action=\"store_true\", help=\"collect information about test files without running them\")\n     parser.addoption(\"--",
+      "validation": {
+        "is_valid_syntax": true,
+        "is_valid_format": true,
+        "has_diff_header": true,
+        "has_hunks": true,
+        "files_touched": 1,
+        "lines_added": 1,
+        "lines_removed": 0,
+        "error_message": null
+      },
+      "metadata": {
+        "lines_changed": 1,
+        "files_changed": 1,
+        "solution_length": 10704
+      },
+      "success": true,
+      "solution_generated": true
+    },
+    {
+      "instance_id": "django__django-10914",
+      "repo": "django/django",
+      "category": "bug",
+      "condition": "experimental",
+      "generated": true,
+      "valid_patch": false,
+      "agent_id": 3,
+      "task_type": "logic",
+      "execution_time": 3.0578958988189697,
+      "model_output": "diff --git a/django/core/files/storage.py b/django/core/files/storage.py\n--- a/django/core/files/storage.py\n+++ b/django/core/files/storage.py\n@@ -100,6 +100,7 @@ class FileSystemStorage(Storage):\n     def __init__(self, location=None, base_url=None, file_permissions_mode=None):\n         self.location = location or settings.MEDIA_ROOT\n         self.base_url = base_url or settings.MEDIA_URL\n+        self.file_permissions_mode = file_permissions_mode or 0o644\n         self._created_dirs = set()\n         self._file_permissions_mode = file_permissions_mode\n```",
+      "validation": {
+        "is_valid_syntax": false,
+        "is_valid_format": false,
+        "has_diff_header": false,
+        "has_hunks": false,
+        "files_touched": 0,
+        "lines_added": 0,
+        "lines_removed": 0,
+        "error_message": "Patch contains markdown code blocks (not cleaned)"
+      },
+      "metadata": {
+        "lines_changed": 2,
+        "files_changed": 1,
+        "solution_length": 562
+      },
+      "success": true,
+      "solution_generated": true
+    },
+    {
+      "instance_id": "django__django-10924",
+      "repo": "django/django",
+      "category": "other",
+      "condition": "experimental",
+      "generated": true,
+      "valid_patch": true,
+      "agent_id": 6,
+      "task_type": "math",
+      "execution_time": 45.72392129898071,
+      "model_output": "diff --git a/django/db/models/fields/files.py b/django/db/models/fields/files.py\n--- a/django/db/models/fields/files.py\n+++ b/django/db/models/fields/files.py\n@@ -123,7 +123,7 @@ class FilePathField(models.Field):\n         if isinstance(path, six.string_types):\n             self.path = path\n         else:\n-            self.path = path()\n+            self.path = path if callable(path) else path()\n         self.match = match\n         self.recursive = recursive\n         self.allow_files = allow_files\n         self.allow_folders = allow_folders\n         self.storage = storage\n         self.base_url = base_url\n         self.variations = variations\ndiff --git a/django/db/models/fields/__init__.py b/django/db/models/fields/__init__.py\n--- a/django/db/models/fields/__init__.py\n+++ b/django/db/models/fields/__init__.py\n@@ -123,7 +123,7 @@ class FilePathField(models.Field):\n         if isinstance(path, six.string_types):\n             self.path = path\n         else:\n-            self.path = path()\n+            self.path = path if callable(path) else path()\n         self.match = match\n         self.recursive = recursive\n         self.allow_files = allow_files\n         self.allow_folders = allow_folders\n         self.storage = storage\n         self.base_url = base_url\n         self.variations = variations\ndiff --git a/django/db/models/fields/fields.py b/django/db/models/fields/fields.py\n--- a/django/db/models/fields/fields.py\n+++ b/django/db/models/fields/fields.py\n@@ -123,7 +123,7 @@ class FilePathField(models.Field):\n         if isinstance(path, six.string_types):\n             self.path = path\n         else:\n-            self.path = path()\n+            self.path = path if callable(path) else path()\n         self.match = match\n         self.recursive = recursive\n         self.allow_files = allow_files\n         self.allow_folders = allow_folders\n         self.storage = storage\n         self.base_url = base_url\n         self.variations = variations\ndiff --git a/django/db/models/fields/fields.py b/django/db/models/fields/fields.py\n--- a/django/db/models/fields/fields.py\n+++ b/django/db/models/fields/fields.py\n@@ -123,7 +123,7 @@ class FilePathField(models.Field):\n         if isinstance(path, six.string_types):\n             self.path = path\n         else:\n-            self.path = path()\n+            self.path = path if callable(path) else path()\n         self.match = match\n         self.recursive = recursive\n         self.allow_files = allow_files\n         self.allow_folders = allow_folders\n         self.storage = storage\n         self.base_url = base_url\n         self.variations = variations\ndiff --git a/django/db/models/fields/fields.py b/django/db/models/fields/fields.py\n--- a/django/db/models/fields/fields.py\n+++ b/django/db/models/fields/fields.py\n@@ -123,7 +123,7 @@ class FilePathField(models.Field):\n         if isinstance(path, six.string_types):\n             self.path = path\n         else:\n-            self.path = path()\n+            self.path = path if callable(path) else path()\n         self.match = match\n         self.recursive = recursive\n         self.allow_files = allow_files\n         self.allow_folders = allow_folders\n         self.storage = storage\n         self.base_url = base_url\n         self.variations = variations\ndiff --git a/django/db/models/fields/fields.py b/django/db/models/fields/fields.py\n--- a/django/db/models/fields/fields.py\n+++ b/django/db/models/fields/fields.py\n@@ -123,7 +123,7 @@ class FilePathField(models.Field):\n         if isinstance(path, six.string_types):\n             self.path = path\n         else:\n-            self.path = path()\n+            self.path = path if callable(path) else path()\n         self.match = match\n         self.recursive = recursive\n         self.allow_files = allow_files\n         self.allow_folders = allow_folders\n         self.storage = storage\n         self.base_url = base_url\n         self.variations = variations\ndiff --git a/django/db/models/fields/fields.py b/django/db/models/fields/fields.py\n--- a/django/db/models/fields/fields.py\n+++ b/django/db/models/fields/fields.py\n@@ -123,7 +123,7 @@ class FilePathField(models.Field):\n         if isinstance(path, six.string_types):\n             self.path = path\n         else:\n-            self.path = path()\n+            self.path = path if callable(path) else path()\n         self.match = match\n         self.recursive = recursive\n         self.allow_files = allow_files\n         self.allow_folders = allow_folders\n         self.storage = storage\n         self.base_url = base_url\n         self.variations = variations\ndiff --git a/django/db/models/fields/fields.py b/django/db/models/fields/fields.py\n--- a/django/db/models/fields/fields.py\n+++ b/django/db/models/fields/fields.py\n@@ -123,7 +123,7 @@ class FilePathField(models.Field):\n         if isinstance(path, six.string_types):\n             self.path = path\n         else:\n-            self.path = path()\n+            self.path = path if callable(path) else path()\n         self.match = match\n         self.recursive = recursive\n         self.allow_files = allow_files\n         self.allow_folders = allow_folders\n         self.storage = storage\n         self.base_url = base_url\n         self.variations = variations\ndiff --git a/django/db/models/fields/fields.py b/django/db/models/fields/fields.py\n--- a/django/db/models/fields/fields.py\n+++ b/django/db/models/fields/fields.py\n@@ -123,7 +123,7 @@ class FilePathField(models.Field):\n         if isinstance(path, six.string_types):\n             self.path = path\n         else:\n-            self.path = path()\n+            self.path = path if callable(path) else path()\n         self.match = match\n         self.recursive = recursive\n         self.allow_files = allow_files\n         self.allow_folders = allow_folders\n         self.storage = storage\n         self.base_url = base_url\n         self.variations = variations\ndiff --git a/django/db/models/fields/fields.py b/django/db/models/fields/fields.py\n--- a/django/db/models/fields/fields.py\n+++ b/django/db/models/fields/fields.py\n@@ -123,7 +123,7 @@ class FilePathField(models.Field):\n         if isinstance(path, six.string_types):\n             self.path = path\n         else:\n-            self.path = path()\n+            self.path = path if callable(path) else path()\n         self.match = match\n         self.recursive = recursive\n         self.allow_files = allow_files\n         self.allow_folders = allow_folders\n         self.storage = storage\n         self.base_url = base_url\n         self.variations = variations\ndiff --git a/django/db/models/fields/fields.py b/django/db/models/fields/fields.py\n--- a/django/db/models/fields/fields.py\n+++ b/django/db/models/fields/fields.py\n@@ -123,7 +123,7 @@ class FilePathField(models.Field):\n         if isinstance(path, six.string_types):\n             self.path = path\n         else:\n-            self.path = path()\n+            self.path = path if callable(path) else path()\n         self.match = match\n         self.recursive = recursive\n         self.allow_files = allow_files\n         self.allow_folders = allow_folders\n         self.storage = storage\n         self.base_url = base_url\n         self.variations = variations\ndiff --git a/django/db/models/fields/fields.py b/django/db/models/fields/fields.py\n--- a/django/db/models/fields/fields.py\n+++ b/django/db/models/fields/fields.py\n@@ -123,7 +123,7 @@ class FilePathField(models.Field):\n         if isinstance(path, six.string_types):\n             self.path = path\n         else:\n-            self.path = path()\n+            self.path = path if callable(path) else path()\n         self.match = match\n         self.recursive = recursive\n         self.allow_files = allow_files\n         self.allow_folders = allow_folders\n         self.storage = storage\n         self.base_url = base_url\n         self.variations = variations\ndiff --git a/django/db/models/fields/fields.py b/django/db/models/fields/fields.py\n--- a/django/db/models/fields/fields.py\n+++ b/django/db/models/fields/fields.py\n@@ -123,7 +123,7 @@ class FilePathField(models.Field):\n         if isinstance(path, six.string_types):\n             self.path = path\n         else:\n-            self.path = path()\n+            self.path = path if callable(path) else path()\n         self.match = match\n         self.recursive = recursive\n         self.allow_files = allow_files\n         self.allow_folders = allow_folders\n         self.storage = storage\n         self.base_url = base_url\n         self.variations = variations\ndiff --git a/django/db/models/fields/fields.py b/django/db/models/fields",
+      "validation": {
+        "is_valid_syntax": true,
+        "is_valid_format": true,
+        "has_diff_header": true,
+        "has_hunks": true,
+        "files_touched": 14,
+        "lines_added": 13,
+        "lines_removed": 13,
+        "error_message": null
+      },
+      "metadata": {
+        "lines_changed": 2,
+        "files_changed": 1,
+        "solution_length": 8591
+      },
+      "success": true,
+      "solution_generated": true
+    },
+    {
+      "instance_id": "django__django-11049",
+      "repo": "django/django",
+      "category": "bug",
+      "condition": "experimental",
+      "generated": true,
+      "valid_patch": false,
+      "agent_id": 3,
+      "task_type": "logic",
+      "execution_time": 45.77194619178772,
+      "model_output": "diff --git a/django/core/validators.py b/django/core/validators.py\n--- a/django/core/validators.py\n+++ b/django/core/validators.py\n@@ -123,7 +123,7 @@ def validate_duration(value):\n     if isinstance(value, timedelta):\n         return value\n     try:\n-        value = timedelta(**parse_duration(value))\n+        value = timedelta(**parse_duration(value, allow_seconds=False))\n     except (ValueError, TypeError):\n         raise ValidationError(\n             _('%(value)s is not a valid duration.'),\n             params={'value': value},\n         )\n```\n\ndiff --git a/django/forms/fields.py b/django/forms/fields.py\n--- a/django/forms/fields.py\n+++ b/django/forms/fields.py\n@@ -123,7 +123,7 @@ def validate_duration(value):\n     if isinstance(value, timedelta):\n         return value\n     try:\n-        value = timedelta(**parse_duration(value))\n+        value = timedelta(**parse_duration(value, allow_seconds=False))\n     except (ValueError, TypeError):\n         raise ValidationError(\n             _('%(value)s is not a valid duration.'),\n             params={'value': value},\n         )\n```\n\ndiff --git a/django/core/validators.py b/django/core/validators.py\n--- a/django/core/validators.py\n+++ b/django/core/validators.py\n@@ -123,7 +123,7 @@ def validate_duration(value):\n     if isinstance(value, timedelta):\n         return value\n     try:\n-        value = timedelta(**parse_duration(value))\n+        value = timedelta(**parse_duration(value, allow_seconds=False))\n     except (ValueError, TypeError):\n         raise ValidationError(\n             _('%(value)s is not a valid duration.'),\n             params={'value': value},\n         )\n```\n\ndiff --git a/django/forms/fields.py b/django/forms/fields.py\n--- a/django/forms/fields.py\n+++ b/django/forms/fields.py\n@@ -123,7 +123,7 @@ def validate_duration(value):\n     if isinstance(value, timedelta):\n         return value\n     try:\n-        value = timedelta(**parse_duration(value))\n+        value = timedelta(**parse_duration(value, allow_seconds=False))\n     except (ValueError, TypeError):\n         raise ValidationError(\n             _('%(value)s is not a valid duration.'),\n             params={'value': value},\n         )\n```\n\ndiff --git a/django/core/validators.py b/django/core/validators.py\n--- a/django/core/validators.py\n+++ b/django/core/validators.py\n@@ -123,7 +123,7 @@ def validate_duration(value):\n     if isinstance(value, timedelta):\n         return value\n     try:\n-        value = timedelta(**parse_duration(value))\n+        value = timedelta(**parse_duration(value, allow_seconds=False))\n     except (ValueError, TypeError):\n         raise ValidationError(\n             _('%(value)s is not a valid duration.'),\n             params={'value': value},\n         )\n```\n\ndiff --git a/django/forms/fields.py b/django/forms/fields.py\n--- a/django/forms/fields.py\n+++ b/django/forms/fields.py\n@@ -123,7 +123,7 @@ def validate_duration(value):\n     if isinstance(value, timedelta):\n         return value\n     try:\n-        value = timedelta(**parse_duration(value))\n+        value = timedelta(**parse_duration(value, allow_seconds=False))\n     except (ValueError, TypeError):\n         raise ValidationError(\n             _('%(value)s is not a valid duration.'),\n             params={'value': value},\n         )\n```\n\ndiff --git a/django/core/validators.py b/django/core/validators.py\n--- a/django/core/validators.py\n+++ b/django/core/validators.py\n@@ -123,7 +123,7 @@ def validate_duration(value):\n     if isinstance(value, timedelta):\n         return value\n     try:\n-        value = timedelta(**parse_duration(value))\n+        value = timedelta(**parse_duration(value, allow_seconds=False))\n     except (ValueError, TypeError):\n         raise ValidationError(\n             _('%(value)s is not a valid duration.'),\n             params={'value': value},\n         )\n```\n\ndiff --git a/django/forms/fields.py b/django/forms/fields.py\n--- a/django/forms/fields.py\n+++ b/django/forms/fields.py\n@@ -123,7 +123,7 @@ def validate_duration(value):\n     if isinstance(value, timedelta):\n         return value\n     try:\n-        value = timedelta(**parse_duration(value))\n+        value = timedelta(**parse_duration(value, allow_seconds=False))\n     except (ValueError, TypeError):\n         raise ValidationError(\n             _('%(value)s is not a valid duration.'),\n             params={'value': value},\n         )\n```\n\ndiff --git a/django/core/validators.py b/django/core/validators.py\n--- a/django/core/validators.py\n+++ b/django/core/validators.py\n@@ -123,7 +123,7 @@ def validate_duration(value):\n     if isinstance(value, timedelta):\n         return value\n     try:\n-        value = timedelta(**parse_duration(value))\n+        value = timedelta(**parse_duration(value, allow_seconds=False))\n     except (ValueError, TypeError):\n         raise ValidationError(\n             _('%(value)s is not a valid duration.'),\n             params={'value': value},\n         )\n```\n\ndiff --git a/django/forms/fields.py b/django/forms/fields.py\n--- a/django/forms/fields.py\n+++ b/django/forms/fields.py\n@@ -123,7 +123,7 @@ def validate_duration(value):\n     if isinstance(value, timedelta):\n         return value\n     try:\n-        value = timedelta(**parse_duration(value))\n+        value = timedelta(**parse_duration(value, allow_seconds=False))\n     except (ValueError, TypeError):\n         raise ValidationError(\n             _('%(value)s is not a valid duration.'),\n             params={'value': value},\n         )\n```\n\ndiff --git a/django/core/validators.py b/django/core/validators.py\n--- a/django/core/validators.py\n+++ b/django/core/validators.py\n@@ -123,7 +123,7 @@ def validate_duration(value):\n     if isinstance(value, timedelta):\n         return value\n     try:\n-        value = timedelta(**parse_duration(value))\n+        value = timedelta(**parse_duration(value, allow_seconds=False))\n     except (ValueError, TypeError):\n         raise ValidationError(\n             _('%(value)s is not a valid duration.'),\n             params={'value': value},\n         )\n```\n\ndiff --git a/django/forms/fields.py b/django/forms/fields.py\n--- a/django/forms/fields.py\n+++ b/django/forms/fields.py\n@@ -123,7 +123,7 @@ def validate_duration(value):\n     if isinstance(value, timedelta):\n         return value\n     try:\n-        value = timedelta(**parse_duration(value))\n+        value = timedelta(**parse_duration(value, allow_seconds=False))\n     except (ValueError, TypeError):\n         raise ValidationError(\n             _('%(value)s is not a valid duration.'),\n             params={'value': value},\n         )\n```\n\ndiff --git a/django/core/validators.py b/django/core/validators.py\n--- a/django/core/validators.py\n+++ b/django/core/validators.py\n@@ -123,7 +123,7 @@ def validate_duration(value):\n     if isinstance(value, timedelta):\n         return value\n     try:\n-        value = timedelta(**parse_duration(value))\n+        value = timedelta(**parse_duration(value, allow_seconds=False))\n     except (ValueError, TypeError):\n         raise ValidationError(\n             _('%(value)s is not a valid duration.'),\n             params={'value': value},\n         )\n```\n\ndiff --git a/django/forms/fields.py b/django/forms/fields.py\n--- a/django/forms/fields.py\n+++ b/django/forms/fields.py\n@@ -123,7 +123,7 @@ def validate_duration(value):\n     if isinstance(value, timedelta):\n         return value\n     try:\n-        value = timedelta(**parse_duration(value))\n+        value = timedelta(**parse_duration(value, allow_seconds=False))\n     except (ValueError, TypeError):\n         raise ValidationError(\n             _('%(value)s is not a valid duration.'),\n             params={'value': value},\n         )\n```\n\ndiff --git a/django/core/validators.py b/django/core/validators.py\n--- a/django/core/validators.py\n+++ b/django/core/validators.py\n@@ -123,7 +123,7 @@ def validate_duration(value):\n     if isinstance(value, timedelta):\n         return value\n     try:\n-        value = timedelta(**parse_duration(value))\n+        value = timedelta(**parse_duration(value, allow_seconds=False))\n     except (ValueError, TypeError):\n         raise ValidationError(\n             _('%(value)s is not a valid duration.'),\n             params={'value': value},\n         )\n```\n\ndiff --git a/django/forms/fields.py b/django/forms/fields.py\n--- a/django/forms/fields.py\n+++ b/django/forms/fields.py\n@@ -123,7 +123,7 @@ def validate_duration(value):\n     if isinstance(value, timedelta):\n         return value\n     try:\n-        value = timedelta(**parse_duration(value))\n+        value = timedelta(**parse_duration(value, allow_seconds=False))\n     except (ValueError, TypeError):\n         raise ValidationError(\n             _('%(value)s is not a valid duration.'),\n             params={'value': value},",
+      "validation": {
+        "is_valid_syntax": false,
+        "is_valid_format": false,
+        "has_diff_header": false,
+        "has_hunks": false,
+        "files_touched": 0,
+        "lines_added": 0,
+        "lines_removed": 0,
+        "error_message": "Patch contains markdown code blocks (not cleaned)"
+      },
+      "metadata": {
+        "lines_changed": 2,
+        "files_changed": 1,
+        "solution_length": 8735
+      },
+      "success": true,
+      "solution_generated": true
+    },
+    {
+      "instance_id": "django__django-11133",
+      "repo": "django/django",
+      "category": "other",
+      "condition": "experimental",
+      "generated": true,
+      "valid_patch": false,
+      "agent_id": 6,
+      "task_type": "math",
+      "execution_time": 3.0618677139282227,
+      "model_output": "diff --git a/django/http/response.py b/django/http/response.py\n--- a/django/http/response.py\n+++ b/django/http/response.py\n@@ -112,7 +112,7 @@ class HttpResponseBase:\n     def __init__(self, content='', content_type=None, status=200, charset=None,\n                  reason=None, headers=None, xframe_options=None):\n         self.status_code = status\n-        self.content = content\n+        self.content = content if isinstance(content, memoryview) else bytes(content)\n         self._charset = charset\n         self._content_type = content_type\n         self._reason_phrase = reason\n```",
+      "validation": {
+        "is_valid_syntax": false,
+        "is_valid_format": false,
+        "has_diff_header": false,
+        "has_hunks": false,
+        "files_touched": 0,
+        "lines_added": 0,
+        "lines_removed": 0,
+        "error_message": "Patch contains markdown code blocks (not cleaned)"
+      },
+      "metadata": {
+        "lines_changed": 2,
+        "files_changed": 1,
+        "solution_length": 586
+      },
+      "success": true,
+      "solution_generated": true
+    },
+    {
+      "instance_id": "django__django-12113",
+      "repo": "django/django",
+      "category": "bug",
+      "condition": "experimental",
+      "generated": true,
+      "valid_patch": true,
+      "agent_id": 3,
+      "task_type": "logic",
+      "execution_time": 47.2030131816864,
+      "model_output": "diff --git a/tests/test_sqlite.py b/tests/test_sqlite.py\n--- a/tests/test_sqlite.py\n+++ b/tests/test_sqlite.py\n@@ -15,9 +15,15 @@\n DATABASES = {\n\t 'default': {\n\t\t 'ENGINE': 'django.db.backends.sqlite3',\n+\t\t'TEST': {\n+\t\t\t'NAME': 'test_default.sqlite3'\n+\t\t},\n\t },\n\t 'other': {\n\t\t 'ENGINE': 'django.db.backends.sqlite3',\n+\t\t'TEST': {\n+\t\t\t'NAME': 'test_other.sqlite3'\n+\t\t},\n\t }\n }\ndiff --git a/tests/admin_views/test_multidb.py b/tests/admin_views/test_multidb.py\n--- a/tests/admin_views/test_multidb.py\n+++ b/tests/admin_views/test_multidb.py\n@@ -38,7 +38,7 @@ class MultiDatabaseTests(TestCase):\n     def setUpTestData(self):\n         self.user = User.objects.create_superuser(\n-            username='admin', password='something', email='test@test.org',\n+            username='admin', password='something', email='test@test.org',\n         )\ndiff --git a/tests/runtests.py b/tests/runtests.py\n--- a/tests/runtests.py\n+++ b/tests/runtests.py\n@@ -100,7 +100,7 @@ def run_tests(verbosity=1, interactive=True, failfast=False, keepdb=False,\n     test_runner = DiscoverRunner(verbosity=verbosity, interactive=interactive,\n failfast=failfast, keepdb=keepdb, parallel=parallel)\n     failures = test_runner.run_tests(test_labels, **kwargs)\n-    sys.exit(failures)\n+    sys.exit(failures)\ndiff --git a/tests/admin_views/test_multidb.py b/tests/admin_views/test_multidb.py\n--- a/tests/admin_views/test_multidb.py\n+++ b/tests/admin_views/test_multidb.py\n@@ -38,7 +38,7 @@ class MultiDatabaseTests(TestCase):\n     def setUpTestData(self):\n         self.user = User.objects.create_superuser(\n-            username='admin', password='something', email='test@test.org',\n+            username='admin', password='something', email='test@test.org',\n         )\ndiff --git a/tests/runtests.py b/tests/runtests.py\n--- a/tests/runtests.py\n+++ b/tests/runtests.py\n@@ -100,7 +100,7 @@ def run_tests(verbosity=1, interactive=True, failfast=False, keepdb=False,\n     test_runner = DiscoverRunner(verbosity=verbosity, interactive=interactive,\n failfast=failfast, keepdb=keepdb, parallel=parallel)\n     failures = test_runner.run_tests(test_labels, **kwargs)\n-    sys.exit(failures)\n+    sys.exit(failures)\ndiff --git a/tests/admin_views/test_multidb.py b/tests/admin_views/test_multidb.py\n--- a/tests/admin_views/test_multidb.py\n+++ b/tests/admin_views/test_multidb.py\n@@ -38,7 +38,7 @@ class MultiDatabaseTests(TestCase):\n     def setUpTestData(self):\n         self.user = User.objects.create_superuser(\n-            username='admin', password='something', email='test@test.org',\n+            username='admin', password='something', email='test@test.org',\n         )\ndiff --git a/tests/runtests.py b/tests/runtests.py\n--- a/tests/runtests.py\n+++ b/tests/runtests.py\n@@ -100,7 +100,7 @@ def run_tests(verbosity=1, interactive=True, failfast=False, keepdb=False,\n     test_runner = DiscoverRunner(verbosity=verbosity, interactive=interactive,\n failfast=failfast, keepdb=keepdb, parallel=parallel)\n     failures = test_runner.run_tests(test_labels, **kwargs)\n-    sys.exit(failures)\n+    sys.exit(failures)\ndiff --git a/tests/admin_views/test_multidb.py b/tests/admin_views/test_multidb.py\n--- a/tests/admin_views/test_multidb.py\n+++ b/tests/admin_views/test_multidb.py\n@@ -38,7 +38,7 @@ class MultiDatabaseTests(TestCase):\n     def setUpTestData(self):\n         self.user = User.objects.create_superuser(\n-            username='admin', password='something', email='test@test.org',\n+            username='admin', password='something', email='test@test.org',\n         )\ndiff --git a/tests/runtests.py b/tests/runtests.py\n--- a/tests/runtests.py\n+++ b/tests/runtests.py\n@@ -100,7 +100,7 @@ def run_tests(verbosity=1, interactive=True, failfast=False, keepdb=False,\n     test_runner = DiscoverRunner(verbosity=verbosity, interactive=interactive,\n failfast=failfast, keepdb=keepdb, parallel=parallel)\n     failures = test_runner.run_tests(test_labels, **kwargs)\n-    sys.exit(failures)\n+    sys.exit(failures)\ndiff --git a/tests/admin_views/test_multidb.py b/tests/admin_views/test_multidb.py\n--- a/tests/admin_views/test_multidb.py\n+++ b/tests/admin_views/test_multidb.py\n@@ -38,7 +38,7 @@ class MultiDatabaseTests(TestCase):\n     def setUpTestData(self):\n         self.user = User.objects.create_superuser(\n-            username='admin', password='something', email='test@test.org',\n+            username='admin', password='something', email='test@test.org',\n         )\ndiff --git a/tests/runtests.py b/tests/runtests.py\n--- a/tests/runtests.py\n+++ b/tests/runtests.py\n@@ -100,7 +100,7 @@ def run_tests(verbosity=1, interactive=True, failfast=False, keepdb=False,\n     test_runner = DiscoverRunner(verbosity=verbosity, interactive=interactive,\n failfast=failfast, keepdb=keepdb, parallel=parallel)\n     failures = test_runner.run_tests(test_labels, **kwargs)\n-    sys.exit(failures)\n+    sys.exit(failures)\ndiff --git a/tests/admin_views/test_multidb.py b/tests/admin_views/test_multidb.py\n--- a/tests/admin_views/test_multidb.py\n+++ b/tests/admin_views/test_multidb.py\n@@ -38,7 +38,7 @@ class MultiDatabaseTests(TestCase):\n     def setUpTestData(self):\n         self.user = User.objects.create_superuser(\n-            username='admin', password='something', email='test@test.org',\n+            username='admin', password='something', email='test@test.org',\n         )\ndiff --git a/tests/runtests.py b/tests/runtests.py\n--- a/tests/runtests.py\n+++ b/tests/runtests.py\n@@ -100,7 +100,7 @@ def run_tests(verbosity=1, interactive=True, failfast=False, keepdb=False,\n     test_runner = DiscoverRunner(verbosity=verbosity, interactive=interactive,\n failfast=failfast, keepdb=keepdb, parallel=parallel)\n     failures = test_runner.run_tests(test_labels, **kwargs)\n-    sys.exit(failures)\n+    sys.exit(failures)\ndiff --git a/tests/admin_views/test_multidb.py b/tests/admin_views/test_multidb.py\n--- a/tests/admin_views/test_multidb.py\n+++ b/tests/admin_views/test_multidb.py\n@@ -38,7 +38,7 @@ class MultiDatabaseTests(TestCase):\n     def setUpTestData(self):\n         self.user = User.objects.create_superuser(\n-            username='admin', password='something', email='test@test.org',\n+            username='admin', password='something', email='test@test.org',\n         )\ndiff --git a/tests/runtests.py b/tests/runtests.py\n--- a/tests/runtests.py\n+++ b/tests/runtests.py\n@@ -100,7 +100,7 @@ def run_tests(verbosity=1, interactive=True, failfast=False, keepdb=False,\n     test_runner = DiscoverRunner(verbosity=verbosity, interactive=interactive,\n failfast=failfast, keepdb=keepdb, parallel=parallel)\n     failures = test_runner.run_tests(test_labels, **kwargs)\n-    sys.exit(failures)\n+    sys.exit(failures)\ndiff --git a/tests/admin_views/test_multidb.py b/tests/admin_views/test_multidb.py\n--- a/tests/admin_views/test_multidb.py\n+++ b/tests/admin_views/test_multidb.py\n@@ -38,7 +38,7 @@ class MultiDatabaseTests(TestCase):\n     def setUpTestData(self):\n         self.user = User.objects.create_superuser(\n-            username='admin', password='something', email='test@test.org',\n+            username='admin', password='something', email='test@test.org',\n         )\ndiff --git a/tests/runtests.py b/tests/runtests.py\n--- a/tests/runtests.py\n+++ b/tests/runtests.py\n@@ -100,7 +100,7 @@ def run_tests(verbosity=1, interactive=True, failfast=False, keepdb=False,\n     test_runner = DiscoverRunner(verbosity=verbosity, interactive=interactive,\n failfast=failfast, keepdb=keepdb, parallel=parallel)\n     failures = test_runner.run_tests(test_labels, **kwargs)\n-    sys.exit(failures)\n+    sys.exit(failures)\ndiff --git a/tests/admin_views/test_multidb.py b/tests/admin_views/test_multidb.py\n--- a/tests/admin_views/test_multidb.py\n+++ b/tests/admin_views/test_multidb.py\n@@ -38,7 +3",
+      "validation": {
+        "is_valid_syntax": true,
+        "is_valid_format": true,
+        "has_diff_header": true,
+        "has_hunks": true,
+        "files_touched": 18,
+        "lines_added": 22,
+        "lines_removed": 16,
+        "error_message": null
+      },
+      "metadata": {
+        "lines_changed": 2,
+        "files_changed": 1,
+        "solution_length": 7743
+      },
+      "success": true,
+      "solution_generated": true
+    },
+    {
+      "instance_id": "django__django-12125",
+      "repo": "django/django",
+      "category": "bug",
+      "condition": "experimental",
+      "generated": true,
+      "valid_patch": false,
+      "agent_id": 3,
+      "task_type": "logic",
+      "execution_time": 8.440791606903076,
+      "model_output": "diff --git a/django/db/migrations/operations/models.py b/django/db/migrations/operations/models.py\n--- a/django/db/migrations/operations/models.py\n+++ b/django/db/migrations/operations/models.py\n@@ -123,7 +123,7 @@ class CreateModel(Operation):\n                 field_name=field.name,\n                 field_type=field.get_internal_type(),\n                 field_args=field_args,\n-                field_kwargs=field_kwargs,\n+                field_kwargs={k: v for k, v in field_kwargs.items() if not k.startswith('enum')},\n             )\n         )\n```\n```\ndiff --git a/django/db/models/fields/__init__.py b/django/db/models/fields/__init__.py\n--- a/django/db/models/fields/__init__.py\n+++ b/django/db/models/fields/__init__.py\n@@ -123,7 +123,7 @@ class Field:\n                 field_name=field.name,\n                 field_type=field.get_internal_type(),\n                 field_args=field_args,\n-                field_kwargs=field_kwargs,\n+                field_kwargs={k: v for k, v in field_kwargs.items() if not k.startswith('enum')},\n             )\n         )\n```\n```\ndiff --git a/django/db/models/fields/enum.py b/django/db/models/fields/enum.py\n--- a/django/db/models/fields/enum.py\n+++ b/django/db/models/fields/enum.py\n@@ -123,7 +123,7 @@ class EnumField(Field):\n                 field_name=field.name,\n                 field_type=field.get_internal_type(),\n                 field_args=field_args,\n-                field_kwargs=field_kwargs,\n+                field_kwargs={k: v for k, v in field_kwargs.items() if not k.startswith('enum')},\n             )\n         )",
+      "validation": {
+        "is_valid_syntax": false,
+        "is_valid_format": false,
+        "has_diff_header": false,
+        "has_hunks": false,
+        "files_touched": 0,
+        "lines_added": 0,
+        "lines_removed": 0,
+        "error_message": "Patch contains markdown code blocks (not cleaned)"
+      },
+      "metadata": {
+        "lines_changed": 2,
+        "files_changed": 1,
+        "solution_length": 1575
+      },
+      "success": true,
+      "solution_generated": true
+    },
+    {
+      "instance_id": "django__django-13964",
+      "repo": "django/django",
+      "category": "bug",
+      "condition": "experimental",
+      "generated": true,
+      "valid_patch": true,
+      "agent_id": 3,
+      "task_type": "logic",
+      "execution_time": 2.945737600326538,
+      "model_output": "diff --git a/django/db/models/fields/related.py b/django/db/models/fields/related.py\n--- a/django/db/models/fields/related.py\n+++ b/django/db/models/fields/related.py\n@@ -1234,7 +1234,7 @@ class ForeignKey(ForeignObjectField):\n         if self.null and value is None:\n             self._null = True\n         else:\n-            self._value = value\n+            self._value = value.pk if value else None\n         self._set_cache(value)\n \n     def _set_cache(self, value):",
+      "validation": {
+        "is_valid_syntax": true,
+        "is_valid_format": true,
+        "has_diff_header": true,
+        "has_hunks": true,
+        "files_touched": 1,
+        "lines_added": 1,
+        "lines_removed": 1,
+        "error_message": null
+      },
+      "metadata": {
+        "lines_changed": 2,
+        "files_changed": 1,
+        "solution_length": 469
+      },
+      "success": true,
+      "solution_generated": true
+    },
+    {
+      "instance_id": "django__django-14017",
+      "repo": "django/django",
+      "category": "bug",
+      "condition": "experimental",
+      "generated": true,
+      "valid_patch": true,
+      "agent_id": 3,
+      "task_type": "logic",
+      "execution_time": 2.8747503757476807,
+      "model_output": "diff --git a/django/db/models/query_utils.py b/django/db/models/query_utils.py\n--- a/django/db/models/query_utils.py\n+++ b/django/db/models/query_utils.py\n@@ -71,6 +71,7 @@ def _combine(self, other, conn):\n     def _combine(self, other, conn):\n         if not isinstance(other, Q):\n             raise TypeError(other)\n+        if isinstance(other, Exists):\n+            return other._combine(self, conn)\n \n         # If the other Q() is empty, ignore it and just use `self`.\n         if not other:",
+      "validation": {
+        "is_valid_syntax": true,
+        "is_valid_format": true,
+        "has_diff_header": true,
+        "has_hunks": true,
+        "files_touched": 1,
+        "lines_added": 2,
+        "lines_removed": 0,
+        "error_message": null
+      },
+      "metadata": {
+        "lines_changed": 2,
+        "files_changed": 1,
+        "solution_length": 497
+      },
+      "success": true,
+      "solution_generated": true
+    },
+    {
+      "instance_id": "django__django-14238",
+      "repo": "django/django",
+      "category": "bug",
+      "condition": "experimental",
+      "generated": true,
+      "valid_patch": false,
+      "agent_id": 3,
+      "task_type": "logic",
+      "execution_time": 3.183760643005371,
+      "model_output": "diff --git a/django/db/models/fields/__init__.py b/django/db/models/fields/__init__.py\n--- a/django/db/models/fields/__init__.py\n+++ b/django/db/models/fields/__init__.py\n@@ -100,7 +100,7 @@ class AutoFieldMeta(type):\n         if cls is AutoField:\n             return True\n         for base in cls.__bases__:\n-            if isinstance(base, AutoFieldMeta):\n+            if isinstance(base, AutoFieldMeta) or base in AutoFieldMeta._subclasses:\n                 return True\n         return False\n```",
+      "validation": {
+        "is_valid_syntax": false,
+        "is_valid_format": false,
+        "has_diff_header": false,
+        "has_hunks": false,
+        "files_touched": 0,
+        "lines_added": 0,
+        "lines_removed": 0,
+        "error_message": "Patch contains markdown code blocks (not cleaned)"
+      },
+      "metadata": {
+        "lines_changed": 2,
+        "files_changed": 1,
+        "solution_length": 498
+      },
+      "success": true,
+      "solution_generated": true
+    },
+    {
+      "instance_id": "django__django-14534",
+      "repo": "django/django",
+      "category": "bug",
+      "condition": "experimental",
+      "generated": true,
+      "valid_patch": false,
+      "agent_id": 3,
+      "task_type": "logic",
+      "execution_time": 2.345733880996704,
+      "model_output": "diff --git a/django/forms/widgets.py b/django/forms/widgets.py\n--- a/django/forms/widgets.py\n+++ b/django/forms/widgets.py\n@@ -1234,7 +1234,7 @@ class BoundWidget:\n         return self.data['name']\n \n     def id_for_label(self):\n-        return 'id_%s_%s' % (self.data['name'], self.data['index'])\n+        return self.data['attrs']['id']\n```",
+      "validation": {
+        "is_valid_syntax": false,
+        "is_valid_format": false,
+        "has_diff_header": false,
+        "has_hunks": false,
+        "files_touched": 0,
+        "lines_added": 0,
+        "lines_removed": 0,
+        "error_message": "Patch contains markdown code blocks (not cleaned)"
+      },
+      "metadata": {
+        "lines_changed": 2,
+        "files_changed": 1,
+        "solution_length": 342
+      },
+      "success": true,
+      "solution_generated": true
+    },
+    {
+      "instance_id": "django__django-14580",
+      "repo": "django/django",
+      "category": "bug",
+      "condition": "experimental",
+      "generated": true,
+      "valid_patch": true,
+      "agent_id": 3,
+      "task_type": "logic",
+      "execution_time": 46.014981508255005,
+      "model_output": "diff --git a/django/db/migrations/writer.py b/django/db/migrations/writer.py\n--- a/django/db/migrations/writer.py\n+++ b/django/db/migrations/writer.py\n@@ -100,6 +100,7 @@ class MigrationWriter(object):\n         for model in models:\n             if model._meta.abstract:\n                 continue\n+            bases.append('models.Model')\n             if model._meta.proxy:\n                 bases.append('models.ProxyModel')\n             else:\ndiff --git a/django/db/migrations/operations/models.py b/django/db/migrations/operations/models.py\n--- a/django/db/migrations/operations/models.py\n+++ b/django/db/migrations/operations/models.py\n@@ -100,6 +100,7 @@ class CreateModel(Operation):\n         for model in models:\n             if model._meta.abstract:\n                 continue\n+            bases.append('models.Model')\n             if model._meta.proxy:\n                 bases.append('models.ProxyModel')\n             else:\ndiff --git a/django/db/migrations/operations/fields.py b/django/db/migrations/operations/fields.py\n--- a/django/db/migrations/operations/fields.py\n+++ b/django/db/migrations/operations/fields.py\n@@ -100,6 +100,7 @@ class AddField(Operation):\n         for model in models:\n             if model._meta.abstract:\n                 continue\n+            bases.append('models.Model')\n             if model._meta.proxy:\n                 bases.append('models.ProxyModel')\n             else:\ndiff --git a/django/db/migrations/operations/unique_together.py b/django/db/migrations/operations/unique_together.py\n--- a/django/db/migrations/operations/unique_together.py\n+++ b/django/db/migrations/operations/unique_together.py\n@@ -100,6 +100,7 @@ class AddUniqueTogether(Operation):\n         for model in models:\n             if model._meta.abstract:\n                 continue\n+            bases.append('models.Model')\n             if model._meta.proxy:\n                 bases.append('models.ProxyModel')\n             else:\ndiff --git a/django/db/migrations/operations/indexes.py b/django/db/migrations/operations/indexes.py\n--- a/django/db/migrations/operations/indexes.py\n+++ b/django/db/migrations/operations/indexes.py\n@@ -100,6 +100,7 @@ class AddIndex(Operation):\n         for model in models:\n             if model._meta.abstract:\n                 continue\n+            bases.append('models.Model')\n             if model._meta.proxy:\n                 bases.append('models.ProxyModel')\n             else:\ndiff --git a/django/db/migrations/operations/constraints.py b/django/db/migrations/operations/constraints.py\n--- a/django/db/migrations/operations/constraints.py\n+++ b/django/db/migrations/operations/constraints.py\n@@ -100,6 +100,7 @@ class AddConstraint(Operation):\n         for model in models:\n             if model._meta.abstract:\n                 continue\n+            bases.append('models.Model')\n             if model._meta.proxy:\n                 bases.append('models.ProxyModel')\n             else:\ndiff --git a/django/db/migrations/operations/fields.py b/django/db/migrations/operations/fields.py\n--- a/django/db/migrations/operations/fields.py\n+++ b/django/db/migrations/operations/fields.py\n@@ -100,6 +100,7 @@ class AddField(Operation):\n         for model in models:\n             if model._meta.abstract:\n                 continue\n+            bases.append('models.Model')\n             if model._meta.proxy:\n                 bases.append('models.ProxyModel')\n             else:\ndiff --git a/django/db/migrations/operations/fields.py b/django/db/migrations/operations/fields.py\n--- a/django/db/migrations/operations/fields.py\n+++ b/django/db/migrations/operations/fields.py\n@@ -100,6 +100,7 @@ class AddField(Operation):\n         for model in models:\n             if model._meta.abstract:\n                 continue\n+            bases.append('models.Model')\n             if model._meta.proxy:\n                 bases.append('models.ProxyModel')\n             else:\ndiff --git a/django/db/migrations/operations/fields.py b/django/db/migrations/operations/fields.py\n--- a/django/db/migrations/operations/fields.py\n+++ b/django/db/migrations/operations/fields.py\n@@ -100,6 +100,7 @@ class AddField(Operation):\n         for model in models:\n             if model._meta.abstract:\n                 continue\n+            bases.append('models.Model')\n             if model._meta.proxy:\n                 bases.append('models.ProxyModel')\n             else:\ndiff --git a/django/db/migrations/operations/fields.py b/django/db/migrations/operations/fields.py\n--- a/django/db/migrations/operations/fields.py\n+++ b/django/db/migrations/operations/fields.py\n@@ -100,6 +100,7 @@ class AddField(Operation):\n         for model in models:\n             if model._meta.abstract:\n                 continue\n+            bases.append('models.Model')\n             if model._meta.proxy:\n                 bases.append('models.ProxyModel')\n             else:\ndiff --git a/django/db/migrations/operations/fields.py b/django/db/migrations/operations/fields.py\n--- a/django/db/migrations/operations/fields.py\n+++ b/django/db/migrations/operations/fields.py\n@@ -100,6 +100,7 @@ class AddField(Operation):\n         for model in models:\n             if model._meta.abstract:\n                 continue\n+            bases.append('models.Model')\n             if model._meta.proxy:\n                 bases.append('models.ProxyModel')\n             else:\ndiff --git a/django/db/migrations/operations/fields.py b/django/db/migrations/operations/fields.py\n--- a/django/db/migrations/operations/fields.py\n+++ b/django/db/migrations/operations/fields.py\n@@ -100,6 +100,7 @@ class AddField(Operation):\n         for model in models:\n             if model._meta.abstract:\n                 continue\n+            bases.append('models.Model')\n             if model._meta.proxy:\n                 bases.append('models.ProxyModel')\n             else:\ndiff --git a/django/db/migrations/operations/fields.py b/django/db/migrations/operations/fields.py\n--- a/django/db/migrations/operations/fields.py\n+++ b/django/db/migrations/operations/fields.py\n@@ -100,6 +100,7 @@ class AddField(Operation):\n         for model in models:\n             if model._meta.abstract:\n                 continue\n+            bases.append('models.Model')\n             if model._meta.proxy:\n                 bases.append('models.ProxyModel')\n             else:\ndiff --git a/django/db/migrations/operations/fields.py b/django/db/migrations/operations/fields.py\n--- a/django/db/migrations/operations/fields.py\n+++ b/django/db/migrations/operations/fields.py\n@@ -100,6 +100,7 @@ class AddField(Operation):\n         for model in models:\n             if model._meta.abstract:\n                 continue\n+            bases.append('models.Model')\n             if model._meta.proxy:\n                 bases.append('models.ProxyModel')\n             else:\ndiff --git a/django/db/migrations/operations/fields.py b/django/db/migrations/operations/fields.py\n--- a/django/db/migrations/operations/fields.py\n+++ b/django/db/migrations/operations/fields.py\n@@ -100,6 +100,7 @@ class AddField(Operation):\n         for model in models:\n             if model._meta.abstract:\n                 continue\n+            bases.append('models.Model')\n             if model._meta.proxy:\n                 bases.append('models.ProxyModel')\n             else:\ndiff --git a/django/db/migrations/operations/fields.py b/django/db/migrations/operations/fields.py\n--- a/django/db/migrations/operations/fields.py\n+++ b/django/db/migrations/operations/fields.py\n@@ -100,6 +100,7 @@ class AddField(Operation):\n         for model in models:\n             if model._meta.abstract:\n                 continue\n+            bases.append('models.Model')\n             if model._meta.proxy:\n                 bases.append('models.ProxyModel')\n             else:\ndiff --git a/django/db/migrations/operations/fields.py b/django/db/migrations/operations/fields.py\n--- a/django/db/migrations/operations/fields.py\n+++ b/django/db/migrations/operations/fields.py\n@@ -100,6 +100,7 @@ class AddField(Operation):\n         for model in models:\n             if model._meta.abstract:\n                 continue\n+            bases.append('models.Model')\n             if model._meta.proxy:\n                 bases.append('models.ProxyModel')\n             else:\ndiff --git a/django/db/migrations/operations/fields.py b/django/db/migrations/operations/fields.py\n--- a/django/db/migrations/operations/fields.py\n+++ b/django/db/migrations/operations/fields.py\n@@ -100,6 +100,7 @@ class AddField(Operation):\n         for model in models:\n             if model._meta.abstract:\n                 continue\n+            bases.append('models.Model')\n             if model._meta.proxy:\n                 bases.append('models.ProxyModel')\n             else:\ndiff --git a/django/db/migrations/operations/fields.py b/django",
+      "validation": {
+        "is_valid_syntax": true,
+        "is_valid_format": true,
+        "has_diff_header": true,
+        "has_hunks": true,
+        "files_touched": 19,
+        "lines_added": 18,
+        "lines_removed": 0,
+        "error_message": null
+      },
+      "metadata": {
+        "lines_changed": 2,
+        "files_changed": 1,
+        "solution_length": 8794
+      },
+      "success": true,
+      "solution_generated": true
+    },
+    {
+      "instance_id": "django__django-14672",
+      "repo": "django/django",
+      "category": "bug",
+      "condition": "experimental",
+      "generated": true,
+      "valid_patch": true,
+      "agent_id": 3,
+      "task_type": "logic",
+      "execution_time": 4.223950386047363,
+      "model_output": "diff --git a/django/db/models/fields/related.py b/django/db/models/fields/related.py\n--- a/django/db/models/fields/related.py\n+++ b/django/db/models/fields/related.py\n@@ -123,7 +123,7 @@ class ManyToManyRel(ForeignObjectRel):\n         self.through = through\n         self.through_fields = through_fields\n         self.related_name = related_name\n-        self.identity = (self.through, self.through_fields)\n+        self.identity = make_hashable((self.through, self.through_fields))\n         self.limit_choices_to = limit_choices_to\n         self.db_constraint = db_constraint\n         self.symmetrical = symmetrical",
+      "validation": {
+        "is_valid_syntax": true,
+        "is_valid_format": true,
+        "has_diff_header": true,
+        "has_hunks": true,
+        "files_touched": 1,
+        "lines_added": 1,
+        "lines_removed": 1,
+        "error_message": null
+      },
+      "metadata": {
+        "lines_changed": 2,
+        "files_changed": 1,
+        "solution_length": 616
+      },
+      "success": true,
+      "solution_generated": true
+    },
+    {
+      "instance_id": "django__django-14787",
+      "repo": "django/django",
+      "category": "bug",
+      "condition": "experimental",
+      "generated": true,
+      "valid_patch": true,
+      "agent_id": 3,
+      "task_type": "logic",
+      "execution_time": 3.062643527984619,
+      "model_output": "diff --git a/django/utils/decorators.py b/django/utils/decorators.py\n--- a/django/utils/decorators.py\n+++ b/django/utils/decorators.py\n@@ -116,7 +116,7 @@ def method_decorator(decorator, name=None):\n         def _decorator(func):\n             @wraps(func)\n             def inner(self, *args, **kwargs):\n-                return decorator(func, *args, **kwargs)(*args, **kwargs)\n+                return decorator(func, *args, **kwargs)(self, *args, **kwargs)\n             return inner\n         return _decorator\n     return decorator",
+      "validation": {
+        "is_valid_syntax": true,
+        "is_valid_format": true,
+        "has_diff_header": true,
+        "has_hunks": true,
+        "files_touched": 1,
+        "lines_added": 1,
+        "lines_removed": 1,
+        "error_message": null
+      },
+      "metadata": {
+        "lines_changed": 2,
+        "files_changed": 1,
+        "solution_length": 531
+      },
+      "success": true,
+      "solution_generated": true
+    },
+    {
+      "instance_id": "django__django-15347",
+      "repo": "django/django",
+      "category": "bug",
+      "condition": "experimental",
+      "generated": true,
+      "valid_patch": false,
+      "agent_id": 2,
+      "task_type": "logic",
+      "execution_time": 5.24242091178894,
+      "model_output": "diff --git a/django/contrib/messages/storage/base.py b/django/contrib/messages/storage/base.py\n--- a/django/contrib/messages/storage/base.py\n+++ b/django/contrib/messages/storage/base.py\n@@ -110,7 +110,7 @@ class MessageEncoder(JSONEncoder):\n         return {\n             'level': self.level,\n             'message': self.message,\n-            'extra_tags': self.extra_tags,\n+            'extra_tags': self.extra_tags if self.extra_tags else \"\",\n         }\n \n     def decode(self, obj):\n```\n```\ndiff --git a/django/contrib/messages/storage/cookie.py b/django/contrib/messages/storage/cookie.py\n--- a/django/contrib/messages/storage/cookie.py\n+++ b/django/contrib/messages/storage/cookie.py\n@@ -110,7 +110,7 @@ class MessageEncoder(JSONEncoder):\n         return {\n             'level': self.level,\n             'message': self.message,\n-            'extra_tags': self.extra_tags,\n+            'extra_tags': self.extra_tags if self.extra_tags else \"\",\n         }\n \n     def decode(self, obj):",
+      "validation": {
+        "is_valid_syntax": false,
+        "is_valid_format": false,
+        "has_diff_header": false,
+        "has_hunks": false,
+        "files_touched": 0,
+        "lines_added": 0,
+        "lines_removed": 0,
+        "error_message": "Patch contains markdown code blocks (not cleaned)"
+      },
+      "metadata": {
+        "lines_changed": 2,
+        "files_changed": 1,
+        "solution_length": 991
+      },
+      "success": true,
+      "solution_generated": true
+    },
+    {
+      "instance_id": "django__django-15388",
+      "repo": "django/django",
+      "category": "bug",
+      "condition": "experimental",
+      "generated": true,
+      "valid_patch": false,
+      "agent_id": 2,
+      "task_type": "logic",
+      "execution_time": 10.744780778884888,
+      "model_output": "diff --git a/django/core/management/commands/runserver.py b/django/core/management/commands/runserver.py\n--- a/django/core/management/commands/runserver.py\n+++ b/django/core/management/commands/runserver.py\n@@ -102,7 +102,7 @@ class Command(BaseCommand):\n         # Watch for changes in the templates directory\n         template_dir = settings.TEMPLATES[0]['DIRS'][0]\n         if os.path.exists(template_dir):\n-            self.stdout.write(\"Watching for template changes in %s\" % template_dir)\n+            self.stdout.write(\"Watching for template changes in %s\" % template_dir, ending='')\n             self.template_watchdog = Watchdog(template_dir, self)\n             self.template_watchdog.start()\n```\n```\ndiff --git a/django/core/management/commands/runserver.py b/django/core/management/commands/runserver.py\n--- a/django/core/management/commands/runserver.py\n+++ b/django/core/management/commands/runserver.py\n@@ -102,7 +102,7 @@ class Command(BaseCommand):\n         # Watch for changes in the templates directory\n         template_dir = settings.TEMPLATES[0]['DIRS'][0]\n         if os.path.exists(template_dir):\n-            self.stdout.write(\"Watching for template changes in %s\" % template_dir)\n+            self.stdout.write(\"Watching for template changes in %s\" % template_dir, ending='')\n             self.template_watchdog = Watchdog(template_dir, self)\n             self.template_watchdog.start()\n```\n```\ndiff --git a/django/core/management/commands/runserver.py b/django/core/management/commands/runserver.py\n--- a/django/core/management/commands/runserver.py\n+++ b/django/core/management/commands/runserver.py\n@@ -102,7 +102,7 @@ class Command(BaseCommand):\n         # Watch for changes in the templates directory\n         template_dir = settings.TEMPLATES[0]['DIRS'][0]\n         if os.path.exists(template_dir):\n-            self.stdout.write(\"Watching for template changes in %s\" % template_dir)\n+            self.stdout.write(\"Watching for template changes in %s\" % template_dir, ending='')\n             self.template_watchdog = Watchdog(template_dir, self)\n             self.template_watchdog.start()",
+      "validation": {
+        "is_valid_syntax": false,
+        "is_valid_format": false,
+        "has_diff_header": false,
+        "has_hunks": false,
+        "files_touched": 0,
+        "lines_added": 0,
+        "lines_removed": 0,
+        "error_message": "Patch contains markdown code blocks (not cleaned)"
+      },
+      "metadata": {
+        "lines_changed": 2,
+        "files_changed": 1,
+        "solution_length": 2121
+      },
+      "success": true,
+      "solution_generated": true
+    },
+    {
+      "instance_id": "django__django-15781",
+      "repo": "django/django",
+      "category": "other",
+      "condition": "experimental",
+      "generated": true,
+      "valid_patch": false,
+      "agent_id": 6,
+      "task_type": "math",
+      "execution_time": 45.90765118598938,
+      "model_output": "diff --git a/django/core/management/base.py b/django/core/management/base.py\n--- a/django/core/management/base.py\n+++ b/django/core/management/base.py\n@@ -340,7 +340,7 @@ class BaseCommand:\n         if self.help:\n             print(self.help)\n         else:\n-            print(self.usage)\n+            print(self.usage.strip())\n```\n```diff\ndiff --git a/django/core/management/commands/help.py b/django/core/management/commands/help.py\n--- a/django/core/management/commands/help.py\n+++ b/django/core/management/commands/help.py\n@@ -42,7 +42,7 @@ class Command(BaseCommand):\n         if self.help:\n             print(self.help)\n         else:\n-            print(self.usage)\n+            print(self.usage.strip())\n```\n```diff\ndiff --git a/django/core/management/utils.py b/django/core/management/utils.py\n--- a/django/core/management/utils.py\n+++ b/django/core/management/utils.py\n@@ -110,7 +110,7 @@ def get_usage(command, subcommands=None):\n     if command.help:\n         return command.help\n     else:\n-        return command.usage\n+        return command.usage.strip()\n```\n```diff\ndiff --git a/django/core/management/commands/__init__.py b/django/core/management/commands/__init__.py\n--- a/django/core/management/commands/__init__.py\n+++ b/django/core/management/commands/__init__.py\n@@ -110,7 +110,7 @@ def get_usage(command, subcommands=None):\n     if command.help:\n         return command.help\n     else:\n-        return command.usage\n+        return command.usage.strip()\n```\n```diff\ndiff --git a/django/core/management/commands/__init__.py b/django/core/management/commands/__init__.py\n--- a/django/core/management/commands/__init__.py\n+++ b/django/core/management/commands/__init__.py\n@@ -110,7 +110,7 @@ def get_usage(command, subcommands=None):\n     if command.help:\n         return command.help\n     else:\n-        return command.usage\n+        return command.usage.strip()\n```\n```diff\ndiff --git a/django/core/management/commands/__init__.py b/django/core/management/commands/__init__.py\n--- a/django/core/management/commands/__init__.py\n+++ b/django/core/management/commands/__init__.py\n@@ -110,7 +110,7 @@ def get_usage(command, subcommands=None):\n     if command.help:\n         return command.help\n     else:\n-        return command.usage\n+        return command.usage.strip()\n```\n```diff\ndiff --git a/django/core/management/commands/__init__.py b/django/core/management/commands/__init__.py\n--- a/django/core/management/commands/__init__.py\n+++ b/django/core/management/commands/__init__.py\n@@ -110,7 +110,7 @@ def get_usage(command, subcommands=None):\n     if command.help:\n         return command.help\n     else:\n-        return command.usage\n+        return command.usage.strip()\n```\n```diff\ndiff --git a/django/core/management/commands/__init__.py b/django/core/management/commands/__init__.py\n--- a/django/core/management/commands/__init__.py\n+++ b/django/core/management/commands/__init__.py\n@@ -110,7 +110,7 @@ def get_usage(command, subcommands=None):\n     if command.help:\n         return command.help\n     else:\n-        return command.usage\n+        return command.usage.strip()\n```\n```diff\ndiff --git a/django/core/management/commands/__init__.py b/django/core/management/commands/__init__.py\n--- a/django/core/management/commands/__init__.py\n+++ b/django/core/management/commands/__init__.py\n@@ -110,7 +110,7 @@ def get_usage(command, subcommands=None):\n     if command.help:\n         return command.help\n     else:\n-        return command.usage\n+        return command.usage.strip()\n```\n```diff\ndiff --git a/django/core/management/commands/__init__.py b/django/core/management/commands/__init__.py\n--- a/django/core/management/commands/__init__.py\n+++ b/django/core/management/commands/__init__.py\n@@ -110,7 +110,7 @@ def get_usage(command, subcommands=None):\n     if command.help:\n         return command.help\n     else:\n-        return command.usage\n+        return command.usage.strip()\n```\n```diff\ndiff --git a/django/core/management/commands/__init__.py b/django/core/management/commands/__init__.py\n--- a/django/core/management/commands/__init__.py\n+++ b/django/core/management/commands/__init__.py\n@@ -110,7 +110,7 @@ def get_usage(command, subcommands=None):\n     if command.help:\n         return command.help\n     else:\n-        return command.usage\n+        return command.usage.strip()\n```\n```diff\ndiff --git a/django/core/management/commands/__init__.py b/django/core/management/commands/__init__.py\n--- a/django/core/management/commands/__init__.py\n+++ b/django/core/management/commands/__init__.py\n@@ -110,7 +110,7 @@ def get_usage(command, subcommands=None):\n     if command.help:\n         return command.help\n     else:\n-        return command.usage\n+        return command.usage.strip()\n```\n```diff\ndiff --git a/django/core/management/commands/__init__.py b/django/core/management/commands/__init__.py\n--- a/django/core/management/commands/__init__.py\n+++ b/django/core/management/commands/__init__.py\n@@ -110,7 +110,7 @@ def get_usage(command, subcommands=None):\n     if command.help:\n         return command.help\n     else:\n-        return command.usage\n+        return command.usage.strip()\n```\n```diff\ndiff --git a/django/core/management/commands/__init__.py b/django/core/management/commands/__init__.py\n--- a/django/core/management/commands/__init__.py\n+++ b/django/core/management/commands/__init__.py\n@@ -110,7 +110,7 @@ def get_usage(command, subcommands=None):\n     if command.help:\n         return command.help\n     else:\n-        return command.usage\n+        return command.usage.strip()\n```\n```diff\ndiff --git a/django/core/management/commands/__init__.py b/django/core/management/commands/__init__.py\n--- a/django/core/management/commands/__init__.py\n+++ b/django/core/management/commands/__init__.py\n@@ -110,7 +110,7 @@ def get_usage(command, subcommands=None):\n     if command.help:\n         return command.help\n     else:\n-        return command.usage\n+        return command.usage.strip()\n```\n```diff\ndiff --git a/django/core/management/commands/__init__.py b/django/core/management/commands/__init__.py\n--- a/django/core/management/commands/__init__.py\n+++ b/django/core/management/commands/__init__.py\n@@ -110,7 +110,7 @@ def get_usage(command, subcommands=None):\n     if command.help:\n         return command.help\n     else:\n-        return command.usage\n+        return command.usage.strip()\n```\n```diff\ndiff --git a/django/core/management/commands/__init__.py b/django/core/management/commands/__init__.py\n--- a/django/core/management/commands/__init__.py\n+++ b/django/core/management/commands/__init__.py\n@@ -110,7 +110,7 @@ def get_usage(command, subcommands=None):\n     if command.help:\n         return command.help\n     else:\n-        return command.usage\n+        return command.usage.strip()\n```\n```diff\ndiff --git a/django/core/management/commands/__init__.py b/django/core/management/commands/__init__.py\n--- a/django/core/management/commands/__init__.py\n+++ b/django/core/management/commands/__init__.py\n@@ -110,7 +110,7 @@ def get_usage(command, subcommands=None):\n     if command.help:\n         return command.help\n     else:\n-        return command.usage\n+        return command.usage.strip()\n```\n```diff\ndiff --git a/django/core/management/commands/__init__.py b/django/core/management/commands/__init__.py\n--- a/django/core/management/commands/__init__.py\n+++ b/django/core/management/commands/__init__.py\n@@ -110,7 +110,7 @@ def get_usage(command, subcommands=None):\n     if command.help:\n         return command.help\n     else:\n-        return command.usage\n+        return command.usage.strip()\n```\n```diff\ndiff --git a/django",
+      "validation": {
+        "is_valid_syntax": false,
+        "is_valid_format": false,
+        "has_diff_header": false,
+        "has_hunks": false,
+        "files_touched": 0,
+        "lines_added": 0,
+        "lines_removed": 0,
+        "error_message": "Patch contains markdown code blocks (not cleaned)"
+      },
+      "metadata": {
+        "lines_changed": 2,
+        "files_changed": 1,
+        "solution_length": 7613
+      },
+      "success": true,
+      "solution_generated": true
+    },
+    {
+      "instance_id": "django__django-15851",
+      "repo": "django/django",
+      "category": "feature",
+      "condition": "experimental",
+      "generated": true,
+      "valid_patch": true,
+      "agent_id": 0,
+      "task_type": "string",
+      "execution_time": 3.6284682750701904,
+      "model_output": "diff --git a/django/core/management/commands/dbshell.py b/django/core/management/commands/dbshell.py\n--- a/django/core/management/commands/dbshell.py\n+++ b/django/core/management/commands/dbshell.py\n@@ -101,7 +101,7 @@ class Command(BaseCommand):\n             args = [self.style.SQL_KEYWORD('psql')]\n             if options['database']:\n                 args.extend(['-d', options['database']])\n-            args.extend(options['extra'])\n+            args.extend([arg for arg in options['extra'] if not arg.startswith('-')])\n             args.extend([arg for arg in options['extra'] if arg.startswith('-')])\n             args.extend(['-h', options['host']])\n             args.extend(['-p', options['port']])",
+      "validation": {
+        "is_valid_syntax": true,
+        "is_valid_format": true,
+        "has_diff_header": true,
+        "has_hunks": true,
+        "files_touched": 1,
+        "lines_added": 1,
+        "lines_removed": 1,
+        "error_message": null
+      },
+      "metadata": {
+        "lines_changed": 2,
+        "files_changed": 1,
+        "solution_length": 707
+      },
+      "success": true,
+      "solution_generated": true
+    },
+    {
+      "instance_id": "django__django-15902",
+      "repo": "django/django",
+      "category": "other",
+      "condition": "experimental",
+      "generated": true,
+      "valid_patch": true,
+      "agent_id": 6,
+      "task_type": "math",
+      "execution_time": 45.642902135849,
+      "model_output": "diff --git a/django/forms/formsets.py b/django/forms/formsets.py\n--- a/django/forms/formsets.py\n+++ b/django/forms/formsets.py\n@@ -123,7 +123,7 @@ class BaseFormSet(forms.Form):\n             if self.prefix not in name:\n                 continue\n             if name.endswith('_INITIAL'):\n-                self.initial_forms.append(self.forms[name[:-8]])\n+                self.initial_forms.append(self.forms[name[:-8]] if name != 'management' else None)\n             elif name.endswith('_TOTAL'):\n                 self.total_form_count = int(self.data[name])\n             elif name.endswith('_ORDER'):\ndiff --git a/django/forms/formsets.py b/django/forms/formsets.py\n--- a/django/forms/formsets.py\n+++ b/django/forms/formsets.py\n@@ -123,7 +123,7 @@ class BaseFormSet(forms.Form):\n             if self.prefix not in name:\n                 continue\n             if name.endswith('_INITIAL'):\n-                self.initial_forms.append(self.forms[name[:-8]])\n+                self.initial_forms.append(self.forms[name[:-8]] if name != 'management' else None)\n             elif name.endswith('_TOTAL'):\n                 self.total_form_count = int(self.data[name])\n             elif name.endswith('_ORDER'):\ndiff --git a/django/forms/formsets.py b/django/forms/formsets.py\n--- a/django/forms/formsets.py\n+++ b/django/forms/formsets.py\n@@ -123,7 +123,7 @@ class BaseFormSet(forms.Form):\n             if self.prefix not in name:\n                 continue\n             if name.endswith('_INITIAL'):\n-                self.initial_forms.append(self.forms[name[:-8]])\n+                self.initial_forms.append(self.forms[name[:-8]] if name != 'management' else None)\n             elif name.endswith('_TOTAL'):\n                 self.total_form_count = int(self.data[name])\n             elif name.endswith('_ORDER'):\ndiff --git a/django/forms/formsets.py b/django/forms/formsets.py\n--- a/django/forms/formsets.py\n+++ b/django/forms/formsets.py\n@@ -123,7 +123,7 @@ class BaseFormSet(forms.Form):\n             if self.prefix not in name:\n                 continue\n             if name.endswith('_INITIAL'):\n-                self.initial_forms.append(self.forms[name[:-8]])\n+                self.initial_forms.append(self.forms[name[:-8]] if name != 'management' else None)\n             elif name.endswith('_TOTAL'):\n                 self.total_form_count = int(self.data[name])\n             elif name.endswith('_ORDER'):\ndiff --git a/django/forms/formsets.py b/django/forms/formsets.py\n--- a/django/forms/formsets.py\n+++ b/django/forms/formsets.py\n@@ -123,7 +123,7 @@ class BaseFormSet(forms.Form):\n             if self.prefix not in name:\n                 continue\n             if name.endswith('_INITIAL'):\n-                self.initial_forms.append(self.forms[name[:-8]])\n+                self.initial_forms.append(self.forms[name[:-8]] if name != 'management' else None)\n             elif name.endswith('_TOTAL'):\n                 self.total_form_count = int(self.data[name])\n             elif name.endswith('_ORDER'):\ndiff --git a/django/forms/formsets.py b/django/forms/formsets.py\n--- a/django/forms/formsets.py\n+++ b/django/forms/formsets.py\n@@ -123,7 +123,7 @@ class BaseFormSet(forms.Form):\n             if self.prefix not in name:\n                 continue\n             if name.endswith('_INITIAL'):\n-                self.initial_forms.append(self.forms[name[:-8]])\n+                self.initial_forms.append(self.forms[name[:-8]] if name != 'management' else None)\n             elif name.endswith('_TOTAL'):\n                 self.total_form_count = int(self.data[name])\n             elif name.endswith('_ORDER'):\ndiff --git a/django/forms/formsets.py b/django/forms/formsets.py\n--- a/django/forms/formsets.py\n+++ b/django/forms/formsets.py\n@@ -123,7 +123,7 @@ class BaseFormSet(forms.Form):\n             if self.prefix not in name:\n                 continue\n             if name.endswith('_INITIAL'):\n-                self.initial_forms.append(self.forms[name[:-8]])\n+                self.initial_forms.append(self.forms[name[:-8]] if name != 'management' else None)\n             elif name.endswith('_TOTAL'):\n                 self.total_form_count = int(self.data[name])\n             elif name.endswith('_ORDER'):\ndiff --git a/django/forms/formsets.py b/django/forms/formsets.py\n--- a/django/forms/formsets.py\n+++ b/django/forms/formsets.py\n@@ -123,7 +123,7 @@ class BaseFormSet(forms.Form):\n             if self.prefix not in name:\n                 continue\n             if name.endswith('_INITIAL'):\n-                self.initial_forms.append(self.forms[name[:-8]])\n+                self.initial_forms.append(self.forms[name[:-8]] if name != 'management' else None)\n             elif name.endswith('_TOTAL'):\n                 self.total_form_count = int(self.data[name])\n             elif name.endswith('_ORDER'):\ndiff --git a/django/forms/formsets.py b/django/forms/formsets.py\n--- a/django/forms/formsets.py\n+++ b/django/forms/formsets.py\n@@ -123,7 +123,7 @@ class BaseFormSet(forms.Form):\n             if self.prefix not in name:\n                 continue\n             if name.endswith('_INITIAL'):\n-                self.initial_forms.append(self.forms[name[:-8]])\n+                self.initial_forms.append(self.forms[name[:-8]] if name != 'management' else None)\n             elif name.endswith('_TOTAL'):\n                 self.total_form_count = int(self.data[name])\n             elif name.endswith('_ORDER'):\ndiff --git a/django/forms/formsets.py b/django/forms/formsets.py\n--- a/django/forms/formsets.py\n+++ b/django/forms/formsets.py\n@@ -123,7 +123,7 @@ class BaseFormSet(forms.Form):\n             if self.prefix not in name:\n                 continue\n             if name.endswith('_INITIAL'):\n-                self.initial_forms.append(self.forms[name[:-8]])\n+                self.initial_forms.append(self.forms[name[:-8]] if name != 'management' else None)\n             elif name.endswith('_TOTAL'):\n                 self.total_form_count = int(self.data[name])\n             elif name.endswith('_ORDER'):\ndiff --git a/django/forms/formsets.py b/django/forms/formsets.py\n--- a/django/forms/formsets.py\n+++ b/django/forms/formsets.py\n@@ -123,7 +123,7 @@ class BaseFormSet(forms.Form):\n             if self.prefix not in name:\n                 continue\n             if name.endswith('_INITIAL'):\n-                self.initial_forms.append(self.forms[name[:-8]])\n+                self.initial_forms.append(self.forms[name[:-8]] if name != 'management' else None)\n             elif name.endswith('_TOTAL'):\n                 self.total_form_count = int(self.data[name])\n             elif name.endswith('_ORDER'):\ndiff --git a/django/forms/formsets.py b/django/forms/formsets.py\n--- a/django/forms/formsets.py\n+++ b/django/forms/formsets.py\n@@ -123,7 +123,7 @@ class BaseFormSet(forms.Form):\n             if self.prefix not in name:\n                 continue\n             if name.endswith('_INITIAL'):\n-                self.initial_forms.append(self.forms[name[:-8]])\n+                self.initial_forms.append(self.forms[name[:-8]] if name != 'management' else None)\n             elif name.endswith('_TOTAL'):\n                 self.total_form_count = int(self.data[name])\n             elif name.endswith('_ORDER'):\ndiff --git a/django/forms/formsets.py b/django/forms/formsets.py\n--- a/django/forms/formsets.py\n+++ b/django/forms/formsets.py\n@@ -123,7 +123,7 @@ class BaseFormSet(forms.Form):\n             if self.prefix not in name:\n                 continue\n             if name.endswith('_INITIAL'):\n-                self.initial_forms.append(self.forms[name[:-8]])\n+                self.initial_forms.append(self.forms[name[:-8]] if name != 'management' else None)\n             elif name.endswith('_TOTAL'):\n                 self.total_form_count = int(self.data[name])\n             elif name.endswith('_ORDER'):\ndiff --git a/django/forms/formsets.py b/django/forms/formsets.py\n--- a/django/forms/formsets.py\n+++ b/django/forms/formsets.py\n@@ -123,7 +123,7 @@ class BaseFormSet(forms.Form):\n             if self.prefix not in name:\n                 continue\n             if name.endswith('_INITIAL'):\n-                self.initial_forms.append(self.forms[name[:-8]])\n+                self.initial_forms.append(self.forms[name[:-8]] if name != 'management' else None)\n             elif name.endswith('_TOTAL'):\n                 self.total_form_count = int(self.data[name])\n             elif name.endswith('_ORDER'):\ndiff --git a/django/forms/formsets.py b/django/forms/formsets.py\n--- a/django/forms/formsets.py\n+++ b/django/forms/formsets.py\n@@ -123,7 +123,7 @@ class BaseFormSet(forms.Form):\n             if self.prefix not in name:\n                 continue\n             if name.endswith('_INITIAL'):\n-                self.initial_forms.append(self.forms[name[:-8]])\n+                self.initial_forms.append(self.forms[name[:-8]] if name != 'management' else None)\n             elif name.endswith('_TOTAL'):\n                 self.total_form_count = int(self.data[name])\n             elif name.endswith('_ORDER'):\ndiff --git a/django/forms/formsets.py b/django/forms/formsets.py\n--- a/django/forms/formsets.py\n+++ b/django/forms/formsets.py",
+      "validation": {
+        "is_valid_syntax": true,
+        "is_valid_format": true,
+        "has_diff_header": true,
+        "has_hunks": true,
+        "files_touched": 16,
+        "lines_added": 15,
+        "lines_removed": 15,
+        "error_message": null
+      },
+      "metadata": {
+        "lines_changed": 2,
+        "files_changed": 1,
+        "solution_length": 9156
+      },
+      "success": true,
+      "solution_generated": true
+    },
+    {
+      "instance_id": "django__django-16046",
+      "repo": "django/django",
+      "category": "bug",
+      "condition": "experimental",
+      "generated": true,
+      "valid_patch": false,
+      "agent_id": 2,
+      "task_type": "logic",
+      "execution_time": 45.69046592712402,
+      "model_output": "diff --git a/django/utils/formats.py b/django/utils/formats.py\n--- a/django/utils/formats.py\n+++ b/django/utils/formats.py\n@@ -123,7 +123,7 @@ def number_format(value, decimal_places=None, grouping=False, use_l10n=None):\n     if isinstance(value, float):\n         value = int(value)\n     if isinstance(value, int):\n-        str_number = str(value)\n+        str_number = str(value) if value is not None else ''\n     if isinstance(value, str):\n         str_number = value\n     if str_number[0] == \"-\":\n@@ -132,7 +132,7 @@ def number_format(value, decimal_places=None, grouping=False, use_l10n=None):\n         str_number = str_number[1:]\n     if decimal_places is not None:\n         str_number = f\"{str_number:0.{decimal_places}f}\"\n-    if grouping:\n+    if grouping and value is not None:\n         str_number = group(str_number)\n     if use_l10n is None:\n         use_l10n = settings.USE_L10N\n```\n```diff\ndiff --git a/django/utils/formats.py b/django/utils/formats.py\n--- a/django/utils/formats.py\n+++ b/django/utils/formats.py\n@@ -123,7 +123,7 @@ def number_format(value, decimal_places=None, grouping=False, use_l10n=None):\n     if isinstance(value, float):\n         value = int(value)\n     if isinstance(value, int):\n-        str_number = str(value)\n+        str_number = str(value) if value is not None else ''\n     if isinstance(value, str):\n         str_number = value\n     if str_number[0] == \"-\":\n@@ -132,7 +132,7 @@ def number_format(value, decimal_places=None, grouping=False, use_l10n=None):\n         str_number = str_number[1:]\n     if decimal_places is not None:\n         str_number = f\"{str_number:0.{decimal_places}f}\"\n-    if grouping:\n+    if grouping and value is not None:\n         str_number = group(str_number)\n     if use_l10n is None:\n         use_l10n = settings.USE_L10N\n```\n```diff\ndiff --git a/django/utils/formats.py b/django/utils/formats.py\n--- a/django/utils/formats.py\n+++ b/django/utils/formats.py\n@@ -123,7 +123,7 @@ def number_format(value, decimal_places=None, grouping=False, use_l10n=None):\n     if isinstance(value, float):\n         value = int(value)\n     if isinstance(value, int):\n-        str_number = str(value)\n+        str_number = str(value) if value is not None else ''\n     if isinstance(value, str):\n         str_number = value\n     if str_number[0] == \"-\":\n@@ -132,7 +132,7 @@ def number_format(value, decimal_places=None, grouping=False, use_l10n=None):\n         str_number = str_number[1:]\n     if decimal_places is not None:\n         str_number = f\"{str_number:0.{decimal_places}f}\"\n-    if grouping:\n+    if grouping and value is not None:\n         str_number = group(str_number)\n     if use_l10n is None:\n         use_l10n = settings.USE_L10N\n```\n```diff\ndiff --git a/django/utils/formats.py b/django/utils/formats.py\n--- a/django/utils/formats.py\n+++ b/django/utils/formats.py\n@@ -123,7 +123,7 @@ def number_format(value, decimal_places=None, grouping=False, use_l10n=None):\n     if isinstance(value, float):\n         value = int(value)\n     if isinstance(value, int):\n-        str_number = str(value)\n+        str_number = str(value) if value is not None else ''\n     if isinstance(value, str):\n         str_number = value\n     if str_number[0] == \"-\":\n@@ -132,7 +132,7 @@ def number_format(value, decimal_places=None, grouping=False, use_l10n=None):\n         str_number = str_number[1:]\n     if decimal_places is not None:\n         str_number = f\"{str_number:0.{decimal_places}f}\"\n-    if grouping:\n+    if grouping and value is not None:\n         str_number = group(str_number)\n     if use_l10n is None:\n         use_l10n = settings.USE_L10N\n```\n```diff\ndiff --git a/django/utils/formats.py b/django/utils/formats.py\n--- a/django/utils/formats.py\n+++ b/django/utils/formats.py\n@@ -123,7 +123,7 @@ def number_format(value, decimal_places=None, grouping=False, use_l10n=None):\n     if isinstance(value, float):\n         value = int(value)\n     if isinstance(value, int):\n-        str_number = str(value)\n+        str_number = str(value) if value is not None else ''\n     if isinstance(value, str):\n         str_number = value\n     if str_number[0] == \"-\":\n@@ -132,7 +132,7 @@ def number_format(value, decimal_places=None, grouping=False, use_l10n=None):\n         str_number = str_number[1:]\n     if decimal_places is not None:\n         str_number = f\"{str_number:0.{decimal_places}f}\"\n-    if grouping:\n+    if grouping and value is not None:\n         str_number = group(str_number)\n     if use_l10n is None:\n         use_l10n = settings.USE_L10N\n```\n```diff\ndiff --git a/django/utils/formats.py b/django/utils/formats.py\n--- a/django/utils/formats.py\n+++ b/django/utils/formats.py\n@@ -123,7 +123,7 @@ def number_format(value, decimal_places=None, grouping=False, use_l10n=None):\n     if isinstance(value, float):\n         value = int(value)\n     if isinstance(value, int):\n-        str_number = str(value)\n+        str_number = str(value) if value is not None else ''\n     if isinstance(value, str):\n         str_number = value\n     if str_number[0] == \"-\":\n@@ -132,7 +132,7 @@ def number_format(value, decimal_places=None, grouping=False, use_l10n=None):\n         str_number = str_number[1:]\n     if decimal_places is not None:\n         str_number = f\"{str_number:0.{decimal_places}f}\"\n-    if grouping:\n+    if grouping and value is not None:\n         str_number = group(str_number)\n     if use_l10n is None:\n         use_l10n = settings.USE_L10N\n```\n```diff\ndiff --git a/django/utils/formats.py b/django/utils/formats.py\n--- a/django/utils/formats.py\n+++ b/django/utils/formats.py\n@@ -123,7 +123,7 @@ def number_format(value, decimal_places=None, grouping=False, use_l10n=None):\n     if isinstance(value, float):\n         value = int(value)\n     if isinstance(value, int):\n-        str_number = str(value)\n+        str_number = str(value) if value is not None else ''\n     if isinstance(value, str):\n         str_number = value\n     if str_number[0] == \"-\":\n@@ -132,7 +132,7 @@ def number_format(value, decimal_places=None, grouping=False, use_l10n=None):\n         str_number = str_number[1:]\n     if decimal_places is not None:\n         str_number = f\"{str_number:0.{decimal_places}f}\"\n-    if grouping:\n+    if grouping and value is not None:\n         str_number = group(str_number)\n     if use_l10n is None:\n         use_l10n = settings.USE_L10N\n```\n```diff\ndiff --git a/django/utils/formats.py b/django/utils/formats.py\n--- a/django/utils/formats.py\n+++ b/django/utils/formats.py\n@@ -123,7 +123,7 @@ def number_format(value, decimal_places=None, grouping=False, use_l10n=None):\n     if isinstance(value, float):\n         value = int(value)\n     if isinstance(value, int):\n-        str_number = str(value)\n+        str_number = str(value) if value is not None else ''\n     if isinstance(value, str):\n         str_number = value\n     if str_number[0] == \"-\":\n@@ -132,7 +132,7 @@ def number_format(value, decimal_places=None, grouping=False, use_l10n=None):\n         str_number = str_number[1:]\n     if decimal_places is not None:\n         str_number = f\"{str_number:0.{decimal_places}f}\"\n-    if grouping:\n+    if grouping and value is not None:\n         str_number = group(str_number)\n     if use_l10n is None:\n         use_l10n = settings.USE_L10N\n```\n```diff\ndiff --git a/django/utils/formats.py b/django",
+      "validation": {
+        "is_valid_syntax": false,
+        "is_valid_format": false,
+        "has_diff_header": false,
+        "has_hunks": false,
+        "files_touched": 0,
+        "lines_added": 0,
+        "lines_removed": 0,
+        "error_message": "Patch contains markdown code blocks (not cleaned)"
+      },
+      "metadata": {
+        "lines_changed": 2,
+        "files_changed": 1,
+        "solution_length": 7269
+      },
+      "success": true,
+      "solution_generated": true
+    },
+    {
+      "instance_id": "django__django-16255",
+      "repo": "django/django",
+      "category": "bug",
+      "condition": "experimental",
+      "generated": true,
+      "valid_patch": false,
+      "agent_id": 2,
+      "task_type": "logic",
+      "execution_time": 3.292771339416504,
+      "model_output": "diff --git a/django/contrib/sitemaps/__init__.py b/django/contrib/sitemaps/__init__.py\n--- a/django/contrib/sitemaps/__init__.py\n+++ b/django/contrib/sitemaps/__init__.py\n@@ -167,7 +167,7 @@ class Sitemap:\n         if not hasattr(self, \"lastmod\"):\n             return None\n         if callable(self.lastmod):\n-            try:\n+            except (TypeError, ValueError):\n                 return max([self.lastmod(item) for item in self.items()])\n-            except TypeError:\n+            except (TypeError, ValueError):\n                 return None\n         else:\n             return self.lastmod\n```",
+      "validation": {
+        "is_valid_syntax": false,
+        "is_valid_format": false,
+        "has_diff_header": false,
+        "has_hunks": false,
+        "files_touched": 0,
+        "lines_added": 0,
+        "lines_removed": 0,
+        "error_message": "Patch contains markdown code blocks (not cleaned)"
+      },
+      "metadata": {
+        "lines_changed": 2,
+        "files_changed": 1,
+        "solution_length": 603
+      },
+      "success": true,
+      "solution_generated": true
+    },
+    {
+      "instance_id": "django__django-16527",
+      "repo": "django/django",
+      "category": "feature",
+      "condition": "experimental",
+      "generated": true,
+      "valid_patch": false,
+      "agent_id": 0,
+      "task_type": "string",
+      "execution_time": 2.869001626968384,
+      "model_output": "diff --git a/django/contrib/admin/templatetags/admin_modify.py b/django/contrib/admin/templatetags/admin_modify.py\n--- a/django/contrib/admin/templatetags/admin_modify.py\n+++ b/django/contrib/admin/templatetags/admin_modify.py\n@@ -102,7 +102,7 @@ def admin_modify(context):\n     'show_save_as_new': not is_popup\n     and has_change_permission\n     and change\n-    and save_as,\n+    and save_as\n     and has_add_permission,  # Added this line\n }\n```",
+      "validation": {
+        "is_valid_syntax": false,
+        "is_valid_format": false,
+        "has_diff_header": false,
+        "has_hunks": false,
+        "files_touched": 0,
+        "lines_added": 0,
+        "lines_removed": 0,
+        "error_message": "Patch contains markdown code blocks (not cleaned)"
+      },
+      "metadata": {
+        "lines_changed": 2,
+        "files_changed": 1,
+        "solution_length": 448
+      },
+      "success": true,
+      "solution_generated": true
+    },
+    {
+      "instance_id": "django__django-17087",
+      "repo": "django/django",
+      "category": "bug",
+      "condition": "experimental",
+      "generated": true,
+      "valid_patch": false,
+      "agent_id": 2,
+      "task_type": "logic",
+      "execution_time": 6.216236591339111,
+      "model_output": "diff --git a/django/db/models/fields/__init__.py b/django/db/models/fields/__init__.py\n--- a/django/db/models/fields/__init__.py\n+++ b/django/db/models/fields/__init__.py\n@@ -1234,7 +1234,7 @@ class ArrayField(Field):\n         if callable(default):\n             default = default()\n         if isinstance(default, (list, tuple)):\n-            default = [f(default[i]) for i in range(len(default))]\n+            default = [f(default[i]) for i in range(len(default))] if default else []\n         return default\n \n     def get_prep_value(self, value):\n```\n```\ndiff --git a/django/db/migrations/operations/fields.py b/django/db/migrations/operations/fields.py\n--- a/django/db/migrations/operations/fields.py\n+++ b/django/db/migrations/operations/fields.py\n@@ -123,7 +123,7 @@ class AddField(Operation):\n         if callable(default):\n             default = default()\n         if isinstance(default, (list, tuple)):\n-            default = [f(default[i]) for i in range(len(default))]\n+            default = [f(default[i]) for i in range(len(default))] if default else []\n         return default\n \n     def get_prep_value(self, value):",
+      "validation": {
+        "is_valid_syntax": false,
+        "is_valid_format": false,
+        "has_diff_header": false,
+        "has_hunks": false,
+        "files_touched": 0,
+        "lines_added": 0,
+        "lines_removed": 0,
+        "error_message": "Patch contains markdown code blocks (not cleaned)"
+      },
+      "metadata": {
+        "lines_changed": 2,
+        "files_changed": 1,
+        "solution_length": 1129
+      },
+      "success": true,
+      "solution_generated": true
+    },
+    {
+      "instance_id": "matplotlib__matplotlib-23314",
+      "repo": "matplotlib/matplotlib",
+      "category": "bug",
+      "condition": "experimental",
+      "generated": true,
+      "valid_patch": true,
+      "agent_id": 3,
+      "task_type": "logic",
+      "execution_time": 2.711155891418457,
+      "model_output": "diff --git a/lib/matplotlib/axes/_subplots.py b/lib/matplotlib/axes/_subplots.py\n--- a/lib/matplotlib/axes/_subplots.py\n+++ b/lib/matplotlib/axes/_subplots.py\n@@ -123,7 +123,7 @@ class SubplotBase:\n         \"\"\"\n         self._visible = visible\n         if not visible:\n-            self.set_alpha(0)\n+            self.set_alpha(0.0)\n             self.set_zorder(1000)\n         else:\n             self.set_alpha(1)",
+      "validation": {
+        "is_valid_syntax": true,
+        "is_valid_format": true,
+        "has_diff_header": true,
+        "has_hunks": true,
+        "files_touched": 1,
+        "lines_added": 1,
+        "lines_removed": 1,
+        "error_message": null
+      },
+      "metadata": {
+        "lines_changed": 2,
+        "files_changed": 1,
+        "solution_length": 413
+      },
+      "success": true,
+      "solution_generated": true
+    },
+    {
+      "instance_id": "pytest-dev__pytest-11148",
+      "repo": "pytest-dev/pytest",
+      "category": "bug",
+      "condition": "experimental",
+      "generated": true,
+      "valid_patch": false,
+      "agent_id": 2,
+      "task_type": "logic",
+      "execution_time": 16.72987699508667,
+      "model_output": "diff --git a/tests/unit/test_commands.py b/tests/unit/test_commands.py\n--- a/tests/unit/test_commands.py\n+++ b/tests/unit/test_commands.py\n@@ -34,7 +34,7 @@ class TestCommands:\n         path = os.path.dirname(os.path.abspath(__file__))\n         configfile = os.path.join(path, 'testconf.yaml')\n         config = pmxbot.dictlib.ConfigDict.from_yaml(configfile)\n-        cls.bot = core.initialize(config)\n+        cls.bot = core.initialize(config, reload_logging=True)\n         logging.Logger.store.message(\"logged\", \"testrunner\", \"some text\")\n```\n```\ndiff --git a/core.py b/core.py\n--- a/core.py\n+++ b/core.py\n@@ -100,6 +100,7 @@ def initialize(config):\n     bot = Bot(config)\n     bot.initialize()\n     bot.load_plugins()\n+    reload_logging()\n     return bot\n```\n```\ndiff --git a/pmxbot/logging.py b/pmxbot/logging.py\n--- a/pmxbot/logging.py\n+++ b/pmxbot/logging.py\n@@ -10,6 +10,7 @@ class Logger:\n     store = None\n \n     @classmethod\n+    def reload(cls):\n     def __init__(self, name, level=logging.NOTSET):\n         self.name = name\n         self.level = level\n@@ -20,6 +21,7 @@ class Logger:\n         self.handlers = []\n \n     @classmethod\n+    def reload(cls):\n     def addHandler(self, handler):\n         self.handlers.append(handler)\n \n@@ -30,6 +32,7 @@ class Logger:\n         self.handlers.remove(handler)\n \n     @classmethod\n+    def reload(cls):\n     def setLevel(self, level):\n         self.level = level\n```\n```\ndiff --git a/tests/unit/test_commands.py b/tests/unit/test_commands.py\n--- a/tests/unit/test_commands.py\n+++ b/tests/unit/test_commands.py\n@@ -34,7 +34,7 @@ class TestCommands:\n         path = os.path.dirname(os.path.abspath(__file__))\n         configfile = os.path.join(path, 'testconf.yaml')\n         config = pmxbot.dictlib.ConfigDict.from_yaml(configfile)\n-        cls.bot = core.initialize(config)\n+        cls.bot = core.initialize(config, reload_logging=True)\n         logging.Logger.store.message(\"logged\", \"testrunner\", \"some text\")\n```\n```\ndiff --git a/core.py b/core.py\n--- a/core.py\n+++ b/core.py\n@@ -100,6 +100,7 @@ def initialize(config):\n     bot = Bot(config)\n     bot.initialize()\n     bot.load_plugins()\n+    reload_logging()\n     return bot\n```\n```\ndiff --git a/pmxbot/logging.py b/pmxbot/logging.py\n--- a/pmxbot/logging.py\n+++ b/pmxbot/logging.py\n@@ -10,6 +10,7 @@ class Logger:\n     store = None\n \n     @classmethod\n+    def reload(cls):\n     def __init__(self, name, level=logging.NOTSET):\n         self.name = name\n         self.level = level\n@@ -20,6 +21,7 @@ class Logger:\n         self.handlers = []\n \n     @classmethod\n+    def reload(cls):\n     def addHandler(self, handler):\n         self.handlers.append(handler)\n \n@@ -30,6 +32,7 @@ class Logger:\n         self.handlers.remove(handler)\n \n     @classmethod\n+    def reload(cls):\n     def setLevel(self, level):\n         self.level = level",
+      "validation": {
+        "is_valid_syntax": false,
+        "is_valid_format": false,
+        "has_diff_header": false,
+        "has_hunks": false,
+        "files_touched": 0,
+        "lines_added": 0,
+        "lines_removed": 0,
+        "error_message": "Patch contains markdown code blocks (not cleaned)"
+      },
+      "metadata": {
+        "lines_changed": 2,
+        "files_changed": 1,
+        "solution_length": 2843
+      },
+      "success": true,
+      "solution_generated": true
+    },
+    {
+      "instance_id": "pytest-dev__pytest-5227",
+      "repo": "pytest-dev/pytest",
+      "category": "bug",
+      "condition": "experimental",
+      "generated": true,
+      "valid_patch": false,
+      "agent_id": 2,
+      "task_type": "logic",
+      "execution_time": 6.936774492263794,
+      "model_output": "diff --git a/_pytest/logging.py b/_pytest/logging.py\n--- a/_pytest/logging.py\n+++ b/_pytest/logging.py\n@@ -10,7 +10,7 @@ DEFAULT_LOG_FORMAT = \"%(filename)-25s %(lineno)4d %(levelname)-8s %(message)s\"\n \n def pytest_configure(config):\n     if config.option.log_cli:\n-        config.pluginmanager.register(LogCliHandler(config), \"log_cli_handler\")\n+        config.pluginmanager.register(LogCliHandler(config, DEFAULT_LOG_FORMAT), \"log_cli_handler\")\n \n class LogCliHandler(logging.Handler):\n     def __init__(self, config, level=logging.NOTSET):\n@@ -20,7 +20,7 @@ class LogCliHandler(logging.Handler):\n         self.config = config\n         self.level = level\n         self.formatter = logging.Formatter(\n-            DEFAULT_LOG_FORMAT\n+            config.option.log_cli_format or DEFAULT_LOG_FORMAT\n         )\n         self.stream = sys.stderr\n \n@@ -30,7 +30,7 @@ class LogCliHandler(logging.Handler):\n         self.stream.write(self.format(record) + \"\\n\")\n \n     def format(self, record):\n-        return self.formatter.format(record)\n+        return self.formatter.format(record) if self.formatter else record\n \n     def flush(self):\n         self.stream.flush()\n```",
+      "validation": {
+        "is_valid_syntax": false,
+        "is_valid_format": false,
+        "has_diff_header": false,
+        "has_hunks": false,
+        "files_touched": 0,
+        "lines_added": 0,
+        "lines_removed": 0,
+        "error_message": "Patch contains markdown code blocks (not cleaned)"
+      },
+      "metadata": {
+        "lines_changed": 2,
+        "files_changed": 1,
+        "solution_length": 1166
+      },
+      "success": true,
+      "solution_generated": true
+    },
+    {
+      "instance_id": "pytest-dev__pytest-7168",
+      "repo": "pytest-dev/pytest",
+      "category": "bug",
+      "condition": "experimental",
+      "generated": true,
+      "valid_patch": false,
+      "agent_id": 2,
+      "task_type": "logic",
+      "execution_time": 4.3601319789886475,
+      "model_output": "diff --git a/_pytest/_io/saferepr.py b/_pytest/_io/saferepr.py\n--- a/_pytest/_io/saferepr.py\n+++ b/_pytest/_io/saferepr.py\n@@ -22,7 +22,7 @@ def _format_repr_exception(exc_info, obj_name, obj_id):\n     try:\n         return repr(obj)\n     except Exception as exc:\n-        return f\"<{obj_name} id={obj_id} repr() failed: {exc!r}>\"\n+        return f\"<{obj_name} id={obj_id} repr() failed: {exc!r} (active exception: {exc_info!r})>\"\n```",
+      "validation": {
+        "is_valid_syntax": false,
+        "is_valid_format": false,
+        "has_diff_header": false,
+        "has_hunks": false,
+        "files_touched": 0,
+        "lines_added": 0,
+        "lines_removed": 0,
+        "error_message": "Patch contains markdown code blocks (not cleaned)"
+      },
+      "metadata": {
+        "lines_changed": 2,
+        "files_changed": 1,
+        "solution_length": 433
+      },
+      "success": true,
+      "solution_generated": true
+    },
+    {
+      "instance_id": "scikit-learn__scikit-learn-13584",
+      "repo": "scikit-learn/scikit-learn",
+      "category": "bug",
+      "condition": "experimental",
+      "generated": true,
+      "valid_patch": true,
+      "agent_id": 2,
+      "task_type": "logic",
+      "execution_time": 5.9284892082214355,
+      "model_output": "diff --git a/sklearn/utils/_print.py b/sklearn/utils/_print.py\n--- a/sklearn/utils/_print.py\n+++ b/sklearn/utils/_print.py\n@@ -123,7 +123,7 @@ def print_changed_only(obj, changed_only=True):\n     if changed_only:\n         for key, value in obj.__dict__.items():\n             if hasattr(value, '__dict__'):\n-                print_changed_only(value, changed_only)\n+                print_changed_only(value, changed_only=changed_only)\n             elif isinstance(value, np.ndarray):\n                 if value.ndim == 1:\n                     print(f\"{key}: {value}\")\ndiff --git a/sklearn/utils/_print.py b/sklearn/utils/_print.py\n--- a/sklearn/utils/_print.py\n+++ b/sklearn/utils/_print.py\n@@ -123,7 +123,7 @@ def print_changed_only(obj, changed_only=True):\n     if changed_only:\n         for key, value in obj.__dict__.items():\n             if hasattr(value, '__dict__'):\n-                print_changed_only(value, changed_only)\n+                print_changed_only(value, changed_only=changed_only)\n             elif isinstance(value, np.ndarray):\n                 if value.ndim == 1:\n                     print(f\"{key}: {value}\")",
+      "validation": {
+        "is_valid_syntax": true,
+        "is_valid_format": true,
+        "has_diff_header": true,
+        "has_hunks": true,
+        "files_touched": 2,
+        "lines_added": 2,
+        "lines_removed": 2,
+        "error_message": null
+      },
+      "metadata": {
+        "lines_changed": 2,
+        "files_changed": 1,
+        "solution_length": 1129
+      },
+      "success": true,
+      "solution_generated": true
+    },
+    {
+      "instance_id": "scikit-learn__scikit-learn-13779",
+      "repo": "scikit-learn/scikit-learn",
+      "category": "bug",
+      "condition": "experimental",
+      "generated": true,
+      "valid_patch": true,
+      "agent_id": 2,
+      "task_type": "logic",
+      "execution_time": 3.0932836532592773,
+      "model_output": "diff --git a/sklearn/ensemble/voting.py b/sklearn/ensemble/voting.py\n--- a/sklearn/ensemble/voting.py\n+++ b/sklearn/ensemble/voting.py\n@@ -123,7 +123,7 @@ class VotingClassifier(BaseEstimator, ClassifierMixin):\n         for name, clf in self.estimators:\n             if clf is not None:\n                 if hasattr(clf, 'sample_weight'):\n-                    clf.fit(X, y, sample_weight=sample_weight)\n+                    clf.fit(X, y, sample_weight=sample_weight if sample_weight is not None else None)\n                 else:\n                     clf.fit(X, y)",
+      "validation": {
+        "is_valid_syntax": true,
+        "is_valid_format": true,
+        "has_diff_header": true,
+        "has_hunks": true,
+        "files_touched": 1,
+        "lines_added": 1,
+        "lines_removed": 1,
+        "error_message": null
+      },
+      "metadata": {
+        "lines_changed": 2,
+        "files_changed": 1,
+        "solution_length": 562
+      },
+      "success": true,
+      "solution_generated": true
+    },
+    {
+      "instance_id": "sympy__sympy-13480",
+      "repo": "sympy/sympy",
+      "category": "bug",
+      "condition": "experimental",
+      "generated": true,
+      "valid_patch": true,
+      "agent_id": 3,
+      "task_type": "logic",
+      "execution_time": 3.2590651512145996,
+      "model_output": "diff --git a/sympy/functions/elementary/hyperbolic.py b/sympy/functions/elementary/hyperbolic.py\n--- a/sympy/functions/elementary/hyperbolic.py\n+++ b/sympy/functions/elementary/hyperbolic.py\n@@ -588,6 +588,7 @@ def eval(self, x):\n         cotm = cot(x).evalf()\n         if cotm is S.ComplexInfinity:\n             return S.ComplexInfinity\n+        cothm = coth(x).evalf()\n         if cothm is S.ComplexInfinity:\n             return S.ComplexInfinity\n         return self.func(x)",
+      "validation": {
+        "is_valid_syntax": true,
+        "is_valid_format": true,
+        "has_diff_header": true,
+        "has_hunks": true,
+        "files_touched": 1,
+        "lines_added": 1,
+        "lines_removed": 0,
+        "error_message": null
+      },
+      "metadata": {
+        "lines_changed": 2,
+        "files_changed": 1,
+        "solution_length": 477
+      },
+      "success": true,
+      "solution_generated": true
+    },
+    {
+      "instance_id": "sympy__sympy-13647",
+      "repo": "sympy/sympy",
+      "category": "refactor",
+      "condition": "experimental",
+      "generated": true,
+      "valid_patch": true,
+      "agent_id": 0,
+      "task_type": "list",
+      "execution_time": 5.156595468521118,
+      "model_output": "diff --git a/sympy/matrices/matrix.py b/sympy/matrices/matrix.py\n--- a/sympy/matrices/matrix.py\n+++ b/sympy/matrices/matrix.py\n@@ -1234,7 +1234,7 @@ def col_insert(self, pos, other):\n         if not isinstance(other, MatrixBase):\n             other = Matrix(other)\n         if other.rows != self.rows:\n-            raise ValueError(\"The number of rows of the inserted matrix must match the number of rows of the original matrix\")\n+            raise ValueError(\"The number of rows of the inserted matrix must match the number of rows of the original matrix\")\n         if pos < 0 or pos > self.cols:\n             raise ValueError(\"The position to insert the column must be between 0 and the number of columns of the matrix\")\n         return self._new(self.rows, self.cols + 1, lambda i, j: other[i, j - pos] if j < pos else self[i, j - 1] if j < self.cols else self[i, j])",
+      "validation": {
+        "is_valid_syntax": true,
+        "is_valid_format": true,
+        "has_diff_header": true,
+        "has_hunks": true,
+        "files_touched": 1,
+        "lines_added": 1,
+        "lines_removed": 1,
+        "error_message": null
+      },
+      "metadata": {
+        "lines_changed": 2,
+        "files_changed": 1,
+        "solution_length": 870
+      },
+      "success": true,
+      "solution_generated": true
+    },
+    {
+      "instance_id": "sympy__sympy-14774",
+      "repo": "sympy/sympy",
+      "category": "bug",
+      "condition": "experimental",
+      "generated": true,
+      "valid_patch": true,
+      "agent_id": 3,
+      "task_type": "logic",
+      "execution_time": 3.644101858139038,
+      "model_output": "diff --git a/sympy/printing/latex.py b/sympy/printing/latex.py\n--- a/sympy/printing/latex.py\n+++ b/sympy/printing/latex.py\n@@ -743,7 +743,8 @@ class LatexPrinter(Printer):\n         inv_trig_table = [\"asin\", \"acos\", \"atan\", \"acot\"]\n         if self.inv_trig_style == \"full\":\n             inv_trig_table = [f\"operatorname{{{t}}}\" for t in inv_trig_table]\n-            inv_trig_table.append(\"acsc\")\n+            inv_trig_table.extend([\"acsc\", \"asec\"])\n             inv_trig_table.append(\"acot\")\n         return inv_trig_table",
+      "validation": {
+        "is_valid_syntax": true,
+        "is_valid_format": true,
+        "has_diff_header": true,
+        "has_hunks": true,
+        "files_touched": 1,
+        "lines_added": 1,
+        "lines_removed": 1,
+        "error_message": null
+      },
+      "metadata": {
+        "lines_changed": 2,
+        "files_changed": 1,
+        "solution_length": 522
+      },
+      "success": true,
+      "solution_generated": true
+    },
+    {
+      "instance_id": "sympy__sympy-15346",
+      "repo": "sympy/sympy",
+      "category": "test",
+      "condition": "experimental",
+      "generated": true,
+      "valid_patch": true,
+      "agent_id": 3,
+      "task_type": "logic",
+      "execution_time": 2.42061710357666,
+      "model_output": "diff --git a/sympy/functions/trigonometric.py b/sympy/functions/trigonometric.py\n--- a/sympy/functions/trigonometric.py\n+++ b/sympy/functions/trigonometric.py\n@@ -123,7 +123,7 @@ def cos(x):\n     return x.cos()\n \n def sin(x):\n-    return x.sin()\n+    return x.sin().simplify()\n \n def tan(x):\n     return x.tan()",
+      "validation": {
+        "is_valid_syntax": true,
+        "is_valid_format": true,
+        "has_diff_header": true,
+        "has_hunks": true,
+        "files_touched": 1,
+        "lines_added": 1,
+        "lines_removed": 1,
+        "error_message": null
+      },
+      "metadata": {
+        "lines_changed": 2,
+        "files_changed": 1,
+        "solution_length": 311
+      },
+      "success": true,
+      "solution_generated": true
+    },
+    {
+      "instance_id": "sympy__sympy-16988",
+      "repo": "sympy/sympy",
+      "category": "other",
+      "condition": "experimental",
+      "generated": true,
+      "valid_patch": false,
+      "agent_id": 6,
+      "task_type": "math",
+      "execution_time": 4.157087564468384,
+      "model_output": "diff --git a/sympy/core/sets.py b/sympy/core/sets.py\n--- a/sympy/core/sets.py\n+++ b/sympy/core/sets.py\n@@ -100,7 +100,7 @@ class Intersection(Set):\n         if not args:\n             return S.EmptySet\n         if len(args) == 1:\n-            return args[0]\n+            return args[0].remove_duplicates()\n         return Intersection(*args)\n \n     def _eval_complement(self, universal_set):\n@@ -108,7 +108,7 @@ class Intersection(Set):\n         if not args:\n             return S.EmptySet\n         if len(args) == 1:\n-            return args[0]\n+            return args[0].remove_duplicates()\n         return Intersection(*args)\n \n     def _eval_complement(self, universal_set):\n```",
+      "validation": {
+        "is_valid_syntax": false,
+        "is_valid_format": false,
+        "has_diff_header": false,
+        "has_hunks": false,
+        "files_touched": 0,
+        "lines_added": 0,
+        "lines_removed": 0,
+        "error_message": "Patch contains markdown code blocks (not cleaned)"
+      },
+      "metadata": {
+        "lines_changed": 2,
+        "files_changed": 1,
+        "solution_length": 682
+      },
+      "success": true,
+      "solution_generated": true
+    },
+    {
+      "instance_id": "sympy__sympy-17139",
+      "repo": "sympy/sympy",
+      "category": "bug",
+      "condition": "experimental",
+      "generated": true,
+      "valid_patch": true,
+      "agent_id": 2,
+      "task_type": "logic",
+      "execution_time": 3.852504253387451,
+      "model_output": "diff --git a/sympy/simplify/fu.py b/sympy/simplify/fu.py\n--- a/sympy/simplify/fu.py\n+++ b/sympy/simplify/fu.py\n@@ -563,7 +563,7 @@ def TR6(rv, cos, sin, neg, max=None, pow=None):\n     return _TR56(rv, cos, sin, neg, max=max, pow=pow)\n \n def _TR56(rv, cos, sin, neg, max=None, pow=None):\n-    return bottom_up(rv, _f)\n+    return bottom_up(rv, lambda x: _f(x, neg))\n \n def _f(rv, neg):\n     if (rv.exp < 0) == True:",
+      "validation": {
+        "is_valid_syntax": true,
+        "is_valid_format": true,
+        "has_diff_header": true,
+        "has_hunks": true,
+        "files_touched": 1,
+        "lines_added": 1,
+        "lines_removed": 1,
+        "error_message": null
+      },
+      "metadata": {
+        "lines_changed": 2,
+        "files_changed": 1,
+        "solution_length": 414
+      },
+      "success": true,
+      "solution_generated": true
+    },
+    {
+      "instance_id": "sympy__sympy-17630",
+      "repo": "sympy/sympy",
+      "category": "bug",
+      "condition": "experimental",
+      "generated": true,
+      "valid_patch": false,
+      "agent_id": 3,
+      "task_type": "logic",
+      "execution_time": 6.439086675643921,
+      "model_output": "diff --git a/sympy/matrices/expressions/blockmatrix.py b/sympy/matrices/expressions/blockmatrix.py\n--- a/sympy/matrices/expressions/blockmatrix.py\n+++ b/sympy/matrices/expressions/blockmatrix.py\n@@ -80,7 +80,7 @@ class BlockMatrix(MatrixBase):\n         return [self.blocks[0, i].cols for i in range(self.blockshape[1])]\n \n     def _blockmul(self, other):\n-        if self.colblocksizes != other.rowblocksizes:\n+        if self.colblocksizes != other.rowblocksizes or self.rowblocksizes != other.colblocksizes:\n             raise ValueError(\"Block sizes do not match\")\n         result = BlockMatrix([[None] * other.blockshape[1] for _ in range(self.blockshape[0])])\n         for i in range(self.blockshape[0]):\n@@ -91,7 +91,7 @@ class BlockMatrix(MatrixBase):\n                 if isinstance(A, BlockMatrix):\n                     A = A._blockmul(B)\n                 elif isinstance(A, MatrixBase):\n-                    A = A * B\n+                    A = A * B if not isinstance(B, Zero) else B\n                 result.blocks[i, j] = A\n         return result\n```",
+      "validation": {
+        "is_valid_syntax": false,
+        "is_valid_format": false,
+        "has_diff_header": false,
+        "has_hunks": false,
+        "files_touched": 0,
+        "lines_added": 0,
+        "lines_removed": 0,
+        "error_message": "Patch contains markdown code blocks (not cleaned)"
+      },
+      "metadata": {
+        "lines_changed": 2,
+        "files_changed": 1,
+        "solution_length": 1059
+      },
+      "success": true,
+      "solution_generated": true
+    },
+    {
+      "instance_id": "sympy__sympy-18057",
+      "repo": "sympy/sympy",
+      "category": "bug",
+      "condition": "experimental",
+      "generated": true,
+      "valid_patch": false,
+      "agent_id": 2,
+      "task_type": "logic",
+      "execution_time": 6.101052284240723,
+      "model_output": "diff --git a/sympy/core/expr.py b/sympy/core/expr.py\n--- a/sympy/core/expr.py\n+++ b/sympy/core/expr.py\n@@ -121,7 +121,7 @@ class Basic(Add):\n         if isinstance(other, Basic):\n             return self._hash() == other._hash()\n         else:\n-            other = sympify(other)\n+            other = sympify(other, evaluate=False)\n             return self == other\n```\n\ndiff --git a/sympy/core/sympify.py b/sympy/core/sympify.py\n--- a/sympy/core/sympify.py\n+++ b/sympy/core/sympify.py\n@@ -382,7 +382,7 @@ def sympify(a, rational=False, strict=False, evaluate=True):\n     if isinstance(a, str):\n         try:\n             # try to parse the string as a sympy expression\n-            return parse_expr(a, local_dict=locals, transformations=transformations, evaluate=evaluate)\n+            return parse_expr(a, local_dict=locals, transformations=transformations, evaluate=False)\n         except SympifyError:\n             pass\n     elif isinstance(a, (int, float, complex)):",
+      "validation": {
+        "is_valid_syntax": false,
+        "is_valid_format": false,
+        "has_diff_header": false,
+        "has_hunks": false,
+        "files_touched": 0,
+        "lines_added": 0,
+        "lines_removed": 0,
+        "error_message": "Patch contains markdown code blocks (not cleaned)"
+      },
+      "metadata": {
+        "lines_changed": 2,
+        "files_changed": 1,
+        "solution_length": 972
+      },
+      "success": true,
+      "solution_generated": true
+    },
+    {
+      "instance_id": "sympy__sympy-18189",
+      "repo": "sympy/sympy",
+      "category": "other",
+      "condition": "experimental",
+      "generated": true,
+      "valid_patch": false,
+      "agent_id": 6,
+      "task_type": "math",
+      "execution_time": 3.045994281768799,
+      "model_output": "diff --git a/sympy/solvers/diophantine.py b/sympy/solvers/diophantine.py\n--- a/sympy/solvers/diophantine.py\n+++ b/sympy/solvers/diophantine.py\n@@ -123,7 +123,7 @@ def diophantine(f, syms=None, permute=False):\n     if syms is None:\n         syms = f.free_symbols\n     if permute:\n-        syms = list(syms)\n+        syms = list(syms) + list(syms)\n     # existing logic\n```",
+      "validation": {
+        "is_valid_syntax": false,
+        "is_valid_format": false,
+        "has_diff_header": false,
+        "has_hunks": false,
+        "files_touched": 0,
+        "lines_added": 0,
+        "lines_removed": 0,
+        "error_message": "Patch contains markdown code blocks (not cleaned)"
+      },
+      "metadata": {
+        "lines_changed": 2,
+        "files_changed": 1,
+        "solution_length": 371
+      },
+      "success": true,
+      "solution_generated": true
+    },
+    {
+      "instance_id": "sympy__sympy-18621",
+      "repo": "sympy/sympy",
+      "category": "bug",
+      "condition": "experimental",
+      "generated": true,
+      "valid_patch": false,
+      "agent_id": 2,
+      "task_type": "logic",
+      "execution_time": 4.262627840042114,
+      "model_output": "diff --git a/sympy/matrices/expressions/blockmatrix.py b/sympy/matrices/expressions/blockmatrix.py\n--- a/sympy/matrices/expressions/blockmatrix.py\n+++ b/sympy/matrices/expressions/blockmatrix.py\n@@ -245,7 +245,7 @@ class BlockMatrix(MatrixBase):\n         row_block, col_block = divmod(i, self.block_rows)\n         col_block, i = divmod(j, self.block_cols)\n         if row_block == col_block == 0:\n-            return self.blocks[row_block, col_block][i, j]\n+            return self.blocks[row_block, col_block][i, j] if self.blocks[row_block, col_block].rows > 1 else self.blocks[row_block, col_block]\n         else:\n             return self.zeros[i, j]\n```",
+      "validation": {
+        "is_valid_syntax": false,
+        "is_valid_format": false,
+        "has_diff_header": false,
+        "has_hunks": false,
+        "files_touched": 0,
+        "lines_added": 0,
+        "lines_removed": 0,
+        "error_message": "Patch contains markdown code blocks (not cleaned)"
+      },
+      "metadata": {
+        "lines_changed": 2,
+        "files_changed": 1,
+        "solution_length": 657
+      },
+      "success": true,
+      "solution_generated": true
+    },
+    {
+      "instance_id": "sympy__sympy-20212",
+      "repo": "sympy/sympy",
+      "category": "docs",
+      "condition": "experimental",
+      "generated": true,
+      "valid_patch": true,
+      "agent_id": 0,
+      "task_type": "list",
+      "execution_time": 2.33137583732605,
+      "model_output": "diff --git a/sympy/core/power.py b/sympy/core/power.py\n--- a/sympy/core/power.py\n+++ b/sympy/core/power.py\n@@ -123,7 +123,7 @@ class Pow(Add):\n             return Integer(1)\n         elif base == 0:\n             if exp == -oo:\n-                return Integer(0)\n+                return zoo\n             elif exp == oo:\n                 return zoo\n             else:",
+      "validation": {
+        "is_valid_syntax": true,
+        "is_valid_format": true,
+        "has_diff_header": true,
+        "has_hunks": true,
+        "files_touched": 1,
+        "lines_added": 1,
+        "lines_removed": 1,
+        "error_message": null
+      },
+      "metadata": {
+        "lines_changed": 2,
+        "files_changed": 1,
+        "solution_length": 365
+      },
+      "success": true,
+      "solution_generated": true
+    },
+    {
+      "instance_id": "sympy__sympy-21612",
+      "repo": "sympy/sympy",
+      "category": "test",
+      "condition": "experimental",
+      "generated": true,
+      "valid_patch": false,
+      "agent_id": 2,
+      "task_type": "logic",
+      "execution_time": 1.0508878231048584,
+      "model_output": "",
+      "validation": {
+        "is_valid_syntax": false,
+        "is_valid_format": false,
+        "has_diff_header": false,
+        "has_hunks": false,
+        "files_touched": 0,
+        "lines_added": 0,
+        "lines_removed": 0,
+        "error_message": "Empty patch"
+      },
+      "metadata": {
+        "lines_changed": 2,
+        "files_changed": 1,
+        "solution_length": 0
+      },
+      "success": true,
+      "solution_generated": true
+    },
+    {
+      "instance_id": "sympy__sympy-21627",
+      "repo": "sympy/sympy",
+      "category": "bug",
+      "condition": "experimental",
+      "generated": true,
+      "valid_patch": false,
+      "agent_id": 2,
+      "task_type": "logic",
+      "execution_time": 2.300121545791626,
+      "model_output": "diff --git a/sympy/functions/trigonometric.py b/sympy/functions/trigonometric.py\n--- a/sympy/functions/trigonometric.py\n+++ b/sympy/functions/trigonometric.py\n@@ -123,7 +123,7 @@ class cosh(Function):\n     def is_zero(self):\n         if self.args[0].is_zero:\n             return True\n-        return self.args[0].is_zero\n+        return False\n```",
+      "validation": {
+        "is_valid_syntax": false,
+        "is_valid_format": false,
+        "has_diff_header": false,
+        "has_hunks": false,
+        "files_touched": 0,
+        "lines_added": 0,
+        "lines_removed": 0,
+        "error_message": "Patch contains markdown code blocks (not cleaned)"
+      },
+      "metadata": {
+        "lines_changed": 2,
+        "files_changed": 1,
+        "solution_length": 346
+      },
+      "success": true,
+      "solution_generated": true
+    }
+  ],
+  "timestamp": "2026-01-28 21:53:53"
+}

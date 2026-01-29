@@ -1,0 +1,1455 @@
+{
+  "results": [
+    {
+      "instance_id": "django__django-11179",
+      "repo": "django/django",
+      "category": "other",
+      "condition": "experimental",
+      "generated": true,
+      "valid_patch": false,
+      "agent_id": 6,
+      "task_type": "math",
+      "execution_time": 45.846665382385254,
+      "model_output": "diff --git a/django/db/models/deletion.py b/django/db/models/deletion.py\n--- a/django/db/models/deletion.py\n+++ b/django/db/models/deletion.py\n@@ -276,7 +276,7 @@ def _collect_sub_objects(objs, seen, model, field, sub_objs):\n     for obj in objs:\n         if obj.pk is not None:\n             sub_objs.add(obj)\n-            _collect_sub_objects([f for f in obj._meta.get_fields() if f.is_relation and not f.null], seen, model, field, sub_objs)\n+            _collect_sub_objects([f for f in obj._meta.get_fields() if f.is_relation and not f.null], seen, model, field, sub_objs)\n             if obj.pk is not None:\n                 sub_objs.add(obj)\n```\n```diff\ndiff --git a/django/db/models/deletion.py b/django/db/models/deletion.py\n--- a/django/db/models/deletion.py\n+++ b/django/db/models/deletion.py\n@@ -276,7 +276,7 @@ def _collect_sub_objects(objs, seen, model, field, sub_objs):\n     for obj in objs:\n         if obj.pk is not None:\n             sub_objs.add(obj)\n-            _collect_sub_objects([f for f in obj._meta.get_fields() if f.is_relation and not f.null], seen, model, field, sub_objs)\n+            _collect_sub_objects([f for f in obj._meta.get_fields() if f.is_relation and not f.null], seen, model, field, sub_objs)\n             if obj.pk is not None:\n                 sub_objs.add(obj)\n```\n```diff\ndiff --git a/django/db/models/deletion.py b/django/db/models/deletion.py\n--- a/django/db/models/deletion.py\n+++ b/django/db/models/deletion.py\n@@ -276,7 +276,7 @@ def _collect_sub_objects(objs, seen, model, field, sub_objs):\n     for obj in objs:\n         if obj.pk is not None:\n             sub_objs.add(obj)\n-            _collect_sub_objects([f for f in obj._meta.get_fields() if f.is_relation and not f.null], seen, model, field, sub_objs)\n+            _collect_sub_objects([f for f in obj._meta.get_fields() if f.is_relation and not f.null], seen, model, field, sub_objs)\n             if obj.pk is not None:\n                 sub_objs.add(obj)\n```\n```diff\ndiff --git a/django/db/models/deletion.py b/django/db/models/deletion.py\n--- a/django/db/models/deletion.py\n+++ b/django/db/models/deletion.py\n@@ -276,7 +276,7 @@ def _collect_sub_objects(objs, seen, model, field, sub_objs):\n     for obj in objs:\n         if obj.pk is not None:\n             sub_objs.add(obj)\n-            _collect_sub_objects([f for f in obj._meta.get_fields() if f.is_relation and not f.null], seen, model, field, sub_objs)\n+            _collect_sub_objects([f for f in obj._meta.get_fields() if f.is_relation and not f.null], seen, model, field, sub_objs)\n             if obj.pk is not None:\n                 sub_objs.add(obj)\n```\n```diff\ndiff --git a/django/db/models/deletion.py b/django/db/models/deletion.py\n--- a/django/db/models/deletion.py\n+++ b/django/db/models/deletion.py\n@@ -276,7 +276,7 @@ def _collect_sub_objects(objs, seen, model, field, sub_objs):\n     for obj in objs:\n         if obj.pk is not None:\n             sub_objs.add(obj)\n-            _collect_sub_objects([f for f in obj._meta.get_fields() if f.is_relation and not f.null], seen, model, field, sub_objs)\n+            _collect_sub_objects([f for f in obj._meta.get_fields() if f.is_relation and not f.null], seen, model, field, sub_objs)\n             if obj.pk is not None:\n                 sub_objs.add(obj)\n```\n```diff\ndiff --git a/django/db/models/deletion.py b/django/db/models/deletion.py\n--- a/django/db/models/deletion.py\n+++ b/django/db/models/deletion.py\n@@ -276,7 +276,7 @@ def _collect_sub_objects(objs, seen, model, field, sub_objs):\n     for obj in objs:\n         if obj.pk is not None:\n             sub_objs.add(obj)\n-            _collect_sub_objects([f for f in obj._meta.get_fields() if f.is_relation and not f.null], seen, model, field, sub_objs)\n+            _collect_sub_objects([f for f in obj._meta.get_fields() if f.is_relation and not f.null], seen, model, field, sub_objs)\n             if obj.pk is not None:\n                 sub_objs.add(obj)\n```\n```diff\ndiff --git a/django/db/models/deletion.py b/django/db/models/deletion.py\n--- a/django/db/models/deletion.py\n+++ b/django/db/models/deletion.py\n@@ -276,7 +276,7 @@ def _collect_sub_objects(objs, seen, model, field, sub_objs):\n     for obj in objs:\n         if obj.pk is not None:\n             sub_objs.add(obj)\n-            _collect_sub_objects([f for f in obj._meta.get_fields() if f.is_relation and not f.null], seen, model, field, sub_objs)\n+            _collect_sub_objects([f for f in obj._meta.get_fields() if f.is_relation and not f.null], seen, model, field, sub_objs)\n             if obj.pk is not None:\n                 sub_objs.add(obj)\n```\n```diff\ndiff --git a/django/db/models/deletion.py b/django/db/models/deletion.py\n--- a/django/db/models/deletion.py\n+++ b/django/db/models/deletion.py\n@@ -276,7 +276,7 @@ def _collect_sub_objects(objs, seen, model, field, sub_objs):\n     for obj in objs:\n         if obj.pk is not None:\n             sub_objs.add(obj)\n-            _collect_sub_objects([f for f in obj._meta.get_fields() if f.is_relation and not f.null], seen, model, field, sub_objs)\n+            _collect_sub_objects([f for f in obj._meta.get_fields() if f.is_relation and not f.null], seen, model, field, sub_objs)\n             if obj.pk is not None:\n                 sub_objs.add(obj)\n```\n```diff\ndiff --git a/django/db/models/deletion.py b/django/db/models/deletion.py\n--- a/django/db/models/deletion.py\n+++ b/django/db/models/deletion.py\n@@ -276,7 +276,7 @@ def _collect_sub_objects(objs, seen, model, field, sub_objs):\n     for obj in objs:\n         if obj.pk is not None:\n             sub_objs.add(obj)\n-            _collect_sub_objects([f for f in obj._meta.get_fields() if f.is_relation and not f.null], seen, model, field, sub_objs)\n+            _collect_sub_objects([f for f in obj._meta.get_fields() if f.is_relation and not f.null], seen, model, field, sub_objs)\n             if obj.pk is not None:\n                 sub_objs.add(obj)\n```\n```diff\ndiff --git a/django/db/models/deletion.py b/django/db/models/deletion.py\n--- a/django/db/models/deletion.py\n+++ b/django/db/models/deletion.py\n@@ -276,7 +276,7 @@ def _collect_sub_objects(objs, seen, model, field, sub_objs):\n     for obj in objs:\n         if obj.pk is not None:\n             sub_objs.add(obj)\n-            _collect_sub_objects([f for f in obj._meta.get_fields() if f.is_relation and not f.null], seen, model, field, sub_objs)\n+            _collect_sub_objects([f for f in obj._meta.get_fields() if f.is_relation and not f.null], seen, model, field, sub_objs)\n             if obj.pk is not None:\n                 sub_objs.add(obj)\n```\n```diff\ndiff --git a/django/db/models/deletion.py b/django/db/models/deletion.py\n--- a/django/db/models/deletion.py\n+++ b/django/db/models/deletion.py\n@@ -276,7 +276,7 @@ def _collect_sub_objects(objs, seen, model, field, sub_objs):\n     for obj in objs:\n         if obj.pk is not None:\n             sub_objs.add(obj)\n-            _collect_sub_objects([f for f in obj._meta.get_fields() if f.is_relation and not f.null], seen, model, field, sub_objs)\n+            _collect_sub_objects([f for f in obj._meta.get_fields() if f.is_relation and not f.null], seen, model, field, sub_objs)\n             if obj.pk is not None:\n                 sub_objs.add(obj)\n```\n```diff\ndiff --git a/django/db/models/deletion.py b/django/db/models/deletion.py\n--- a/django/db/models/deletion.py\n+++ b/django/db/models/deletion.py\n@@ -276,7 +276,7 @@ def _collect_sub_objects(objs, seen, model",
+      "validation": {
+        "is_valid_syntax": false,
+        "is_valid_format": false,
+        "has_diff_header": false,
+        "has_hunks": false,
+        "files_touched": 0,
+        "lines_added": 0,
+        "lines_removed": 0,
+        "error_message": "Patch contains markdown code blocks (not cleaned)"
+      },
+      "metadata": {
+        "lines_changed": 1,
+        "files_changed": 1,
+        "solution_length": 7454
+      },
+      "success": true,
+      "solution_generated": true
+    },
+    {
+      "instance_id": "django__django-12908",
+      "repo": "django/django",
+      "category": "test",
+      "condition": "experimental",
+      "generated": true,
+      "valid_patch": false,
+      "agent_id": 1,
+      "task_type": "logic",
+      "execution_time": 8.001626014709473,
+      "model_output": "diff --git a/django/db/models/query.py b/django/db/models/query.py\nindex 1234567..89abcdef 100644\n--- a/django/db/models/query.py\n+++ b/django/db/models/query.py\n@@ -1234,6 +1234,7 @@ class QuerySet(models.QuerySet):\n         if self._distinct:\n             raise ValueError(\"Cannot use distinct() with union()\")\n         self._distinct = True\n+        self._distinct_fields = []\n         return self\n```\n```\ndiff --git a/django/db/models/sql/compiler.py b/django/db/models/sql/compiler.py\nindex 1234567..89abcdef 100644\n--- a/django/db/models/sql/compiler.py\n+++ b/django/db/models/sql/compiler.py\n@@ -1234,6 +1234,7 @@ class SQLCompiler(models.sql.compiler.SQLCompiler):\n         if self.query._distinct:\n             raise ValueError(\"Cannot use distinct() with union()\")\n         self.query._distinct = True\n+        self.query._distinct_fields = []\n         return self\n```\n```\ndiff --git a/django/db/models/sql/query.py b/django/db/models/sql/query.py\nindex 1234567..89abcdef 100644\n--- a/django/db/models/sql/query.py\n+++ b/django/db/models/sql/query.py\n@@ -1234,6 +1234,7 @@ class Query(models.sql.query.Query):\n         if self._distinct:\n             raise ValueError(\"Cannot use distinct() with union()\")\n         self._distinct = True\n+        self._distinct_fields = []\n         return self",
+      "validation": {
+        "is_valid_syntax": false,
+        "is_valid_format": false,
+        "has_diff_header": false,
+        "has_hunks": false,
+        "files_touched": 0,
+        "lines_added": 0,
+        "lines_removed": 0,
+        "error_message": "Patch contains markdown code blocks (not cleaned)"
+      },
+      "metadata": {
+        "lines_changed": 1,
+        "files_changed": 1,
+        "solution_length": 1303
+      },
+      "success": true,
+      "solution_generated": true
+    },
+    {
+      "instance_id": "django__django-13230",
+      "repo": "django/django",
+      "category": "feature",
+      "condition": "experimental",
+      "generated": true,
+      "valid_patch": false,
+      "agent_id": 1,
+      "task_type": "string",
+      "execution_time": 2.961364507675171,
+      "model_output": "diff --git a/django/contrib/syndication/views.py b/django/contrib/syndication/views.py\nindex 3b2c1d2..4a5b6c7 100644\n--- a/django/contrib/syndication/views.py\n+++ b/django/contrib/syndication/views.py\n@@ -123,6 +123,7 @@ def feed(request, *args, **kwargs):\n     \"\"\"\n     feed.add_item(\n         title=item.title,\n+        comments=item.comments,\n         link=item.link,\n         description=item.description,\n         pubdate=item.pubdate,\n```",
+      "validation": {
+        "is_valid_syntax": false,
+        "is_valid_format": false,
+        "has_diff_header": false,
+        "has_hunks": false,
+        "files_touched": 0,
+        "lines_added": 0,
+        "lines_removed": 0,
+        "error_message": "Patch contains markdown code blocks (not cleaned)"
+      },
+      "metadata": {
+        "lines_changed": 1,
+        "files_changed": 1,
+        "solution_length": 444
+      },
+      "success": true,
+      "solution_generated": true
+    },
+    {
+      "instance_id": "django__django-13447",
+      "repo": "django/django",
+      "category": "feature",
+      "condition": "experimental",
+      "generated": true,
+      "valid_patch": false,
+      "agent_id": 1,
+      "task_type": "string",
+      "execution_time": 7.867691516876221,
+      "model_output": "diff --git a/django/contrib/admin/sites.py b/django/contrib/admin/sites.py\nindex 3b2f1d8..e6b2f1d 100644\n--- a/django/contrib/admin/sites.py\n+++ b/django/contrib/admin/sites.py\n@@ -123,7 +123,7 @@ class AdminSite:\n         \"\"\"\n         Build the app dictionary used in the admin index.\n         \"\"\"\n-        app_dict = {}\n+        app_dict = {}\n         for model, model_admin in self._registry.items():\n             app_label = model._meta.app_label\n             has_module_perms = model_admin.has_module_permission(request)\n@@ -140,7 +140,7 @@ class AdminSite:\n                 app_dict[app_label]['models'][model._meta.model_name] = model_admin\n         return app_dict\n \n-    def index(self, request, extra_context=None):\n+    def index(self, request, extra_context=None):\n         \"\"\"\n         Render the admin index page.\n         \"\"\"\n@@ -150,7 +150,7 @@ class AdminSite:\n         \"\"\"\n         Render the app index page.\n         \"\"\"\n-        app_dict = self._build_app_dict(request)\n+        app_dict = self._build_app_dict(request)\n         context = {\n             'title': _('Site administration'),\n             'app_list': app_dict,\n```\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\ns",
+      "validation": {
+        "is_valid_syntax": false,
+        "is_valid_format": false,
+        "has_diff_header": false,
+        "has_hunks": false,
+        "files_touched": 0,
+        "lines_added": 0,
+        "lines_removed": 0,
+        "error_message": "Patch contains markdown code blocks (not cleaned)"
+      },
+      "metadata": {
+        "lines_changed": 1,
+        "files_changed": 1,
+        "solution_length": 1184
+      },
+      "success": true,
+      "solution_generated": true
+    },
+    {
+      "instance_id": "django__django-15814",
+      "repo": "django/django",
+      "category": "bug",
+      "condition": "experimental",
+      "generated": true,
+      "valid_patch": false,
+      "agent_id": 1,
+      "task_type": "logic",
+      "execution_time": 7.38718843460083,
+      "model_output": "diff --git a/django/db/models/sql/query.py b/django/db/models/sql/query.py\nindex 1234567..89abcdef 100644\n--- a/django/db/models/sql/query.py\n+++ b/django/db/models/sql/query.py\n@@ -745,7 +745,7 @@ def get_related_populators(klass_info, select, db):\n     rel_cls = RelatedPopulator(rel_klass_info, select, db)\n     return rel_cls\n```\n```\ndiff --git a/django/db/models/sql/query.py b/django/db/models/sql/query.py\nindex 1234567..89abcdef 100644\n--- a/django/db/models/sql/query.py\n+++ b/django/db/models/sql/query.py\n@@ -745,7 +745,7 @@ def get_related_populators(klass_info, select, db):\n     rel_cls = RelatedPopulator(rel_klass_info, select, db)\n     return rel_cls\n```\n```\ndiff --git a/django/db/models/sql/query.py b/django/db/models/sql/query.py\nindex 1234567..89abcdef 100644\n--- a/django/db/models/sql/query.py\n+++ b/django/db/models/sql/query.py\n@@ -745,7 +745,7 @@ def get_related_populators(klass_info, select, db):\n     rel_cls = RelatedPopulator(rel_klass_info, select, db)\n     return rel_cls",
+      "validation": {
+        "is_valid_syntax": false,
+        "is_valid_format": false,
+        "has_diff_header": false,
+        "has_hunks": false,
+        "files_touched": 0,
+        "lines_added": 0,
+        "lines_removed": 0,
+        "error_message": "Patch contains markdown code blocks (not cleaned)"
+      },
+      "metadata": {
+        "lines_changed": 1,
+        "files_changed": 1,
+        "solution_length": 1005
+      },
+      "success": true,
+      "solution_generated": true
+    },
+    {
+      "instance_id": "matplotlib__matplotlib-23563",
+      "repo": "matplotlib/matplotlib",
+      "category": "bug",
+      "condition": "experimental",
+      "generated": true,
+      "valid_patch": false,
+      "agent_id": 1,
+      "task_type": "logic",
+      "execution_time": 4.103443384170532,
+      "model_output": "diff --git a/mpl_toolkits/mplot3d/art3d.py b/mpl_toolkits/mplot3d/art3d.py\nindex 1234567..89abcde 100644\n--- a/mpl_toolkits/mplot3d/art3d.py\n+++ b/mpl_toolkits/mplot3d/art3d.py\n@@ -212,7 +212,7 @@ class Line3D(Poly3DCollection):\n         \"\"\"\n         xs3d, ys3d, zs3d = self._verts3d\n         \"\"\"\n-        return self._verts3d\n+        return self._verts3d if hasattr(self, '_verts3d') else None\n```",
+      "validation": {
+        "is_valid_syntax": false,
+        "is_valid_format": false,
+        "has_diff_header": false,
+        "has_hunks": false,
+        "files_touched": 0,
+        "lines_added": 0,
+        "lines_removed": 0,
+        "error_message": "Patch contains markdown code blocks (not cleaned)"
+      },
+      "metadata": {
+        "lines_changed": 1,
+        "files_changed": 1,
+        "solution_length": 399
+      },
+      "success": true,
+      "solution_generated": true
+    },
+    {
+      "instance_id": "matplotlib__matplotlib-25433",
+      "repo": "matplotlib/matplotlib",
+      "category": "bug",
+      "condition": "experimental",
+      "generated": true,
+      "valid_patch": false,
+      "agent_id": 1,
+      "task_type": "logic",
+      "execution_time": 11.130228042602539,
+      "model_output": "diff --git a/lib/matplotlib/backends/backend_qt5agg.py b/lib/matplotlib/backends/backend_qt5agg.py\nindex 1a2b3c4..5d6e7f8 100644\n--- a/lib/matplotlib/backends/backend_qt5agg.py\n+++ b/lib/matplotlib/backends/backend_qt5agg.py\n@@ -1234,7 +1234,7 @@ class FigureCanvasQTAgg(FigureCanvasQTAggBase):\n         self.draw()\n         self.update()\n \n-    def draw(self):\n+    def draw(self, force=False):\n         if self._blit:\n             self._blit_clear()\n             self._blit_draw()\n@@ -1242,6 +1242,7 @@ class FigureCanvasQTAgg(FigureCanvasQTAggBase):\n         else:\n             self._draw()\n \n+        if force:\n+            self._flush_events()\n \n     def _draw(self):\n         self.figure.draw()\ndiff --git a/lib/matplotlib/backends/backend_qt5.py b/lib/matplotlib/backends/backend_qt5.py\nindex 1a2b3c4..5d6e7f8 100644\n--- a/lib/matplotlib/backends/backend_qt5.py\n+++ b/lib/matplotlib/backends/backend_qt5.py\n@@ -1234,7 +1234,7 @@ class FigureCanvasQTAgg(FigureCanvasQTAggBase):\n         self.draw()\n         self.update()\n \n-    def draw(self):\n+    def draw(self, force=False):\n         if self._blit:\n             self._blit_clear()\n             self._blit_draw()\n@@ -1242,6 +1242,7 @@ class FigureCanvasQTAgg(FigureCanvasQTAggBase):\n         else:\n             self._draw()\n \n+        if force:\n+            self._flush_events()\n \n     def _draw(self):\n         self.figure.draw()\n```",
+      "validation": {
+        "is_valid_syntax": false,
+        "is_valid_format": false,
+        "has_diff_header": false,
+        "has_hunks": false,
+        "files_touched": 0,
+        "lines_added": 0,
+        "lines_removed": 0,
+        "error_message": "Patch contains markdown code blocks (not cleaned)"
+      },
+      "metadata": {
+        "lines_changed": 1,
+        "files_changed": 1,
+        "solution_length": 1393
+      },
+      "success": true,
+      "solution_generated": true
+    },
+    {
+      "instance_id": "pytest-dev__pytest-11143",
+      "repo": "pytest-dev/pytest",
+      "category": "bug",
+      "condition": "experimental",
+      "generated": true,
+      "valid_patch": true,
+      "agent_id": 1,
+      "task_type": "logic",
+      "execution_time": 4.046706676483154,
+      "model_output": "diff --git a/_pytest/assertion/rewrite.py b/_pytest/assertion/rewrite.py\nindex 1234567..89abcdef 100644\n--- a/_pytest/assertion/rewrite.py\n+++ b/_pytest/assertion/rewrite.py\n@@ -757,7 +757,7 @@ class AssertionRewriter:\n         return \"PYTEST_DONT_REWRITE\" in docstring\n \n     def is_rewrite_disabled(self, doc):\n-        return \"PYTEST_DONT_REWRITE\" in docstring\n+        return \"PYTEST_DONT_REWRITE\" in docstring if isinstance(docstring, str) else False",
+      "validation": {
+        "is_valid_syntax": true,
+        "is_valid_format": true,
+        "has_diff_header": true,
+        "has_hunks": true,
+        "files_touched": 1,
+        "lines_added": 1,
+        "lines_removed": 1,
+        "error_message": null
+      },
+      "metadata": {
+        "lines_changed": 1,
+        "files_changed": 1,
+        "solution_length": 455
+      },
+      "success": true,
+      "solution_generated": true
+    },
+    {
+      "instance_id": "pytest-dev__pytest-6116",
+      "repo": "pytest-dev/pytest",
+      "category": "feature",
+      "condition": "experimental",
+      "generated": true,
+      "valid_patch": false,
+      "agent_id": 1,
+      "task_type": "string",
+      "execution_time": 6.017046689987183,
+      "model_output": "diff --git a/_pytest/runner.py b/_pytest/runner.py\n--- a/_pytest/runner.py\n+++ b/_pytest/runner.py\n@@ -100,6 +100,7 @@ def runpytest(args):\n     parser = create_parser()\n     parser.addoption(\n         \"--collect-only\",\n+        \"-c\",\n         action=\"store_true\",\n         help=\"Collect information about test files without running them.\",\n     )\n```\n```\ndiff --git a/doc/en/usage.rst b/doc/en/usage.rst\n--- a/doc/en/usage.rst\n+++ b/doc/en/usage.rst\n@@ -100,6 +100,7 @@ pytest --collect-only\n     parser.addoption(\n         \"--collect-only\",\n+        \"-c\",\n         action=\"store_true\",\n         help=\"Collect information about test files without running them.\",\n     )\n```\n```\ndiff --git a/tests/test_runner.py b/tests/test_runner.py\n--- a/tests/test_runner.py\n+++ b/tests/test_runner.py\n@@ -100,6 +100,7 @@ def runpytest(args):\n     parser = create_parser()\n     parser.addoption(\n         \"--collect-only\",\n+        \"-c\",\n         action=\"store_true\",\n         help=\"Collect information about test files without running them.\",\n     )",
+      "validation": {
+        "is_valid_syntax": false,
+        "is_valid_format": false,
+        "has_diff_header": false,
+        "has_hunks": false,
+        "files_touched": 0,
+        "lines_added": 0,
+        "lines_removed": 0,
+        "error_message": "Patch contains markdown code blocks (not cleaned)"
+      },
+      "metadata": {
+        "lines_changed": 1,
+        "files_changed": 1,
+        "solution_length": 1038
+      },
+      "success": true,
+      "solution_generated": true
+    },
+    {
+      "instance_id": "django__django-10914",
+      "repo": "django/django",
+      "category": "bug",
+      "condition": "experimental",
+      "generated": true,
+      "valid_patch": true,
+      "agent_id": 1,
+      "task_type": "logic",
+      "execution_time": 7.433003902435303,
+      "model_output": "diff --git a/django/core/files/storage.py b/django/core/files/storage.py\nindex 3a4b5c6..7d8e9f0 100644\n--- a/django/core/files/storage.py\n+++ b/django/core/files/storage.py\n@@ -100,6 +100,7 @@ class FileSystemStorage(Storage):\n     def _save(self, name, content):\n         # Create the destination directory if it doesn't exist\n         directory = os.path.dirname(name)\n+        os.makedirs(directory, exist_ok=True)\n         if not os.path.exists(directory):\n             os.makedirs(directory)\n         # Save the file",
+      "validation": {
+        "is_valid_syntax": true,
+        "is_valid_format": true,
+        "has_diff_header": true,
+        "has_hunks": true,
+        "files_touched": 1,
+        "lines_added": 1,
+        "lines_removed": 0,
+        "error_message": null
+      },
+      "metadata": {
+        "lines_changed": 2,
+        "files_changed": 1,
+        "solution_length": 521
+      },
+      "success": true,
+      "solution_generated": true
+    },
+    {
+      "instance_id": "django__django-10924",
+      "repo": "django/django",
+      "category": "other",
+      "condition": "experimental",
+      "generated": true,
+      "valid_patch": false,
+      "agent_id": 6,
+      "task_type": "math",
+      "execution_time": 9.645297765731812,
+      "model_output": "diff --git a/django/db/models/fields/files.py b/django/db/models/fields/files.py\nindex 0a1b2c3..4d5e6f7 100644\n--- a/django/db/models/fields/files.py\n+++ b/django/db/models/fields/files.py\n@@ -123,7 +123,7 @@ class FilePathField(models.Field):\n         if isinstance(path, str):\n             path = os.path.abspath(path)\n         elif callable(path):\n-            path = os.path.abspath(path())\n+            path = os.path.abspath(path())\n         else:\n             raise ValueError(\"Invalid path type\")\n         self.path = path\n```\n```\ndiff --git a/django/db/models/fields/__init__.py b/django/db/models/fields/__init__.py\nindex 0a1b2c3..4d5e6f7 100644\n--- a/django/db/models/fields/__init__.py\n+++ b/django/db/models/fields/__init__.py\n@@ -123,7 +123,7 @@ class FilePathField(models.Field):\n         if isinstance(path, str):\n             path = os.path.abspath(path)\n         elif callable(path):\n-            path = os.path.abspath(path())\n+            path = os.path.abspath(path())\n         else:\n             raise ValueError(\"Invalid path type\")\n         self.path = path\n```\n```\ndiff --git a/django/db/models/fields/fields.py b/django/db/models/fields/fields.py\nindex 0a1b2c3..4d5e6f7 100644\n--- a/django/db/models/fields/fields.py\n+++ b/django/db/models/fields/fields.py\n@@ -123,7 +123,7 @@ class FilePathField(models.Field):\n         if isinstance(path, str):\n             path = os.path.abspath(path)\n         elif callable(path):\n-            path = os.path.abspath(path())\n+            path = os.path.abspath(path())\n         else:\n             raise ValueError(\"Invalid path type\")\n         self.path = path",
+      "validation": {
+        "is_valid_syntax": false,
+        "is_valid_format": false,
+        "has_diff_header": false,
+        "has_hunks": false,
+        "files_touched": 0,
+        "lines_added": 0,
+        "lines_removed": 0,
+        "error_message": "Patch contains markdown code blocks (not cleaned)"
+      },
+      "metadata": {
+        "lines_changed": 2,
+        "files_changed": 1,
+        "solution_length": 1624
+      },
+      "success": true,
+      "solution_generated": true
+    },
+    {
+      "instance_id": "django__django-11049",
+      "repo": "django/django",
+      "category": "bug",
+      "condition": "experimental",
+      "generated": true,
+      "valid_patch": false,
+      "agent_id": 4,
+      "task_type": "logic",
+      "execution_time": 8.43335223197937,
+      "model_output": "diff --git a/django/core/validators.py b/django/core/validators.py\n--- a/django/core/validators.py\n+++ b/django/core/validators.py\n@@ -123,7 +123,7 @@ def validate_duration(value):\n     if not isinstance(value, timedelta):\n         raise ValidationError(\n             _('%(value)s is not a valid duration. It should be in the format: \"[DD] [HH:[MM:]]ss[.uuuuuu]\"'),\n-            params={'value': value},\n+            params={'value': value},\n         )\n     return value\n```\ndiff --git a/django/forms/fields.py b/django/forms/fields.py\n--- a/django/forms/fields.py\n+++ b/django/forms/fields.py\n@@ -123,7 +123,7 @@ def validate_duration(value):\n     if not isinstance(value, timedelta):\n         raise ValidationError(\n             _('%(value)s is not a valid duration. It should be in the format: \"[DD] [HH:[MM:]]ss[.uuuuuu]\"'),\n-            params={'value': value},\n+            params={'value': value},\n         )\n     return value\n```\ndiff --git a/django/db/models/fields/__init__.py b/django/db/models/fields/__init__.py\n--- a/django/db/models/fields/__init__.py\n+++ b/django/db/models/fields/__init__.py\n@@ -123,7 +123,7 @@ def validate_duration(value):\n     if not isinstance(value, timedelta):\n         raise ValidationError(\n             _('%(value)s is not a valid duration. It should be in the format: \"[DD] [HH:[MM:]]ss[.uuuuuu]\"'),\n-            params={'value': value},\n+            params={'value': value},\n         )\n     return value",
+      "validation": {
+        "is_valid_syntax": false,
+        "is_valid_format": false,
+        "has_diff_header": false,
+        "has_hunks": false,
+        "files_touched": 0,
+        "lines_added": 0,
+        "lines_removed": 0,
+        "error_message": "Patch contains markdown code blocks (not cleaned)"
+      },
+      "metadata": {
+        "lines_changed": 2,
+        "files_changed": 1,
+        "solution_length": 1448
+      },
+      "success": true,
+      "solution_generated": true
+    },
+    {
+      "instance_id": "django__django-11133",
+      "repo": "django/django",
+      "category": "other",
+      "condition": "experimental",
+      "generated": true,
+      "valid_patch": false,
+      "agent_id": 6,
+      "task_type": "math",
+      "execution_time": 7.55671238899231,
+      "model_output": "diff --git a/django/http/__init__.py b/django/http/__init__.py\nindex 6f2b2e2..c3d4e5f 100644\n--- a/django/http/__init__.py\n+++ b/django/http/__init__.py\n@@ -100,6 +100,7 @@ class HttpResponseBase:\n     def __init__(self, content='', content_type=None, status=200, reason=None,\n                  charset=None, using=None):\n         self._container = []\n+        self._stream = False\n         self.status_code = status\n         self.reason_phrase = reason\n         self.charset = charset\n@@ -120,6 +121,10 @@ class HttpResponseBase:\n             self._container.append(content)\n         elif isinstance(content, bytes):\n             self._container.append(content)\n+        elif isinstance(content, memoryview):\n+            self._container.append(content.tobytes())\n+            self._stream = True\n         else:\n             raise TypeError('First argument must be a string, bytes, or memoryview instance, not %r' % type(content).__name__)\n \n@@ -130,6 +135,10 @@ class HttpResponseBase:\n         if isinstance(content, str):\n             self._container.append(content.encode(self.charset or settings.DEFAULT_CHARSET))\n         elif isinstance(content, bytes):\n+            if self._stream:\n+                self._container.append(content)\n+            else:\n             self._container.append(content)\n         else:\n             raise TypeError('First argument must be a string, bytes, or memoryview instance, not %r' % type(content).__name__)\n```",
+      "validation": {
+        "is_valid_syntax": false,
+        "is_valid_format": false,
+        "has_diff_header": false,
+        "has_hunks": false,
+        "files_touched": 0,
+        "lines_added": 0,
+        "lines_removed": 0,
+        "error_message": "Patch contains markdown code blocks (not cleaned)"
+      },
+      "metadata": {
+        "lines_changed": 2,
+        "files_changed": 1,
+        "solution_length": 1451
+      },
+      "success": true,
+      "solution_generated": true
+    },
+    {
+      "instance_id": "django__django-12113",
+      "repo": "django/django",
+      "category": "bug",
+      "condition": "experimental",
+      "generated": true,
+      "valid_patch": false,
+      "agent_id": 5,
+      "task_type": "logic",
+      "execution_time": 6.07685112953186,
+      "model_output": "diff --git a/tests/admin_views/test_multidb.py b/tests/admin_views/test_multidb.py\nindex 40e65f7d01..9ce4e32e14 100644\n--- a/tests/admin_views/test_multidb.py\n+++ b/tests/admin_views/test_multidb.py\n@@ -39,7 +39,7 @@ class MultiDatabaseTests(TestCase):\n         username='admin', password='something', email='test@test.org',\n         is_staff=True, is_superuser=True)\n \n-    def tearDown(self):\n+    def tearDownClass(self):\n         User.objects.using('other').delete()\n         User.objects.using('default').delete()\n```\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\ns",
+      "validation": {
+        "is_valid_syntax": false,
+        "is_valid_format": false,
+        "has_diff_header": false,
+        "has_hunks": false,
+        "files_touched": 0,
+        "lines_added": 0,
+        "lines_removed": 0,
+        "error_message": "Patch contains markdown code blocks (not cleaned)"
+      },
+      "metadata": {
+        "lines_changed": 2,
+        "files_changed": 1,
+        "solution_length": 576
+      },
+      "success": true,
+      "solution_generated": true
+    },
+    {
+      "instance_id": "django__django-12125",
+      "repo": "django/django",
+      "category": "bug",
+      "condition": "experimental",
+      "generated": true,
+      "valid_patch": false,
+      "agent_id": 1,
+      "task_type": "logic",
+      "execution_time": 13.45859670639038,
+      "model_output": "diff --git a/django/db/migrations/operations/models.py b/django/db/migrations/operations/models.py\nindex 1a2b3c4..5d6e7f8 100644\n--- a/django/db/migrations/operations/models.py\n+++ b/django/db/migrations/operations/models.py\n@@ -123,7 +123,7 @@ class CreateModel(Operation):\n         for field_name, field in fields:\n             field_path = '.'.join([model_name, field_name])\n             if isinstance(field, models.Field):\n-                field_path = '.'.join([module_name, field_path])\n+                field_path = '.'.join([module_name, field_path.split('.')[-1]])\n                 field_path = field_path.replace('.', '_')\n                 field_path = field_path.replace('-', '_')\n                 field_path = field_path.replace(' ', '_')\n```\n```\ndiff --git a/django/db/models/fields/__init__.py b/django/db/models/fields/__init__.py\nindex 9a8b7c6..8d7e6f5 100644\n--- a/django/db/models/fields/__init__.py\n+++ b/django/db/models/fields/__init__.py\n@@ -123,7 +123,7 @@ class Field(object):\n         if isinstance(value, models.Model):\n             return value._meta.label_lower\n         elif isinstance(value, models.Field):\n-            return value._meta.label_lower\n+            return value._meta.label_lower.split('.')[-1]\n         else:\n             return value\n```\n```\ndiff --git a/django/db/models/options.py b/django/db/models/options.py\nindex 1a2b3c4..5d6e7f8 100644\n--- a/django/db/models/options.py\n+++ b/django/db/models/options.py\n@@ -123,7 +123,7 @@ class Options(object):\n         if isinstance(value, models.Model):\n             return value._meta.label_lower\n         elif isinstance(value, models.Field):\n-            return value._meta.label_lower\n+            return value._meta.label_lower.split('.')[-1]\n         else:\n             return value\n```\n```\ndiff --git a/django/db/models/fields/enum.py b/django/db/models/fields/enum.py\nindex 9a8b7c6..8d7e6f5 100644\n--- a/django/db/models/fields/enum.py\n+++ b/django/db/models/fields/enum.py\n@@ -123,7 +123,7 @@ class EnumField(Field):\n         if isinstance(value, models.Model):\n             return value._meta.label_lower\n         elif isinstance(value, models.Field):\n-            return value._meta.label_lower\n+            return value._meta.label_lower.split('.')[-1]\n         else:\n             return value",
+      "validation": {
+        "is_valid_syntax": false,
+        "is_valid_format": false,
+        "has_diff_header": false,
+        "has_hunks": false,
+        "files_touched": 0,
+        "lines_added": 0,
+        "lines_removed": 0,
+        "error_message": "Patch contains markdown code blocks (not cleaned)"
+      },
+      "metadata": {
+        "lines_changed": 2,
+        "files_changed": 1,
+        "solution_length": 2297
+      },
+      "success": true,
+      "solution_generated": true
+    },
+    {
+      "instance_id": "django__django-13964",
+      "repo": "django/django",
+      "category": "bug",
+      "condition": "experimental",
+      "generated": true,
+      "valid_patch": true,
+      "agent_id": 5,
+      "task_type": "logic",
+      "execution_time": 3.5928213596343994,
+      "model_output": "diff --git a/django/db/models/fields/related.py b/django/db/models/fields/related.py\n--- a/django/db/models/fields/related.py\n+++ b/django/db/models/fields/related.py\n@@ -1020,7 +1020,7 @@ class ForeignKey(RelatedField):\n         if not self.null and not self.blank and value is None:\n             raise ValueError('The %s field cannot be null.' % self.attname)\n         if value is not None:\n-            value = self.to_field.get_prep_value(value)\n+            value = self.to_field.get_prep_value(value) if value.pk else value\n         self._value = value\n         if value is not None:\n             self._pk = value.pk",
+      "validation": {
+        "is_valid_syntax": true,
+        "is_valid_format": true,
+        "has_diff_header": true,
+        "has_hunks": true,
+        "files_touched": 1,
+        "lines_added": 1,
+        "lines_removed": 1,
+        "error_message": null
+      },
+      "metadata": {
+        "lines_changed": 2,
+        "files_changed": 1,
+        "solution_length": 622
+      },
+      "success": true,
+      "solution_generated": true
+    },
+    {
+      "instance_id": "django__django-14017",
+      "repo": "django/django",
+      "category": "bug",
+      "condition": "experimental",
+      "generated": true,
+      "valid_patch": false,
+      "agent_id": 1,
+      "task_type": "logic",
+      "execution_time": 8.884106636047363,
+      "model_output": "diff --git a/django/db/models/query_utils.py b/django/db/models/query_utils.py\nindex 1a2b3c4..5d6e7f8 100644\n--- a/django/db/models/query_utils.py\n+++ b/django/db/models/query_utils.py\n@@ -69,6 +69,7 @@ class Q:\n         if not isinstance(other, Q):\n             raise TypeError(other)\n \n+        return self._combine(other, self.AND)\n         # If the other Q() is empty, ignore it and just use `self`.\n         if other._negated:\n             return self\n```\n```\ndiff --git a/django/db/models/query_utils.py b/django/db/models/query_utils.py\nindex 1a2b3c4..5d6e7f8 100644\n--- a/django/db/models/query_utils.py\n+++ b/django/db/models/query_utils.py\n@@ -69,6 +69,7 @@ class Q:\n         if not isinstance(other, Q):\n             raise TypeError(other)\n \n+        return self._combine(other, self.AND)\n         # If the other Q() is empty, ignore it and just use `self`.\n         if other._negated:\n             return self\n```\n```\ndiff --git a/django/db/models/query_utils.py b/django/db/models/query_utils.py\nindex 1a2b3c4..5d6e7f8 100644\n--- a/django/db/models/query_utils.py\n+++ b/django/db/models/query_utils.py\n@@ -69,6 +69,7 @@ class Q:\n         if not isinstance(other, Q):\n             raise TypeError(other)\n \n+        return self._combine(other, self.AND)\n         # If the other Q() is empty, ignore it and just use `self`.\n         if other._negated:\n             return self",
+      "validation": {
+        "is_valid_syntax": false,
+        "is_valid_format": false,
+        "has_diff_header": false,
+        "has_hunks": false,
+        "files_touched": 0,
+        "lines_added": 0,
+        "lines_removed": 0,
+        "error_message": "Patch contains markdown code blocks (not cleaned)"
+      },
+      "metadata": {
+        "lines_changed": 2,
+        "files_changed": 1,
+        "solution_length": 1386
+      },
+      "success": true,
+      "solution_generated": true
+    },
+    {
+      "instance_id": "django__django-14238",
+      "repo": "django/django",
+      "category": "bug",
+      "condition": "experimental",
+      "generated": true,
+      "valid_patch": false,
+      "agent_id": 5,
+      "task_type": "logic",
+      "execution_time": 10.275735139846802,
+      "model_output": "diff --git a/django/db/models/fields/__init__.py b/django/db/models/fields/__init__.py\nindex 1234567..89abcdef 100644\n--- a/django/db/models/fields/__init__.py\n+++ b/django/db/models/fields/__init__.py\n@@ -123,6 +123,7 @@ class AutoFieldMeta(type):\n     def __subclasscheck__(cls, subclass):\n         if subclass in cls._subclasses:\n             return True\n+        if issubclass(subclass, cls._subclasses):\n             return True\n         return False\n```\n```\ndiff --git a/django/db/models/options.py b/django/db/models/options.py\nindex 1234567..89abcdef 100644\n--- a/django/db/models/options.py\n+++ b/django/db/models/options.py\n@@ -243,6 +243,7 @@ class Options:\n         if self.pk:\n             pk_class = self.pk.__class__\n             if not issubclass(pk_class, AutoField):\n+                if issubclass(pk_class, BigAutoField) or issubclass(pk_class, SmallAutoField):\n                     raise ValueError(\n                         \"Primary key '{}' referred by DEFAULT_AUTO_FIELD must subclass AutoField.\".format(pk_class.__name__)\n                     )\n```\n```\ndiff --git a/django/db/models/base.py b/django/db/models/base.py\nindex 1234567..89abcdef 100644\n--- a/django/db/models/base.py\n+++ b/django/db/models/base.py\n@@ -320,6 +320,7 @@ class ModelBase(type):\n     def __new__(cls, name, bases, attrs):\n         new_class = super().__new__(cls, name, bases, attrs)\n         new_class._prepare()\n+        if issubclass(new_class._meta.pk.__class__, BigAutoField) or issubclass(new_class._meta.pk.__class__, SmallAutoField):\n             raise ValueError(\n                 \"Primary key '{}' referred by DEFAULT_AUTO_FIELD must subclass AutoField.\".format(new_class._meta.pk.__class__.__name__)\n             )",
+      "validation": {
+        "is_valid_syntax": false,
+        "is_valid_format": false,
+        "has_diff_header": false,
+        "has_hunks": false,
+        "files_touched": 0,
+        "lines_added": 0,
+        "lines_removed": 0,
+        "error_message": "Patch contains markdown code blocks (not cleaned)"
+      },
+      "metadata": {
+        "lines_changed": 2,
+        "files_changed": 1,
+        "solution_length": 1724
+      },
+      "success": true,
+      "solution_generated": true
+    },
+    {
+      "instance_id": "django__django-14534",
+      "repo": "django/django",
+      "category": "bug",
+      "condition": "experimental",
+      "generated": true,
+      "valid_patch": false,
+      "agent_id": 1,
+      "task_type": "logic",
+      "execution_time": 2.5159859657287598,
+      "model_output": "diff --git a/django/forms/widgets.py b/django/forms/widgets.py\n--- a/django/forms/widgets.py\n+++ b/django/forms/widgets.py\n@@ -123,7 +123,7 @@ class BoundWidget:\n     def id_for_label(self):\n         \"\"\"\n         Return the HTML id attribute for the label associated with this widget.\n-        \"\"\"\n+        return self.data['attrs']['id']\n         return 'id_%s_%s' % (self.data['name'], self.data['index'])\n```",
+      "validation": {
+        "is_valid_syntax": false,
+        "is_valid_format": false,
+        "has_diff_header": false,
+        "has_hunks": false,
+        "files_touched": 0,
+        "lines_added": 0,
+        "lines_removed": 0,
+        "error_message": "Patch contains markdown code blocks (not cleaned)"
+      },
+      "metadata": {
+        "lines_changed": 2,
+        "files_changed": 1,
+        "solution_length": 411
+      },
+      "success": true,
+      "solution_generated": true
+    },
+    {
+      "instance_id": "django__django-14580",
+      "repo": "django/django",
+      "category": "bug",
+      "condition": "experimental",
+      "generated": true,
+      "valid_patch": true,
+      "agent_id": 4,
+      "task_type": "logic",
+      "execution_time": 3.6350505352020264,
+      "model_output": "diff --git a/django/db/migrations/writer.py b/django/db/migrations/writer.py\nindex 1a2b3c4..5d6e7f8 100644\n--- a/django/db/migrations/writer.py\n+++ b/django/db/migrations/writer.py\n@@ -100,6 +100,7 @@ class MigrationWriter(object):\n         for model in models:\n             if model._meta.abstract:\n                 continue\n+            self.add_import('models', model._meta.app_label)\n             self.add_import('models', model._meta.model_name)\n             self.add_import('models', model._meta.model_name.lower())\n             self.add_import('models', model._meta.model_name.lower() + 's')",
+      "validation": {
+        "is_valid_syntax": true,
+        "is_valid_format": true,
+        "has_diff_header": true,
+        "has_hunks": true,
+        "files_touched": 1,
+        "lines_added": 1,
+        "lines_removed": 0,
+        "error_message": null
+      },
+      "metadata": {
+        "lines_changed": 2,
+        "files_changed": 1,
+        "solution_length": 598
+      },
+      "success": true,
+      "solution_generated": true
+    },
+    {
+      "instance_id": "django__django-14672",
+      "repo": "django/django",
+      "category": "bug",
+      "condition": "experimental",
+      "generated": true,
+      "valid_patch": false,
+      "agent_id": 5,
+      "task_type": "logic",
+      "execution_time": 4.433603286743164,
+      "model_output": "diff --git a/django/db/models/fields/related.py b/django/db/models/fields/related.py\nindex 1a2b3c4..5d6e7f8 100644\n--- a/django/db/models/fields/related.py\n+++ b/django/db/models/fields/related.py\n@@ -123,6 +123,7 @@ class ManyToManyRel(ForeignObjectRel):\n         self.through = through\n         self.through_fields = through_fields\n         self.related_name = related_name\n+        self.through_fields = make_hashable(self.through_fields)\n         self.symmetrical = symmetrical\n         self.limit_choices_to = limit_choices_to\n         self.db_constraint = db_constraint\n```\n```",
+      "validation": {
+        "is_valid_syntax": false,
+        "is_valid_format": false,
+        "has_diff_header": false,
+        "has_hunks": false,
+        "files_touched": 0,
+        "lines_added": 0,
+        "lines_removed": 0,
+        "error_message": "Patch contains markdown code blocks (not cleaned)"
+      },
+      "metadata": {
+        "lines_changed": 2,
+        "files_changed": 1,
+        "solution_length": 583
+      },
+      "success": true,
+      "solution_generated": true
+    },
+    {
+      "instance_id": "django__django-14787",
+      "repo": "django/django",
+      "category": "bug",
+      "condition": "experimental",
+      "generated": true,
+      "valid_patch": true,
+      "agent_id": 1,
+      "task_type": "logic",
+      "execution_time": 3.8196396827697754,
+      "model_output": "diff --git a/django/utils/decorators.py b/django/utils/decorators.py\n--- a/django/utils/decorators.py\n+++ b/django/utils/decorators.py\n@@ -20,7 +20,7 @@\n from functools import wraps\n \n \n-def method_decorator(decorator, name=None):\n+def method_decorator(decorator, name=None, **kwargs):\n     \"\"\"\n     Convert a function decorator into a method decorator.\n     \"\"\"\n@@ -28,7 +28,7 @@\n         def _decorator(func):\n             @wraps(func, **kwargs)\n             def inner(self, *args, **kwargs):\n-                return decorator(func)(*args, **kwargs)\n+                return decorator(func, **kwargs)(*args, **kwargs)\n             return inner\n         return _decorator\n     return _decorator",
+      "validation": {
+        "is_valid_syntax": true,
+        "is_valid_format": true,
+        "has_diff_header": true,
+        "has_hunks": true,
+        "files_touched": 1,
+        "lines_added": 2,
+        "lines_removed": 2,
+        "error_message": null
+      },
+      "metadata": {
+        "lines_changed": 2,
+        "files_changed": 1,
+        "solution_length": 694
+      },
+      "success": true,
+      "solution_generated": true
+    },
+    {
+      "instance_id": "django__django-15347",
+      "repo": "django/django",
+      "category": "bug",
+      "condition": "experimental",
+      "generated": true,
+      "valid_patch": false,
+      "agent_id": 4,
+      "task_type": "logic",
+      "execution_time": 9.97728705406189,
+      "model_output": "diff --git a/django/contrib/messages/storage/base.py b/django/contrib/messages/storage/base.py\nindex 1234567..89abcdef 100644\n--- a/django/contrib/messages/storage/base.py\n+++ b/django/contrib/messages/storage/base.py\n@@ -100,7 +100,7 @@ class MessageEncoder(JSONEncoder):\n     def default(self, obj):\n         if isinstance(obj, Message):\n             return {\n-                'level': obj.level,\n+                'level': obj.level,\n                 'message': obj.message,\n                 'extra_tags': obj.extra_tags if obj.extra_tags is not None else \"\",\n             }\n         return super().default(obj)\n```\n```\ndiff --git a/django/contrib/messages/storage/cookie.py b/django/contrib/messages/storage/cookie.py\nindex 1234567..89abcdef 100644\n--- a/django/contrib/messages/storage/cookie.py\n+++ b/django/contrib/messages/storage/cookie.py\n@@ -100,7 +100,7 @@ class MessageEncoder(JSONEncoder):\n     def default(self, obj):\n         if isinstance(obj, Message):\n             return {\n-                'level': obj.level,\n+                'level': obj.level,\n                 'message': obj.message,\n                 'extra_tags': obj.extra_tags if obj.extra_tags is not None else \"\",\n             }\n         return super().default(obj)\n```\n```\ndiff --git a/django/contrib/messages/storage/session.py b/django/contrib/messages/storage/session.py\nindex 1234567..89abcdef 100644\n--- a/django/contrib/messages/storage/session.py\n+++ b/django/contrib/messages/storage/session.py\n@@ -100,7 +100,7 @@ class MessageEncoder(JSONEncoder):\n     def default(self, obj):\n         if isinstance(obj, Message):\n             return {\n-                'level': obj.level,\n+                'level': obj.level,\n                 'message': obj.message,\n                 'extra_tags': obj.extra_tags if obj.extra_tags is not None else \"\",\n             }\n         return super().default(obj)",
+      "validation": {
+        "is_valid_syntax": false,
+        "is_valid_format": false,
+        "has_diff_header": false,
+        "has_hunks": false,
+        "files_touched": 0,
+        "lines_added": 0,
+        "lines_removed": 0,
+        "error_message": "Patch contains markdown code blocks (not cleaned)"
+      },
+      "metadata": {
+        "lines_changed": 2,
+        "files_changed": 1,
+        "solution_length": 1877
+      },
+      "success": true,
+      "solution_generated": true
+    },
+    {
+      "instance_id": "django__django-15388",
+      "repo": "django/django",
+      "category": "bug",
+      "condition": "experimental",
+      "generated": true,
+      "valid_patch": false,
+      "agent_id": 5,
+      "task_type": "logic",
+      "execution_time": 5.9496190547943115,
+      "model_output": "diff --git a/django/core/management/commands/runserver.py b/django/core/management/commands/runserver.py\n--- a/django/core/management/commands/runserver.py\n+++ b/django/core/management/commands/runserver.py\n@@ -104,7 +104,7 @@ class Command(BaseCommand):\n         # Watch for changes in the templates directory\n         template_dir = settings.TEMPLATES[0]['DIRS'][0]\n         if os.path.exists(template_dir):\n-            self.stdout.write(\"Watching for template changes in %s\" % template_dir)\n+            self.stdout.write(\"Watching for template changes in %s\" % template_dir, ending='')\n             self.template_watchdog = Watchdog(template_dir, self.handle_template_change)\n             self.template_watchdog.start()\n         else:\n```\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\ns",
+      "validation": {
+        "is_valid_syntax": false,
+        "is_valid_format": false,
+        "has_diff_header": false,
+        "has_hunks": false,
+        "files_touched": 0,
+        "lines_added": 0,
+        "lines_removed": 0,
+        "error_message": "Patch contains markdown code blocks (not cleaned)"
+      },
+      "metadata": {
+        "lines_changed": 2,
+        "files_changed": 1,
+        "solution_length": 797
+      },
+      "success": true,
+      "solution_generated": true
+    },
+    {
+      "instance_id": "django__django-15781",
+      "repo": "django/django",
+      "category": "other",
+      "condition": "experimental",
+      "generated": true,
+      "valid_patch": false,
+      "agent_id": 6,
+      "task_type": "math",
+      "execution_time": 3.2618865966796875,
+      "model_output": "diff --git a/django/core/management/base.py b/django/core/management/base.py\nindex 0a1b2c3..4d5e6f7 100644\n--- a/django/core/management/base.py\n+++ b/django/core/management/base.py\n@@ -123,7 +123,7 @@ class BaseCommand:\n         # Add any additional options here\n         parser.add_argument('blockchain', help='Name of the blockchain to import into')\n         parser.add_argument('target', help='Id of the contract to import')\n-        parser.description = self.help\n+        parser.description = self.help.strip()\n```",
+      "validation": {
+        "is_valid_syntax": false,
+        "is_valid_format": false,
+        "has_diff_header": false,
+        "has_hunks": false,
+        "files_touched": 0,
+        "lines_added": 0,
+        "lines_removed": 0,
+        "error_message": "Patch contains markdown code blocks (not cleaned)"
+      },
+      "metadata": {
+        "lines_changed": 2,
+        "files_changed": 1,
+        "solution_length": 519
+      },
+      "success": true,
+      "solution_generated": true
+    },
+    {
+      "instance_id": "django__django-15851",
+      "repo": "django/django",
+      "category": "feature",
+      "condition": "experimental",
+      "generated": true,
+      "valid_patch": true,
+      "agent_id": 1,
+      "task_type": "string",
+      "execution_time": 45.60041666030884,
+      "model_output": "diff --git a/django/core/management/commands/dbshell.py b/django/core/management/commands/dbshell.py\nindex 7e2f3b8..b1c2d3e 100644\n--- a/django/core/management/commands/dbshell.py\n+++ b/django/core/management/commands/dbshell.py\n@@ -123,7 +123,7 @@ class Command(BaseCommand):\n         if self.style.SQL_KEYWORD:\n             options['options'] = options.get('options', []) + ['--set', 'PAGER=']\n         if self.style.SQL_COMMENT:\n-            options['options'] = options.get('options', []) + ['--set', 'HISTFILE=']\n+            options['options'] = options.get('options', []) + ['--set', 'HISTFILE=']\n         if self.style.SQL_KEYWORD:\n             options['options'] = options.get('options', []) + ['--set', 'PAGER=']\n         if self.style.SQL_COMMENT:\n-            options['options'] = options.get('options', []) + ['--set', 'HISTFILE=']\n+            options['options'] = options.get('options', []) + ['--set', 'HISTFILE=']\n         if self.style.SQL_KEYWORD:\n             options['options'] = options.get('options', []) + ['--set', 'PAGER=']\n         if self.style.SQL_COMMENT:\n-            options['options'] = options.get('options', []) + ['--set', 'HISTFILE=']\n+            options['options'] = options.get('options', []) + ['--set', 'HISTFILE=']\n         if self.style.SQL_KEYWORD:\n             options['options'] = options.get('options', []) + ['--set', 'PAGER=']\n         if self.style.SQL_COMMENT:\n-            options['options'] = options.get('options', []) + ['--set', 'HISTFILE=']\n+            options['options'] = options.get('options', []) + ['--set', 'HISTFILE=']\n         if self.style.SQL_KEYWORD:\n             options['options'] = options.get('options', []) + ['--set', 'PAGER=']\n         if self.style.SQL_COMMENT:\n-            options['options'] = options.get('options', []) + ['--set', 'HISTFILE=']\n+            options['options'] = options.get('options', []) + ['--set', 'HISTFILE=']\n         if self.style.SQL_KEYWORD:\n             options['options'] = options.get('options', []) + ['--set', 'PAGER=']\n         if self.style.SQL_COMMENT:\n-            options['options'] = options.get('options', []) + ['--set', 'HISTFILE=']\n+            options['options'] = options.get('options', []) + ['--set', 'HISTFILE=']\n         if self.style.SQL_KEYWORD:\n             options['options'] = options.get('options', []) + ['--set', 'PAGER=']\n         if self.style.SQL_COMMENT:\n-            options['options'] = options.get('options', []) + ['--set', 'HISTFILE=']\n+            options['options'] = options.get('options', []) + ['--set', 'HISTFILE=']\n         if self.style.SQL_KEYWORD:\n             options['options'] = options.get('options', []) + ['--set', 'PAGER=']\n         if self.style.SQL_COMMENT:\n-            options['options'] = options.get('options', []) + ['--set', 'HISTFILE=']\n+            options['options'] = options.get('options', []) + ['--set', 'HISTFILE=']\n         if self.style.SQL_KEYWORD:\n             options['options'] = options.get('options', []) + ['--set', 'PAGER=']\n         if self.style.SQL_COMMENT:\n-            options['options'] = options.get('options', []) + ['--set', 'HISTFILE=']\n+            options['options'] = options.get('options', []) + ['--set', 'HISTFILE=']\n         if self.style.SQL_KEYWORD:\n             options['options'] = options.get('options', []) + ['--set', 'PAGER=']\n         if self.style.SQL_COMMENT:\n-            options['options'] = options.get('options', []) + ['--set', 'HISTFILE=']\n+            options['options'] = options.get('options', []) + ['--set', 'HISTFILE=']\n         if self.style.SQL_KEYWORD:\n             options['options'] = options.get('options', []) + ['--set', 'PAGER=']\n         if self.style.SQL_COMMENT:\n-            options['options'] = options.get('options', []) + ['--set', 'HISTFILE=']\n+            options['options'] = options.get('options', []) + ['--set', 'HISTFILE=']\n         if self.style.SQL_KEYWORD:\n             options['options'] = options.get('options', []) + ['--set', 'PAGER=']\n         if self.style.SQL_COMMENT:\n-            options['options'] = options.get('options', []) + ['--set', 'HISTFILE=']\n+            options['options'] = options.get('options', []) + ['--set', 'HISTFILE=']\n         if self.style.SQL_KEYWORD:\n             options['options'] = options.get('options', []) + ['--set', 'PAGER=']\n         if self.style.SQL_COMMENT:\n-            options['options'] = options.get('options', []) + ['--set', 'HISTFILE=']\n+            options['options'] = options.get('options', []) + ['--set', 'HISTFILE=']\n         if self.style.SQL_KEYWORD:\n             options['options'] = options.get('options', []) + ['--set', 'PAGER=']\n         if self.style.SQL_COMMENT:\n-            options['options'] = options.get('options', []) + ['--set', 'HISTFILE=']\n+            options['options'] = options.get('options', []) + ['--set', 'HISTFILE=']\n         if self.style.SQL_KEYWORD:\n             options['options'] = options.get('options', []) + ['--set', 'PAGER=']\n         if self.style.SQL_COMMENT:\n-            options['options'] = options.get('options', []) + ['--set', 'HISTFILE=']\n+            options['options'] = options.get('options', []) + ['--set', 'HISTFILE=']\n         if self.style.SQL_KEYWORD:\n             options['options'] = options.get('options', []) + ['--set', 'PAGER=']\n         if self.style.SQL_COMMENT:\n-            options['options'] = options.get('options', []) + ['--set', 'HISTFILE=']\n+            options['options'] = options.get('options', []) + ['--set', 'HISTFILE=']\n         if self.style.SQL_KEYWORD:\n             options['options'] = options.get('options', []) + ['--set', 'PAGER=']\n         if self.style.SQL_COMMENT:\n-            options['options'] = options.get('options', []) + ['--set', 'HISTFILE=']\n+            options['options'] = options.get('options', []) + ['--set', 'HISTFILE=']\n         if self.style.SQL_KEYWORD:\n             options['options'] = options.get('options', []) + ['--set', 'PAGER=']\n         if self.style.SQL_COMMENT:\n-            options['options'] = options.get('options', []) + ['--set', 'HISTFILE=']\n+            options['options'] = options.get('options', []) + ['--set', 'HISTFILE=']\n         if self.style.SQL_KEYWORD:\n             options['options'] = options.get('options', []) + ['--set', 'PAGER=']\n         if self.style.SQL_COMMENT:\n-            options['options'] = options.get('options', []) + ['--set', 'HISTFILE=']\n+            options['options'] = options.get('options', []) + ['--set', 'HISTFILE=']\n         if self.style.SQL_KEYWORD:\n             options['options'] = options.get('options', []) + ['--set', 'PAGER=']\n         if self.style.SQL_COMMENT:\n-            options['options'] = options.get('options', []) + ['--set', 'HISTFILE=']\n+            options['options'] = options.get('options', []) + ['--set', 'HISTFILE=']\n         if self.style.SQL_KEYWORD:\n             options['options'] = options.get('options', []) + ['--set', 'PAGER=']\n         if self.style.SQL_COMMENT:\n-            options['options'] = options.get('options', []) + ['--set', 'HISTFILE=']\n+            options['options'] = options.get('options', []) + ['--set', 'HISTFILE=']\n         if self.style.SQL_KEYWORD:\n             options['options'] = options.get('options', []) + ['--set', 'PAGER=']\n         if self.style.SQL_COMMENT:\n-            options['options'] = options.get('options', []) + ['--set', 'HISTFILE=']\n+            options['options'] = options.get('options', []) + ['--set', 'HISTFILE=']\n         if self.style.SQL_KEYWORD:\n             options['options'] = options.get('options', []) + ['--set', 'PAGER=']\n         if self.style.SQL_COMMENT:\n-            options['options'] = options.get('options', []) + ['--set', 'HISTFILE=']\n+            options['options'] = options.get('options', []) + ['--set', 'HISTFILE=']\n         if self.style.SQL_KEYWORD:\n             options['options'] = options.get('options',",
+      "validation": {
+        "is_valid_syntax": true,
+        "is_valid_format": true,
+        "has_diff_header": true,
+        "has_hunks": true,
+        "files_touched": 1,
+        "lines_added": 23,
+        "lines_removed": 23,
+        "error_message": null
+      },
+      "metadata": {
+        "lines_changed": 2,
+        "files_changed": 1,
+        "solution_length": 7890
+      },
+      "success": true,
+      "solution_generated": true
+    },
+    {
+      "instance_id": "django__django-15902",
+      "repo": "django/django",
+      "category": "other",
+      "condition": "experimental",
+      "generated": true,
+      "valid_patch": true,
+      "agent_id": 6,
+      "task_type": "math",
+      "execution_time": 5.575738191604614,
+      "model_output": "diff --git a/django/forms/formsets.py b/django/forms/formsets.py\nindex 3a5b6c7..4d8e9f0 100644\n--- a/django/forms/formsets.py\n+++ b/django/forms/formsets.py\n@@ -100,7 +100,7 @@ class BaseFormSet:\n         if self.is_bound:\n             self.errors = self.full_clean()\n         else:\n-            self.errors = {self.prefix: []}\n+            self.errors = {self.prefix: [], 'management_form': []}\n \n     def full_clean(self):\n         \"\"\"\ndiff --git a/django/forms/forms.py b/django/forms/forms.py\nindex 1a2b3c4..5d6e7f8 100644\n--- a/django/forms/forms.py\n+++ b/django/forms/forms.py\n@@ -100,7 +100,7 @@ class BaseForm:\n         if self.is_bound:\n             self.errors = self.full_clean()\n         else:\n-            self.errors = {self.prefix: []}\n+            self.errors = {self.prefix: [], 'management_form': []}\n \n     def full_clean(self):\n         \"\"\"",
+      "validation": {
+        "is_valid_syntax": true,
+        "is_valid_format": true,
+        "has_diff_header": true,
+        "has_hunks": true,
+        "files_touched": 2,
+        "lines_added": 2,
+        "lines_removed": 2,
+        "error_message": null
+      },
+      "metadata": {
+        "lines_changed": 2,
+        "files_changed": 1,
+        "solution_length": 860
+      },
+      "success": true,
+      "solution_generated": true
+    },
+    {
+      "instance_id": "django__django-16046",
+      "repo": "django/django",
+      "category": "bug",
+      "condition": "experimental",
+      "generated": true,
+      "valid_patch": true,
+      "agent_id": 1,
+      "task_type": "logic",
+      "execution_time": 2.6889052391052246,
+      "model_output": "diff --git a/django/utils/formats.py b/django/utils/formats.py\n--- a/django/utils/formats.py\n+++ b/django/utils/formats.py\n@@ -100,7 +100,7 @@ def number_format(value, decimal_pos=None, grouping=None, use_l10n=None):\n     \"\"\"\n     Format a number as a locale-aware string.\n     \"\"\"\n-    if str_number[0] == \"-\":\n+    if str_number and str_number[0] == \"-\":\n         negative = True\n         str_number = str_number[1:]\n     else:",
+      "validation": {
+        "is_valid_syntax": true,
+        "is_valid_format": true,
+        "has_diff_header": true,
+        "has_hunks": true,
+        "files_touched": 1,
+        "lines_added": 1,
+        "lines_removed": 1,
+        "error_message": null
+      },
+      "metadata": {
+        "lines_changed": 2,
+        "files_changed": 1,
+        "solution_length": 429
+      },
+      "success": true,
+      "solution_generated": true
+    },
+    {
+      "instance_id": "django__django-16255",
+      "repo": "django/django",
+      "category": "bug",
+      "condition": "experimental",
+      "generated": true,
+      "valid_patch": true,
+      "agent_id": 4,
+      "task_type": "logic",
+      "execution_time": 3.766505241394043,
+      "model_output": "diff --git a/django/contrib/sitemaps/__init__.py b/django/contrib/sitemaps/__init__.py\nindex 1234567..89abcde 100644\n--- a/django/contrib/sitemaps/__init__.py\n+++ b/django/contrib/sitemaps/__init__.py\n@@ -167,7 +167,7 @@ class Sitemap:\n         if not hasattr(self, \"lastmod\"):\n             return None\n         if callable(self.lastmod):\n-            try:\n+            except (TypeError, ValueError):\n                 return max([self.lastmod(item) for item in self.items()])\n-            except TypeError:\n+            except (TypeError, ValueError):\n                 return None\n             else:\n                 return self.lastmod",
+      "validation": {
+        "is_valid_syntax": true,
+        "is_valid_format": true,
+        "has_diff_header": true,
+        "has_hunks": true,
+        "files_touched": 1,
+        "lines_added": 2,
+        "lines_removed": 2,
+        "error_message": null
+      },
+      "metadata": {
+        "lines_changed": 2,
+        "files_changed": 1,
+        "solution_length": 637
+      },
+      "success": true,
+      "solution_generated": true
+    },
+    {
+      "instance_id": "django__django-16527",
+      "repo": "django/django",
+      "category": "feature",
+      "condition": "experimental",
+      "generated": true,
+      "valid_patch": false,
+      "agent_id": 1,
+      "task_type": "string",
+      "execution_time": 3.3880774974823,
+      "model_output": "diff --git a/django/contrib/admin/templatetags/admin_modify.py b/django/contrib/admin/templatetags/admin_modify.py\n--- a/django/contrib/admin/templatetags/admin_modify.py\n+++ b/django/contrib/admin/templatetags/admin_modify.py\n@@ -102,7 +102,7 @@ def show_save_as_new(context):\n     change = context.get('change', False)\n     save_as = context.get('save_as', False)\n     is_popup = context.get('is_popup', False)\n-    return not is_popup and has_change_permission and change and save_as\n+    return not is_popup and has_add_permission and has_change_permission and change and save_as\n```",
+      "validation": {
+        "is_valid_syntax": false,
+        "is_valid_format": false,
+        "has_diff_header": false,
+        "has_hunks": false,
+        "files_touched": 0,
+        "lines_added": 0,
+        "lines_removed": 0,
+        "error_message": "Patch contains markdown code blocks (not cleaned)"
+      },
+      "metadata": {
+        "lines_changed": 2,
+        "files_changed": 1,
+        "solution_length": 587
+      },
+      "success": true,
+      "solution_generated": true
+    },
+    {
+      "instance_id": "django__django-17087",
+      "repo": "django/django",
+      "category": "bug",
+      "condition": "experimental",
+      "generated": true,
+      "valid_patch": false,
+      "agent_id": 1,
+      "task_type": "logic",
+      "execution_time": 6.391635179519653,
+      "model_output": "diff --git a/django/db/migrations/operations/fields.py b/django/db/migrations/operations/fields.py\n--- a/django/db/migrations/operations/fields.py\n+++ b/django/db/migrations/operations/fields.py\n@@ -100,7 +100,7 @@ class AddField(Operation):\n         if default is not None:\n             if callable(default):\n                 default = default()\n-            elif isinstance(default, str):\n+            elif isinstance(default, str) and '.' in default:\n                 # If default is a string, it should be a callable path to a function.\n                 # We need to resolve this path to the actual callable.\n                 default = resolve_path(default)\n```\ndiff --git a/django/db/models/fields/__init__.py b/django/db/models/fields/__init__.py\n--- a/django/db/models/fields/__init__.py\n+++ b/django/db/models/fields/__init__.py\n@@ -100,7 +100,7 @@ class ArrayField(Field):\n         if default is not None:\n             if callable(default):\n                 default = default()\n-            elif isinstance(default, str):\n+            elif isinstance(default, str) and '.' in default:\n                 # If default is a string, it should be a callable path to a function.\n                 # We need to resolve this path to the actual callable.\n                 default = resolve_path(default)",
+      "validation": {
+        "is_valid_syntax": false,
+        "is_valid_format": false,
+        "has_diff_header": false,
+        "has_hunks": false,
+        "files_touched": 0,
+        "lines_added": 0,
+        "lines_removed": 0,
+        "error_message": "Patch contains markdown code blocks (not cleaned)"
+      },
+      "metadata": {
+        "lines_changed": 2,
+        "files_changed": 1,
+        "solution_length": 1301
+      },
+      "success": true,
+      "solution_generated": true
+    },
+    {
+      "instance_id": "matplotlib__matplotlib-23314",
+      "repo": "matplotlib/matplotlib",
+      "category": "bug",
+      "condition": "experimental",
+      "generated": true,
+      "valid_patch": false,
+      "agent_id": 5,
+      "task_type": "logic",
+      "execution_time": 2.9982235431671143,
+      "model_output": "diff --git a/lib/matplotlib/axes/_subplots.py b/lib/matplotlib/axes/_subplots.py\nindex 6b8a5f2..d2e3f4a 100644\n--- a/lib/matplotlib/axes/_subplots.py\n+++ b/lib/matplotlib/axes/_subplots.py\n@@ -123,7 +123,7 @@ class Axes(mpl.axes.Axes):\n     def set_visible(self, visible):\n         \"\"\"\n         Set the visibility of the axes.\n-        \"\"\"\n+        \"\"\"\n         self._visible = visible\n         self.figure.canvas.draw_idle()\n```",
+      "validation": {
+        "is_valid_syntax": false,
+        "is_valid_format": false,
+        "has_diff_header": false,
+        "has_hunks": false,
+        "files_touched": 0,
+        "lines_added": 0,
+        "lines_removed": 0,
+        "error_message": "Patch contains markdown code blocks (not cleaned)"
+      },
+      "metadata": {
+        "lines_changed": 2,
+        "files_changed": 1,
+        "solution_length": 429
+      },
+      "success": true,
+      "solution_generated": true
+    },
+    {
+      "instance_id": "pytest-dev__pytest-11148",
+      "repo": "pytest-dev/pytest",
+      "category": "bug",
+      "condition": "experimental",
+      "generated": true,
+      "valid_patch": true,
+      "agent_id": 4,
+      "task_type": "logic",
+      "execution_time": 3.849749803543091,
+      "model_output": "diff --git a/tests/unit/test_commands.py b/tests/unit/test_commands.py\nindex 1234567..89abcde 100644\n--- a/tests/unit/test_commands.py\n+++ b/tests/unit/test_commands.py\n@@ -34,7 +34,7 @@ class TestCommands(unittest.TestCase):\n     @classmethod\n     def setup_class(cls):\n         path = os.path.dirname(os.path.abspath(__file__))\n-        configfile = os.path.join(path, 'testconf.yaml')\n+        configfile = os.path.join(path, '../testconf.yaml')\n         config = pmxbot.dictlib.ConfigDict.from_yaml(configfile)\n         cls.bot = core.initialize(config)\n         logging.Logger.store.message(\"logged\", \"testrunner\", \"some text\")",
+      "validation": {
+        "is_valid_syntax": true,
+        "is_valid_format": true,
+        "has_diff_header": true,
+        "has_hunks": true,
+        "files_touched": 1,
+        "lines_added": 1,
+        "lines_removed": 1,
+        "error_message": null
+      },
+      "metadata": {
+        "lines_changed": 2,
+        "files_changed": 1,
+        "solution_length": 632
+      },
+      "success": true,
+      "solution_generated": true
+    },
+    {
+      "instance_id": "pytest-dev__pytest-5227",
+      "repo": "pytest-dev/pytest",
+      "category": "bug",
+      "condition": "experimental",
+      "generated": true,
+      "valid_patch": true,
+      "agent_id": 5,
+      "task_type": "logic",
+      "execution_time": 2.720691204071045,
+      "model_output": "diff --git a/_pytest/logging.py b/_pytest/logging.py\n--- a/_pytest/logging.py\n+++ b/_pytest/logging.py\n@@ -11,7 +11,7 @@ DEFAULT_LOG_FORMAT = \"%(filename)-25s %(lineno)4d %(levelname)-8s %(message)s\"\n \n def pytest_configure(config):\n     if not config.option.log_cli:\n-        config.option.log_cli_format = DEFAULT_LOG_FORMAT\n+        config.option.log_cli_format = \"%(levelname)-8s %(name)s:%(filename)s:%(lineno)d %(message)s\"",
+      "validation": {
+        "is_valid_syntax": true,
+        "is_valid_format": true,
+        "has_diff_header": true,
+        "has_hunks": true,
+        "files_touched": 1,
+        "lines_added": 1,
+        "lines_removed": 1,
+        "error_message": null
+      },
+      "metadata": {
+        "lines_changed": 2,
+        "files_changed": 1,
+        "solution_length": 429
+      },
+      "success": true,
+      "solution_generated": true
+    },
+    {
+      "instance_id": "pytest-dev__pytest-7168",
+      "repo": "pytest-dev/pytest",
+      "category": "bug",
+      "condition": "experimental",
+      "generated": true,
+      "valid_patch": true,
+      "agent_id": 4,
+      "task_type": "logic",
+      "execution_time": 3.73140549659729,
+      "model_output": "diff --git a/_pytest/_io/saferepr.py b/_pytest/_io/saferepr.py\n--- a/_pytest/_io/saferepr.py\n+++ b/_pytest/_io/saferepr.py\n@@ -22,7 +22,7 @@ def _format_repr_exception(exc, x):\n     exc_info, obj.__class__.__name__, id(obj)\n     try:\n         s = repr(x)\n-    except Exception as e:\n+    except Exception as e:\n         s = f\"Exception: {e}\"\n     return s",
+      "validation": {
+        "is_valid_syntax": true,
+        "is_valid_format": true,
+        "has_diff_header": true,
+        "has_hunks": true,
+        "files_touched": 1,
+        "lines_added": 1,
+        "lines_removed": 1,
+        "error_message": null
+      },
+      "metadata": {
+        "lines_changed": 2,
+        "files_changed": 1,
+        "solution_length": 355
+      },
+      "success": true,
+      "solution_generated": true
+    },
+    {
+      "instance_id": "scikit-learn__scikit-learn-13584",
+      "repo": "scikit-learn/scikit-learn",
+      "category": "bug",
+      "condition": "experimental",
+      "generated": true,
+      "valid_patch": true,
+      "agent_id": 1,
+      "task_type": "logic",
+      "execution_time": 3.2690141201019287,
+      "model_output": "diff --git a/sklearn/utils/_repr.py b/sklearn/utils/_repr.py\n--- a/sklearn/utils/_repr.py\n+++ b/sklearn/utils/_repr.py\n@@ -100,7 +100,7 @@ def _print_changed_only(obj, config):\n     if config.print_changed_only:\n         for attr, value in obj.__dict__.items():\n             if hasattr(value, '__dict__'):\n-                if value.__dict__ != obj.__dict__[attr].__dict__:\n+                if value.__dict__ != obj.__dict__.get(attr, {}).__dict__:\n                     print(f\"{attr}: {value}\")\n             else:\n                 if value != obj.__dict__[attr]:",
+      "validation": {
+        "is_valid_syntax": true,
+        "is_valid_format": true,
+        "has_diff_header": true,
+        "has_hunks": true,
+        "files_touched": 1,
+        "lines_added": 1,
+        "lines_removed": 1,
+        "error_message": null
+      },
+      "metadata": {
+        "lines_changed": 2,
+        "files_changed": 1,
+        "solution_length": 562
+      },
+      "success": true,
+      "solution_generated": true
+    },
+    {
+      "instance_id": "scikit-learn__scikit-learn-13779",
+      "repo": "scikit-learn/scikit-learn",
+      "category": "bug",
+      "condition": "experimental",
+      "generated": true,
+      "valid_patch": true,
+      "agent_id": 5,
+      "task_type": "logic",
+      "execution_time": 3.0494933128356934,
+      "model_output": "diff --git a/sklearn/ensemble/voting.py b/sklearn/ensemble/voting.py\nindex 1234567..89abcdef 100644\n--- a/sklearn/ensemble/voting.py\n+++ b/sklearn/ensemble/voting.py\n@@ -123,6 +123,7 @@ class VotingClassifier(BaseEstimator, ClassifierMixin):\n         \"\"\"\n         for name, clf in self.estimators:\n             if clf is not None:\n+                if sample_weight is not None:\n                 clf.fit(X, y, sample_weight=sample_weight)\n             else:\n                 clf.fit(X, y)",
+      "validation": {
+        "is_valid_syntax": true,
+        "is_valid_format": true,
+        "has_diff_header": true,
+        "has_hunks": true,
+        "files_touched": 1,
+        "lines_added": 1,
+        "lines_removed": 0,
+        "error_message": null
+      },
+      "metadata": {
+        "lines_changed": 2,
+        "files_changed": 1,
+        "solution_length": 487
+      },
+      "success": true,
+      "solution_generated": true
+    },
+    {
+      "instance_id": "sympy__sympy-13480",
+      "repo": "sympy/sympy",
+      "category": "bug",
+      "condition": "experimental",
+      "generated": true,
+      "valid_patch": true,
+      "agent_id": 5,
+      "task_type": "logic",
+      "execution_time": 3.3030693531036377,
+      "model_output": "diff --git a/sympy/functions/elementary/hyperbolic.py b/sympy/functions/elementary/hyperbolic.py\n--- a/sympy/functions/elementary/hyperbolic.py\n+++ b/sympy/functions/elementary/hyperbolic.py\n@@ -587,7 +587,7 @@ def eval(self, x):\n             cotm = cot(x).evalf()\n             if cotm is S.ComplexInfinity:\n                 return S.ComplexInfinity\n-            if cotm is S.ComplexInfinity:\n+            if cotm is S.ComplexInfinity:\n                 return S.ComplexInfinity\n             return 1 / cotm\n         return self",
+      "validation": {
+        "is_valid_syntax": true,
+        "is_valid_format": true,
+        "has_diff_header": true,
+        "has_hunks": true,
+        "files_touched": 1,
+        "lines_added": 1,
+        "lines_removed": 1,
+        "error_message": null
+      },
+      "metadata": {
+        "lines_changed": 2,
+        "files_changed": 1,
+        "solution_length": 527
+      },
+      "success": true,
+      "solution_generated": true
+    },
+    {
+      "instance_id": "sympy__sympy-13647",
+      "repo": "sympy/sympy",
+      "category": "refactor",
+      "condition": "experimental",
+      "generated": true,
+      "valid_patch": true,
+      "agent_id": 2,
+      "task_type": "list",
+      "execution_time": 3.9572224617004395,
+      "model_output": "diff --git a/sympy/matrices/common.py b/sympy/matrices/common.py\n--- a/sympy/matrices/common.py\n+++ b/sympy/matrices/common.py\n@@ -1122,7 +1122,7 @@ class MatrixBase:\n         if not isinstance(col, MatrixBase):\n             col = MatrixBase._new(col)\n         if col.rows != self.rows:\n-            raise ValueError(\"Column vector must have the same number of rows as the matrix\")\n+            raise ValueError(\"Column vector must have the same number of rows as the matrix, but got %d and %d\" % (col.rows, self.rows))\n         if col.cols != 1:\n             raise ValueError(\"Column vector must be a column vector\")\n         if pos < 0 or pos > self.cols:",
+      "validation": {
+        "is_valid_syntax": true,
+        "is_valid_format": true,
+        "has_diff_header": true,
+        "has_hunks": true,
+        "files_touched": 1,
+        "lines_added": 1,
+        "lines_removed": 1,
+        "error_message": null
+      },
+      "metadata": {
+        "lines_changed": 2,
+        "files_changed": 1,
+        "solution_length": 657
+      },
+      "success": true,
+      "solution_generated": true
+    },
+    {
+      "instance_id": "sympy__sympy-14774",
+      "repo": "sympy/sympy",
+      "category": "bug",
+      "condition": "experimental",
+      "generated": true,
+      "valid_patch": true,
+      "agent_id": 5,
+      "task_type": "logic",
+      "execution_time": 5.008356332778931,
+      "model_output": "diff --git a/sympy/printing/latex.py b/sympy/printing/latex.py\n--- a/sympy/printing/latex.py\n+++ b/sympy/printing/latex.py\n@@ -743,7 +743,7 @@ def _print_inverse_trig(self, expr, **kwargs):\n         inv_trig_table = [\"asin\", \"acos\", \"atan\", \"acot\"]\n         if expr.func in inv_trig_table:\n             return \"\\\\operatorname{%s}{\\\\left (%s \\\\right )}\" % (expr.func.__name__, self._print(expr.args[0]))\n-        elif expr.func in [\"acsc\", \"asec\"]:\n+        elif expr.func in [\"acsc\", \"asec\", \"acot\"]:\n             return \"\\\\operatorname{%s}{\\\\left (%s \\\\right )}\" % (expr.func.__name__, self._print(expr.args[0]))\n         else:\n             return \"\\\\operatorname{%s}{\\\\left (%s \\\\right )}\" % (expr.func.__name__, self._print(expr.args[0]))",
+      "validation": {
+        "is_valid_syntax": true,
+        "is_valid_format": true,
+        "has_diff_header": true,
+        "has_hunks": true,
+        "files_touched": 1,
+        "lines_added": 1,
+        "lines_removed": 1,
+        "error_message": null
+      },
+      "metadata": {
+        "lines_changed": 2,
+        "files_changed": 1,
+        "solution_length": 741
+      },
+      "success": true,
+      "solution_generated": true
+    },
+    {
+      "instance_id": "sympy__sympy-15346",
+      "repo": "sympy/sympy",
+      "category": "test",
+      "condition": "experimental",
+      "generated": true,
+      "valid_patch": false,
+      "agent_id": 5,
+      "task_type": "logic",
+      "execution_time": 3.1640515327453613,
+      "model_output": "diff --git a/sympy/functions/trigonometric.py b/sympy/functions/trigonometric.py\n--- a/sympy/functions/trigonometric.py\n+++ b/sympy/functions/trigonometric.py\n@@ -1234,7 +1234,7 @@ def cos(x):\n     return cos(x)\n \n def sin(x):\n-    return sin(x)\n+    return sin(x).rewrite(cos)\n \n def tan(x):\n     return tan(x)\n```",
+      "validation": {
+        "is_valid_syntax": false,
+        "is_valid_format": false,
+        "has_diff_header": false,
+        "has_hunks": false,
+        "files_touched": 0,
+        "lines_added": 0,
+        "lines_removed": 0,
+        "error_message": "Patch contains markdown code blocks (not cleaned)"
+      },
+      "metadata": {
+        "lines_changed": 2,
+        "files_changed": 1,
+        "solution_length": 315
+      },
+      "success": true,
+      "solution_generated": true
+    },
+    {
+      "instance_id": "sympy__sympy-16988",
+      "repo": "sympy/sympy",
+      "category": "other",
+      "condition": "experimental",
+      "generated": true,
+      "valid_patch": false,
+      "agent_id": 6,
+      "task_type": "math",
+      "execution_time": 2.637723922729492,
+      "model_output": "diff --git a/sympy/sets/sets.py b/sympy/sets/sets.py\n--- a/sympy/sets/sets.py\n+++ b/sympy/sets/sets.py\n@@ -100,6 +100,7 @@ class Intersection(IntersectionBase):\n         if not args:\n             return EmptySet()\n         if len(args) == 1:\n+            args = list(dict.fromkeys(args))  # Remove duplicates\n             return args[0]\n         return IntersectionBase.__new__(Intersection, *args)\n```",
+      "validation": {
+        "is_valid_syntax": false,
+        "is_valid_format": false,
+        "has_diff_header": false,
+        "has_hunks": false,
+        "files_touched": 0,
+        "lines_added": 0,
+        "lines_removed": 0,
+        "error_message": "Patch contains markdown code blocks (not cleaned)"
+      },
+      "metadata": {
+        "lines_changed": 2,
+        "files_changed": 1,
+        "solution_length": 402
+      },
+      "success": true,
+      "solution_generated": true
+    },
+    {
+      "instance_id": "sympy__sympy-17139",
+      "repo": "sympy/sympy",
+      "category": "bug",
+      "condition": "experimental",
+      "generated": true,
+      "valid_patch": true,
+      "agent_id": 4,
+      "task_type": "logic",
+      "execution_time": 2.977278709411621,
+      "model_output": "diff --git a/sympy/simplify/fu.py b/sympy/simplify/fu.py\n--- a/sympy/simplify/fu.py\n+++ b/sympy/simplify/fu.py\n@@ -501,7 +501,7 @@ def _f(rv):\n     if rv.is_Pow:\n         if rv.exp < 0:\n             return rv.base**(-rv.exp)\n-        elif rv.exp > 0:\n+        elif rv.exp.is_real and rv.exp > 0:\n             return rv.base**rv.exp\n     return rv",
+      "validation": {
+        "is_valid_syntax": true,
+        "is_valid_format": true,
+        "has_diff_header": true,
+        "has_hunks": true,
+        "files_touched": 1,
+        "lines_added": 1,
+        "lines_removed": 1,
+        "error_message": null
+      },
+      "metadata": {
+        "lines_changed": 2,
+        "files_changed": 1,
+        "solution_length": 346
+      },
+      "success": true,
+      "solution_generated": true
+    },
+    {
+      "instance_id": "sympy__sympy-17630",
+      "repo": "sympy/sympy",
+      "category": "bug",
+      "condition": "experimental",
+      "generated": true,
+      "valid_patch": true,
+      "agent_id": 5,
+      "task_type": "logic",
+      "execution_time": 4.356264352798462,
+      "model_output": "diff --git a/sympy/matrices/expressions/blockmatrix.py b/sympy/matrices/expressions/blockmatrix.py\nindex 1234567..89abcde 100644\n--- a/sympy/matrices/expressions/blockmatrix.py\n+++ b/sympy/matrices/expressions/blockmatrix.py\n@@ -80,7 +80,7 @@ class BlockMatrix(MatrixBase):\n         return [self.blocks[0, i].cols for i in range(self.blockshape[1])]\n \n     @property\n-    def blocksizes(self):\n+    def blocksizes(self):\n         return [self.blocks[i, j].rows * self.blocks[i, j].cols\n                 for i in range(self.blockshape[0])\n                 for j in range(self.blockshape[1])]",
+      "validation": {
+        "is_valid_syntax": true,
+        "is_valid_format": true,
+        "has_diff_header": true,
+        "has_hunks": true,
+        "files_touched": 1,
+        "lines_added": 1,
+        "lines_removed": 1,
+        "error_message": null
+      },
+      "metadata": {
+        "lines_changed": 2,
+        "files_changed": 1,
+        "solution_length": 590
+      },
+      "success": true,
+      "solution_generated": true
+    },
+    {
+      "instance_id": "sympy__sympy-18057",
+      "repo": "sympy/sympy",
+      "category": "bug",
+      "condition": "experimental",
+      "generated": true,
+      "valid_patch": true,
+      "agent_id": 4,
+      "task_type": "logic",
+      "execution_time": 3.3733267784118652,
+      "model_output": "diff --git a/sympy/core/expr.py b/sympy/core/expr.py\nindex 1234567..89abcdef 100644\n--- a/sympy/core/expr.py\n+++ b/sympy/core/expr.py\n@@ -120,7 +120,7 @@ class Basic:\n         if isinstance(other, Basic):\n             return self._eval_eq(other)\n         else:\n-            return self._eval_eq(sympify(other))\n+            return self._eval_eq(sympify(other, evaluate=False))\n \n     def __ne__(self, other):\n         return not self.__eq__(other)",
+      "validation": {
+        "is_valid_syntax": true,
+        "is_valid_format": true,
+        "has_diff_header": true,
+        "has_hunks": true,
+        "files_touched": 1,
+        "lines_added": 1,
+        "lines_removed": 1,
+        "error_message": null
+      },
+      "metadata": {
+        "lines_changed": 2,
+        "files_changed": 1,
+        "solution_length": 447
+      },
+      "success": true,
+      "solution_generated": true
+    },
+    {
+      "instance_id": "sympy__sympy-18189",
+      "repo": "sympy/sympy",
+      "category": "other",
+      "condition": "experimental",
+      "generated": true,
+      "valid_patch": false,
+      "agent_id": 6,
+      "task_type": "math",
+      "execution_time": 3.121140480041504,
+      "model_output": "diff --git a/sympy/solvers/diophantine.py b/sympy/solvers/diophantine.py\n--- a/sympy/solvers/diophantine.py\n+++ b/sympy/solvers/diophantine.py\n@@ -123,7 +123,7 @@ def diophantine(f, syms=None, permute=False):\n     if syms is None:\n         syms = f.free_symbols\n     if permute:\n-        syms = list(syms)\n+        syms = list(syms) + list(syms)\n     # Rest of the code remains unchanged\n```",
+      "validation": {
+        "is_valid_syntax": false,
+        "is_valid_format": false,
+        "has_diff_header": false,
+        "has_hunks": false,
+        "files_touched": 0,
+        "lines_added": 0,
+        "lines_removed": 0,
+        "error_message": "Patch contains markdown code blocks (not cleaned)"
+      },
+      "metadata": {
+        "lines_changed": 2,
+        "files_changed": 1,
+        "solution_length": 391
+      },
+      "success": true,
+      "solution_generated": true
+    },
+    {
+      "instance_id": "sympy__sympy-18621",
+      "repo": "sympy/sympy",
+      "category": "bug",
+      "condition": "experimental",
+      "generated": true,
+      "valid_patch": true,
+      "agent_id": 4,
+      "task_type": "logic",
+      "execution_time": 4.4981255531311035,
+      "model_output": "diff --git a/sympy/matrices/expressions/blockmatrix.py b/sympy/matrices/expressions/blockmatrix.py\nindex 0a1b2c3..4d5e6f7 100644\n--- a/sympy/matrices/expressions/blockmatrix.py\n+++ b/sympy/matrices/expressions/blockmatrix.py\n@@ -245,7 +245,7 @@ class BlockMatrix(MatrixBase):\n             row_block, col_block = divmod(i, self.block_rows)\n             col_block, i = divmod(j, self.block_cols)\n             try:\n-                return self.blocks[row_block, col_block][i, j]\n+                return self.blocks[row_block, col_block][i, j] if self.blocks[row_block, col_block] is not None else None\n             except IndexError:\n                 raise IndexError(\"BlockMatrix index out of bounds\")",
+      "validation": {
+        "is_valid_syntax": true,
+        "is_valid_format": true,
+        "has_diff_header": true,
+        "has_hunks": true,
+        "files_touched": 1,
+        "lines_added": 1,
+        "lines_removed": 1,
+        "error_message": null
+      },
+      "metadata": {
+        "lines_changed": 2,
+        "files_changed": 1,
+        "solution_length": 699
+      },
+      "success": true,
+      "solution_generated": true
+    },
+    {
+      "instance_id": "sympy__sympy-20212",
+      "repo": "sympy/sympy",
+      "category": "docs",
+      "condition": "experimental",
+      "generated": true,
+      "valid_patch": true,
+      "agent_id": 2,
+      "task_type": "list",
+      "execution_time": 1.957878828048706,
+      "model_output": "diff --git a/sympy/core/power.py b/sympy/core/power.py\n--- a/sympy/core/power.py\n+++ b/sympy/core/power.py\n@@ -210,7 +210,7 @@ class Pow(Add):\n             if base.is_real and base.is_positive:\n                 return zoo\n             else:\n-                return 0\n+                return zoo",
+      "validation": {
+        "is_valid_syntax": true,
+        "is_valid_format": true,
+        "has_diff_header": true,
+        "has_hunks": true,
+        "files_touched": 1,
+        "lines_added": 1,
+        "lines_removed": 1,
+        "error_message": null
+      },
+      "metadata": {
+        "lines_changed": 2,
+        "files_changed": 1,
+        "solution_length": 294
+      },
+      "success": true,
+      "solution_generated": true
+    },
+    {
+      "instance_id": "sympy__sympy-21612",
+      "repo": "sympy/sympy",
+      "category": "test",
+      "condition": "experimental",
+      "generated": true,
+      "valid_patch": false,
+      "agent_id": 1,
+      "task_type": "logic",
+      "execution_time": 3.398730993270874,
+      "model_output": "diff --git a/sympy/parsing/latex.py b/sympy/parsing/latex.py\nindex 6b2a1b2..e3c4d5e 100644\n--- a/sympy/parsing/latex.py\n+++ b/sympy/parsing/latex.py\n@@ -123,7 +123,7 @@ def parse_latex(s):\n     # ... (other code)\n     if s.startswith(\"\\\\frac\"):\n         # ... (other code)\n-        return parse_latex(s[5:-1])\n+        return parse_latex(\"(\" + s[5:-1] + \")\")\n     # ... (other code)\n```",
+      "validation": {
+        "is_valid_syntax": false,
+        "is_valid_format": false,
+        "has_diff_header": false,
+        "has_hunks": false,
+        "files_touched": 0,
+        "lines_added": 0,
+        "lines_removed": 0,
+        "error_message": "Patch contains markdown code blocks (not cleaned)"
+      },
+      "metadata": {
+        "lines_changed": 2,
+        "files_changed": 1,
+        "solution_length": 386
+      },
+      "success": true,
+      "solution_generated": true
+    },
+    {
+      "instance_id": "sympy__sympy-21627",
+      "repo": "sympy/sympy",
+      "category": "bug",
+      "condition": "experimental",
+      "generated": true,
+      "valid_patch": false,
+      "agent_id": 4,
+      "task_type": "logic",
+      "execution_time": 3.032832384109497,
+      "model_output": "diff --git a/sympy/functions/elementary/trigonometric.py b/sympy/functions/elementary/trigonometric.py\n--- a/sympy/functions/elementary/trigonometric.py\n+++ b/sympy/functions/elementary/trigonometric.py\n@@ -123,7 +123,7 @@ class cosh(Function):\n     def is_zero(self):\n         if self.args[0].is_zero:\n             return True\n-        return self.args[0].is_zero\n+        return False\n```",
+      "validation": {
+        "is_valid_syntax": false,
+        "is_valid_format": false,
+        "has_diff_header": false,
+        "has_hunks": false,
+        "files_touched": 0,
+        "lines_added": 0,
+        "lines_removed": 0,
+        "error_message": "Patch contains markdown code blocks (not cleaned)"
+      },
+      "metadata": {
+        "lines_changed": 2,
+        "files_changed": 1,
+        "solution_length": 390
+      },
+      "success": true,
+      "solution_generated": true
+    }
+  ],
+  "timestamp": "2026-01-28 19:09:47"
+}
